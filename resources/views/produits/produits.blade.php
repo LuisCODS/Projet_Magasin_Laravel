@@ -8,7 +8,7 @@
 @endif
 
 <div id="search_container" class="col-md-12">
-	<h2>Cherche un produit</h2>
+	<h3>Cherche un produit</h3>
 	<form action="/" method="GET">
 		 @csrf
 		<input type="text" name="search" id="search" class="form-control" placeholder="Cherche...">
@@ -17,22 +17,23 @@
 
 <!--  CONTAINER CARD  -->
 
-    @foreach($produits as $produit)
-        <!-- ________________ CONTAINER DES EVENEMENTS ________________ -->
+
+        <!-- ________________ CONTAINER PRODUIT ________________ -->
         <div id="produit_container" class="col-md-12 ">
             <!--  CONTAINER CARD  -->
             <div id="cards_container" class="row">
-                <div class="card" style="width: 18rem;">
+            @foreach($produits as $produit)
+                <div class=" col-md-3" style="width: 18rem;">
                     <img class="card-img-top" src="img/pantalon.png" alt="{{ $produit->nomProduit }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $produit->nomProduit }}</h5>
                         <p class="card-text">${{ $produit->prix }}</p>
-                        <p class="card-text">Um exemplo dse texto rápido conteúdo do card.</p>
                         <a href="#" class="btn btn-primary">Details</a>
                     </div>
                 </div>
+            @endforeach
             </div>
         </div>
-    @endforeach
+
 
 @endsection

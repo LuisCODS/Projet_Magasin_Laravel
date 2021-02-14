@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produit;
+use App\Models\Categorie;
 
 class ProduitController extends Controller
 {
@@ -29,6 +30,8 @@ class ProduitController extends Controller
         else{
             //Query all produits
             $produits = Produit::all();
+             //Query all category
+            $categories = Categorie::all();
         }
         //Send back to view a list of products as array
         return view('produits.produits',['produits' => $produits, 'search' => $search]);
