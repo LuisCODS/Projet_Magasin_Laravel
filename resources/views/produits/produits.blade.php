@@ -3,9 +3,12 @@
 @section('content')
 
 <!-- ________________ CONTAINER SERCHE EVENEMENT ________________ -->
+@if(session('msg'))
+    <p class="msg">{{ session('msg') }}</p>
+@endif
 
 <div id="search_container" class="col-md-12">
-	<h2>Cherche un événement</h2>
+	<h2>Cherche un produit</h2>
 	<form action="/" method="GET">
 		 @csrf
 		<input type="text" name="search" id="search" class="form-control" placeholder="Cherche...">
@@ -24,9 +27,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $produit->nomProduit }}</h5>
                         <p class="card-text">${{ $produit->prix }}</p>
-                        <p class="card-text">Categorie : </p>
-                        <p class="card-text">Um exemplo de texto rápido conteúdo do card.</p>
-                        <a href="#" class="btn btn-primary">Visitar</a>
+                        <p class="card-text">Um exemplo dse texto rápido conteúdo do card.</p>
+                        <a href="#" class="btn btn-primary">Details</a>
                     </div>
                 </div>
             </div>

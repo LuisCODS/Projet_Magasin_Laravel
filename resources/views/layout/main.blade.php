@@ -36,7 +36,6 @@
 									</li>
 
 								</ul>
-
 								<ul class="navbar-nav ml-md-auto">
 									<div class="dropdown">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,14 +47,12 @@
 											<a class="dropdown-item" href="#">Alguma coisa aqui</a>
 										</div>
 									</div>
-
 									<li class="nav-item active">
 										<a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
 									</li>
 									<li class="nav-item active">
 										<a class="nav-link" href="#">Logout <span class="sr-only">(current)</span></a>
 									</li>
-
 								</ul>
 							</div>
 						</nav>
@@ -65,11 +62,8 @@
 		</header>
 		<!-- ======================================= MAIN ======================================= -->
 		<main>
-			<div id ="mainContentLayout" class="container-fluid h-100">
+			<div id ="mainContentLayout" class="container h-100">
 				<div class="row h-100 justify-content-center align-items-center">
-					@if(session('msg'))
-					<p class="msg">{{ session('msg') }}</p>
-					@endif
 					<!-- ================= RENDER PAGES HERE ================= -->
 					@yield('content')
 					<!-- ==================================================== -->

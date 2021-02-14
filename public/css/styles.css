@@ -14,6 +14,11 @@ header {
 	border-bottom: 1px solid #CCC;
 }
 
+.navbar {
+    padding: 10px 0 0;
+}
+
+
 
 footer {
 	background-color: #353e48;
@@ -24,7 +29,9 @@ footer {
 	width: 100%;
 }
 
-
+.navbar {
+    background-color:#FFF;
+}
 
 /*================== WELCOME PAGE ====================*/
 
@@ -62,4 +69,13 @@ footer {
 
 /*==================  PRODUITS PAGE ====================*/
 
+#produit_container {
 
+}
+
+/* image background */
+#search_container {
+
+	padding: 10px;
+	text-align: center;
+}
