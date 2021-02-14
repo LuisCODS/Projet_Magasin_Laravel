@@ -29,10 +29,10 @@
 										<a class="nav-link" href="{{ route('produits') }}">Nos produits </a>
 									</li>
 									<li class="nav-item">
-										<a href="/contact" class="nav-link">Contact</a>
+										<a href="{{ route('contact') }}" class="nav-link">Contact</a>
 									</li>
 									<li class="nav-item ">
-										<a href="produits/create" class="nav-link">Ajouter produit</a>
+										<a href="{{ route('add-produit') }}" class="nav-link">Ajouter produit</a>
 									</li>
 
 								</ul>
@@ -47,14 +47,14 @@
 											<a class="dropdown-item" href="#">Alguma coisa aqui</a>
 										</div>
 									</div>
-									
+
 									<li class="nav-item active">
 										<a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
 									</li>
 									<li class="nav-item active">
 										<a class="nav-link" href="#">Logout <span class="sr-only">(current)</span></a>
 									</li>
-									
+
 								</ul>
 							</div>
 						</nav>

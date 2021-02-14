@@ -9,12 +9,21 @@ class HomeController extends Controller
     /**
      * Display home page.
      *
-     * @return
+     * @return Home page
      */
-    public function index()
+    public function welcome()
     {
-        return view('home.index');
+        return view('welcome');
+    }
+
+    /**
+     * Display caontac page.
+     *
+     * @return contact page
+     */
+    public function contact()
+    {
+        return view('contact');
     }
 
 }
-:

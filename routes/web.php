@@ -5,19 +5,12 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\HomeController;
 
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-
 // ================== HOME ROUTES ==================
-//Display all products at home page
-//Route::get('/', [HomeController::class, 'index']);
+
+// home page
+Route::get('/', [HomeController::class, 'welcome']);
+//Shou contact page
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 
 // ================== PRODUIT ROUTES ==================
@@ -27,7 +20,7 @@ Route::get('/contact', function () {
  Route::get('/produits', [ProduitController::class, 'index'])->name('produits');
 
 //Show form to create a new product. Le ->middleware('auth') :only connected users have access
-Route::get('/produits/create', [ProduitController::class,'create']);
+Route::get('/produits/create', [ProduitController::class,'create'])->name('add-produit');
 
  /*Show details about an product*/
 //Route::get('/produit/{id}', [ProduitController::class,'show']);
@@ -42,6 +35,13 @@ Route::get('/produits/create', [ProduitController::class,'create']);
 
 
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
 
 
