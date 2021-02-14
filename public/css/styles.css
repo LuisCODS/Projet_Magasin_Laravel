@@ -1,0 +1,55 @@
+/*================== GLOBAL ====================*/
+*{
+  font-family: 'Roboto';
+}
+
+body {
+	min-height: 100vh; /*100% user screen*/
+	padding-bottom: 100px;
+	position: relative;
+}
+
+footer {
+	background-color: #353e48;
+	color:#FFF;
+	padding: 40px;
+	position: absolute;/*cola no fundo da tela*/
+	bottom: 0px;
+	width: 100%;
+}
+
+/*================== WELCOME PAGE ====================*/
+
+#carouselExampleControls img {
+    height: 500px;
+    margin-top: 10px;
+
+}
+#genre_container  {
+
+	 padding-top: 20px;
+	 padding-bottom: 20px;
+	 padding-left: 70px;
+	 padding-right: 70px;
+
+}
+
+#genre_container h2,p {
+	
+ text-align: center
+}
+
+#genre_container img {
+	 height: 150px;
+     display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+/*================== MAIN PAGE ====================*/
+#mainContentLayout {
+	 padding-top: 30px;
+}
+
+
+/*================== CREATE PRODUIT PAGE ====================*/
