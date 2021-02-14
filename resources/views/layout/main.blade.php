@@ -26,15 +26,14 @@
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 								<ul class="navbar-nav">
 									<li class="nav-item ">
-										<a class="nav-link" href="{{ route('produits') }}">Nos produits </a>
+										<a class="nav-link" href="{{ route('list-all') }}">Nos produits </a>
 									</li>
 									<li class="nav-item">
 										<a href="{{ route('contact') }}" class="nav-link">Contact</a>
 									</li>
 									<li class="nav-item ">
-										<a href="{{ route('add-produit') }}" class="nav-link">Ajouter produit</a>
+										<a href="{{ route('create-produit') }}" class="nav-link">Ajouter produit</a>
 									</li>
-
 								</ul>
 								<ul class="navbar-nav ml-md-auto">
 									<div class="dropdown">

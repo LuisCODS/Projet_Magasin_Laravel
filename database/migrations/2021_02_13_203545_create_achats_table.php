@@ -21,6 +21,7 @@ class CreateAchatsTable extends Migration
             $table->double('sousTotal', 10,2);
             $table->double('tps', 10,2);
             $table->double('tvq', 10,2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

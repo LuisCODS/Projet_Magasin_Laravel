@@ -22,6 +22,7 @@ class CreateAchatProduitsTable extends Migration
                                          ->onUpdate('cascade');
             $table->integer('quantite');
             $table->double('prixProduit', 10,2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

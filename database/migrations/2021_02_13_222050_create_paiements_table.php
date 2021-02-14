@@ -21,6 +21,7 @@ class CreatePaiementsTable extends Migration
             $table->double('montant', 10,2);
             $table->string('status', 10);
             $table->string('modePaiement', 20);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

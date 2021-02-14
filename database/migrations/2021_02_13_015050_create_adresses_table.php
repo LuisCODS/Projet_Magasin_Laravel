@@ -25,6 +25,7 @@ class CreateAdressesTable extends Migration
             $table->string('pays');
             $table->string('codePostal');
             $table->string('ville');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

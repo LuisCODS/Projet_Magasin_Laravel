@@ -18,6 +18,7 @@ class CreateFacturesTable extends Migration
             $table->unsignedBigInteger('fk_id_achat');
             $table->foreign('fk_id_achat')->references('id_achat')->on('achats')->onUpdate('cascade');
             $table->double('totalFinal', 10,2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

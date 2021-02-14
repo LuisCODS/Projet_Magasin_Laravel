@@ -80,3 +80,34 @@
             $table->timestamps();
         });
     }
+
+
+
+SELECT NAME, PRODUCT_NAME, QTD * PRICE AS PRICE
+FROM CLIENT
+JOIN ACHAT ON CLIENT.ID = ACHAT.ID
+JOIN ACHAT_PRODUIT ON ACHAT_PRODUIT.ACHAT_ID =  ACHAT.ID
+ WHERE 1=1
+  AND CLIEND.ID = 1;
+  AND ACHAT.BILL_NUMBER = 1234;
+
+
+CREATE OR REPLACE FUNCTION GET_TVQ (p_date date)
+AS
+l_tvq;
+begin
+
+select tvq int l_tvq from taxes
+where p_date between start_date and end_date
+and taxe_type = 'TVQ';
+
+return l_tvq;
+
+
+end;
+
+
+l_tvq := GET_TVQ(sysdate);
+l_price := price * l_tvq;
+
+insert, update and delete

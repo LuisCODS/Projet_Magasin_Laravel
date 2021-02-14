@@ -7,7 +7,7 @@
 	<h2>Nouveau Produit</h2>
     <br>
     <br>
-	<form action="/evenement" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('save-produit') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 
 		<div class="form-group">
@@ -38,27 +38,14 @@
 
 		<div class="form-group">
 			<label for="description">Description</label>
-			<textarea type="text" class="form-control"  id="description" name="description" placeholder="Details de l'événement"></textarea>
+			<textarea type="text" class="form-control"  id="description" name="description"></textarea>
 		</div>
-<!--
-		<div class="form-group">
-			<hr>
-			<label for="items">Ajouter les items d'infrastructure</label><br><br>
 
-			<input type="checkbox" name="items[]" value="Chaises" >
-			<label for="Chaises"> Chaises</label><br>
-
-			<input type="checkbox" name="items[]" value="Retroprojecteur" >
-			<label for="Retroprojecteur"> Rétropro-jecteur</label><br>
-
-			<input type="checkbox" name="items[]" value="Buffet a volonte">
-			<label for="Buffet a volonte">Buffet à volonté</label><br>
-
-			<input type="checkbox" name="items[]" value="Boisson alcoolisee">
-			<label for="Boisson alcoolisae"> Boisson alcoolisée gratuit</label>
-			<hr>
-			<input type="submit" class="btn btn-primary" value="Enregistrer"><br><br>
-		</div> -->
+        <div class="form-group">
+             <input type="submit"  class="btn btn-primary form-control" value="Enregistrer">
+             <br>
+             <br>
+		</div>
 
 	</form>
 </div>

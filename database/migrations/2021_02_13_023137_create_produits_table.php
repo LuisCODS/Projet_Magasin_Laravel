@@ -22,6 +22,7 @@ class CreateProduitsTable extends Migration
             $table->string('description', 200);
             $table->string('img', 100);
             $table->double('prix', 10, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

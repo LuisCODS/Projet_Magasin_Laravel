@@ -16,32 +16,22 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 // ================== PRODUIT ROUTES ==================
 
 // //Display all products at home page
-// https://laravel.com/docs/8.x/routing#named-routes {{ route('produits/crete') }}
- Route::get('/produits', [ProduitController::class, 'index'])->name('produits');
+ Route::get('/produits', [ProduitController::class, 'index'])->name('list-all');
 
 //Show form to create a new product. Le ->middleware('auth') :only connected users have access
-Route::get('/produits/create', [ProduitController::class,'create'])->name('add-produit');
+Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
 
- /*Show details about an product*/
-//Route::get('/produit/{id}', [ProduitController::class,'show']);
+//Show details about an product
+Route::get('/produit/{id}', [ProduitController::class,'show']);
 
-// //Send form(create product) for method store at the controller.
-//Route::post('/produit', [ProduitController::class,'store']);
+//Send form(create product)
+Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
 
 // // ================== DASHBOARD ROUTES  ==================
 
 // //->middleware('auth'): only connected users have access
 // Route::get('/dashboard', [AdminController::class,'dashboard'])->middleware('auth');
 
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
 
 
 
