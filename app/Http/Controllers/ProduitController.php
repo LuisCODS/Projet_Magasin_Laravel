@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produit;
 
 class ProduitController extends Controller
 {
@@ -13,7 +14,24 @@ class ProduitController extends Controller
      */
     public function index()
     {
-         return view('produits.produits');
+
+        // Get from form input fild
+         $search = request('search');
+
+         //Si le champs recherche à été remplis
+        if ($search) {
+
+            /*Cherche un registre avec le nom demandé*/
+            $produits = Produit::where([
+                ['nomProduit','like','%'.$search.'%']
+            ])->get();
+        }
+        else{
+            //Query all produits
+            $produits = Produit::all();
+        }
+        //Send back to view a list of products as array
+        return view('produits.produits',['produits' => $produits, 'search' => $search]);
     }
 
     /**

@@ -9,6 +9,12 @@ body {
 	position: relative;
 }
 
+header {
+	background-color:#FFF;
+	border-bottom: 1px solid #CCC;
+}
+
+
 footer {
 	background-color: #353e48;
 	color:#FFF;
@@ -17,6 +23,8 @@ footer {
 	bottom: 0px;
 	width: 100%;
 }
+
+
 
 /*================== WELCOME PAGE ====================*/
 
@@ -35,7 +43,7 @@ footer {
 }
 
 #genre_container h2,p {
-	
+
  text-align: center
 }
 
@@ -52,4 +60,6 @@ footer {
 }
 
 
-/*================== CREATE PRODUIT PAGE ====================*/
+/*==================  PRODUITS PAGE ====================*/
+
+
