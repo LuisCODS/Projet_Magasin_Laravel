@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categorie;
 
-
 class CategorieController extends Controller
 {
 
@@ -38,13 +37,20 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
 
+        // mensagem qualquer para o amigo
+        /**
+         *
+         * código comentado
+         *
+         */
+        //dd($request->all());
         // Validate and store the category post
         try{
             // meu comentário
             $validated = $request->validate([
                 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
             ]);
-        }catch(ValidationException $e){
+        } catch (ValidationException $e) {
             //dd($e);
 
             session()->put('errors', $e->validator->getMessageBag());
@@ -62,10 +68,10 @@ class CategorieController extends Controller
         $categorie->nomCategorie = trim($request->nomCategorie);
 
         //Save it into BD
-         $categorie->save();
+        $categorie->save();
 
-         //redirige vers la meme page avec une message de feedback
-         return redirect('/categorie/create')->with('msg', 'Categorie crée avec succes');
+        //redirige vers la meme page avec une message de feedback
+        return redirect('/categorie/create')->with('msg', 'Categorie crée avec succes');
     }
 
     /**
