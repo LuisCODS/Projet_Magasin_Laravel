@@ -11,8 +11,8 @@
 		@csrf
 
 		<div class="form-group">
-			<label for="">Image</label>
-			<input type="file" class="form-control-file" id="image" name="image">
+			<label for="img">Image</label>
+			<input type="file" class="form-control-file" id="img" name="img">
 		</div>
 
 		<div class="form-group">
@@ -30,11 +30,11 @@
 		</div>
 
 		<div class="form-group">
-			<label for="">Categorie</label>
-			<select class="form-control" id="" name="">
+			<label for="fk_id_categorie">Categorie</label>
+			<select class="form-control" id="fk_id_categorie" name="fk_id_categorie">
             @foreach($categories as $categorie)
  				<option value="{{ $categorie->id_categorie }}">{{ $categorie->nomCategorie }}</option>
-                 @endforeach
+            @endforeach
 			</select>
 		</div>
 

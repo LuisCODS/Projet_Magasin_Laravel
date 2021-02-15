@@ -66,7 +66,8 @@ class ProduitController extends Controller
         $produit->img = $request->img;
         $produit->prix = $request->prix;
         $produit->totalStock = $request->totalStock;
-
+        //Attache the relation (Set the FK).
+        $produit->fk_id_categorie = $request->fk_id_categorie;
         $pochette="default.png";
 
         /* Si une photo est envoyée, on fait l'Upload de l'image dans la pochette.
@@ -86,11 +87,11 @@ class ProduitController extends Controller
             $requestImage->move(public_path('img/produits'),$imageName);
             $pochette = $imageName;
             //Save the image into BD
-            $produit->image = $pochette;
+            $produit->img = $pochette;
         }
 
         //Set the image
-        $produit->image = $pochette;
+        $produit->img = $pochette;
 
         // ----------------------- end Image Upload -----------------------
 
