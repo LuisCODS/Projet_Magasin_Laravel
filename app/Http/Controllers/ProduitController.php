@@ -38,7 +38,7 @@ class ProduitController extends Controller
     }
 
     /**
-     * Show the form for creating a new product.
+     * Show the form for create  a new product.
      *
      * @return:  form view  and an array of category
      */

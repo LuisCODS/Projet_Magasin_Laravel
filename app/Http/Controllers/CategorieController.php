@@ -20,7 +20,7 @@ class CategorieController extends Controller
     }
 
     /**
-     * Show the form for creating a new category.
+     * Show the form for create  a new category.
      *
      * @return form view 
      */
