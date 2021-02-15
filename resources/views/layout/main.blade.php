@@ -36,8 +36,7 @@
 									</li>
 									<li class="nav-item ">
 										<a href="{{ route('create-categorie') }}" class="nav-link">Ajouter categorie</a>
-									</li>	
-
+									</li>
 								</ul>
 								<ul class="navbar-nav ml-md-auto">
 									<div class="dropdown">
@@ -45,17 +44,38 @@
 											Link dropdown
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											<a class="dropdown-item" href="{{ route('create-produit') }}">Ajouter Categorie</a>
+											<a class="dropdown-item" href="#">Ajouter Categorie</a>
 											<a class="dropdown-item" href="#">Ajouter Produit</a>
 											<a class="dropdown-item" href="#">Alguma coisa aqui</a>
 										</div>
 									</div>
-									<li class="nav-item active">
-										<a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+
+									<!-- ================= ONLY GUEST ====================== -->
+									@guest
+									<li class="nav-item">
+										<a href="/login" class="nav-link">Login</a>
 									</li>
-									<li class="nav-item active">
-										<a class="nav-link" href="#">Logout <span class="sr-only">(current)</span></a>
+									<li class="nav-item">
+										<a href="/register" class="nav-link">Enregistrer</a>
 									</li>
+									@endguest
+
+									<!-- ================== ONLY AUTH. CAN SEE THIS ZONE ================= -->
+									@auth
+									<li class="nav-item">
+										<a href="/dashboard" class="nav-link">Mes événements</a>
+									</li>
+									<!--  LOGOUT  -->
+									<li class="nav-item">
+										<form action="/logout" method="POST">
+											@csrf
+											<a href="/logout" class="nav-link" onclick="event.preventDefault(); this.closest('form').submit();">
+												Quitter
+											</a>
+										</form>
+									</li>
+									@endauth
+									
 								</ul>
 							</div>
 						</nav>

@@ -58,16 +58,4 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    // ================= METHODES =================
-
-    /**
-     * Un utilisateur posseder aucun ou plusieurs événements(1 to N).
-       Comme cela, on peut savoir quels sont les evenements de cet utilisateur.
-     */
-    public function events()
-    {
-        return $this->hasMany('App\Models\Evenement');
-    }
-
 }

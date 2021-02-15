@@ -61,7 +61,7 @@ class ProduitController extends Controller
     {
         // Validate and store the product post
         // $request->validate([
-        //     'nomProduit'         => 'required|unique:posts|max:45',
+        //     'nomProduit'         => 'required|unique:Produits|max:45',
         //     'author.name'        => 'required',
         //     'author.description' => 'required',
         // ]);
