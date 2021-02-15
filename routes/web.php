@@ -20,7 +20,7 @@ Route::get('/categorie/create', [CategorieController::class,'create'])->name('cr
 Route::post('/categorie/store', [CategorieController::class,'store'])->name('save-categorie');
 
 
-
+//->middleware('auth');
 // ================== PRODUIT ROUTES ==================
 
 // //Display all products at home page

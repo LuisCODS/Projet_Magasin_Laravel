@@ -13,26 +13,44 @@
 
 		<div class="form-group">
 			<label for="img">Image</label>
-			<input type="file" class="form-control-file" id="img" name="img">
+			<input type="file" class="" id="img" name="img" value="{{ old('img') }}"
+			 class="form-control-file @error('img') is-invalid @enderror">
+ 			@error('img')
+			    <div class="alert alert-danger">{{ $message }}</div>
+			@enderror
 		</div>
 
 		<div class="form-group">
 			<label for="prix">Prix</label>
-			<input type="text" class="form-control" id="prix" name="prix" required>
+			<input type="text" id="prix" name="prix" 
+		 class="form-control @error('prix') is-invalid @enderror">
+ 			@error('prix')
+			    <div class="alert alert-danger">{{ $message }}</div>
+			@enderror
 		</div>
 
 		<div class="form-group">
 			<label for="nomProduit">Nom du produit</label>
-			<input type="text" class="form-control" id="nomProduit" name="nomProduit" required>
+			<input type="text" id="nomProduit" name="nomProduit"
+					 class="form-control @error('nomProduit') is-invalid @enderror">
+ 			@error('nomProduit')
+			    <div class="alert alert-danger">{{ $message }}</div>
+			@enderror	
 		</div>
 
         <div class="form-group">
-			<input type="hidden" class="form-control" id="totalStock" name="totalStock">
+        	<label for="totalStock">Total stock</label>
+			<input type="number" id="totalStock" name="totalStock" min="1" max="999999" 
+				   class="form-control @error('totalStock') is-invalid @enderror">
+ 			@error('totalStock')
+			    <div class="alert alert-danger">{{ $message }}</div>
+			@enderror	
 		</div>
 
 		<div class="form-group">
 			<label for="fk_id_categorie">Categorie</label>
-			<select class="form-control" id="fk_id_categorie" name="fk_id_categorie" required>
+			<select class="form-control" id="fk_id_categorie" name="fk_id_categorie" >
+ 				<option value=""  > Selecione </option>
             @foreach($categories as $categorie)
  				<option value="{{ $categorie->id_categorie }}">{{ $categorie->nomCategorie }}</option>
             @endforeach
@@ -41,7 +59,11 @@
 
 		<div class="form-group">
 			<label for="description">Description</label>
-			<textarea type="text" class="form-control"  id="description" name="description"></textarea>
+			<textarea id="description" name="description"
+				      class="form-control @error('description') is-invalid @enderror"></textarea>
+ 			@error('description')
+			    <div class="alert alert-danger">{{ $message }}</div>
+			@enderror
 		</div>
 
         <div class="form-group">

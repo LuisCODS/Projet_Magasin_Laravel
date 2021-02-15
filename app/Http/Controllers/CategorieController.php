@@ -39,15 +39,25 @@ class CategorieController extends Controller
     {
 
         // Validate and store the category post
+        try{
+            $validated = $request->validate([
+                'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
+            ]);
+        }catch(ValidationException $e){
+            //dd($e);
 
-        $validated = $request->validate([
-            'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
-        ]);
+            session()->put('errors', $e->validator->getMessageBag());
+            session()->put('old', $request->input());
+            session()->save();
+
+            return back();
+            // return response()->redirectToRoute('admin.brokers.index');
+        }
 
 
         //Instacie le modele
         $categorie = new Categorie();
-       // $categorie->nomCategorie = trim($request->old('nomCategorie') );
+        //$categorie->nomCategorie = trim($request->old('nomCategorie') );
         $categorie->nomCategorie = trim($request->nomCategorie);
 
         //Save it into BD

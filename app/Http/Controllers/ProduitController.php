@@ -59,22 +59,38 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate and store the product post
-        // $request->validate([
-        //     'nomProduit'         => 'required|unique:Produits|max:45',
-        //     'author.name'        => 'required',
-        //     'author.description' => 'required',
-        // ]);
 
+        try{
+            //dd($request->all());
+            // Validate and store the product post
+            $request->validate([
+                'nomProduit' => 'required|unique:Produits|max:45',
+                "prix"       => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+                "nomProduit" => 'required|max:45',
+                "totalStock" => "required|numeric|between:1,999999",
+                "fk_id_categorie" => 'required',
+                "description" => 'required',
+            ]);
+
+        }catch(ValidationException $e){
+            //dd($e);
+
+            session()->put('errors', $e->validator->getMessageBag());
+            session()->put('old', $request->input());
+            session()->save();
+
+            return back();
+            // return response()->redirectToRoute('admin.brokers.index');
+        }
 
         $produit = new Produit();
+
         $produit->nomProduit = trim($request->nomProduit);
         $produit->description = trim($request->description);
         $produit->prix = $request->prix;
-        $produit->totalStock = $request->totalStock + 1;
+        $produit->totalStock = $request->totalStock;
         //Attache the relation (Set the FK).
         $produit->fk_id_categorie = $request->fk_id_categorie;
-
         $pochette="default.png";
 
         /* Si une photo est envoyée, on fait l'Upload de l'image dans la pochette.
