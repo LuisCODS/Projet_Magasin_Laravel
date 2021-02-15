@@ -132,8 +132,10 @@ class ProduitController extends Controller
      */
     public function show($id)
     {
+
         //Cherche un produit par son id.
         $produit = Produit::findOrFail($id);
+
 
         return view('produits.show',['produit' => $produit]);
     }

@@ -30,7 +30,7 @@ Route::post('/categorie/store', [CategorieController::class,'store'])->name('sav
 Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
 
 //Show details about a product
-Route::get('/produit/{id}', [ProduitController::class,'show']);
+Route::get('/produit/{id}/', [ProduitController::class,'show']);
 
 //Send form(create product)
 Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
