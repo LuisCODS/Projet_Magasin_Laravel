@@ -61,21 +61,30 @@ footer {
 
 /*==================  PRODUITS PAGE ====================*/
 
+/*produits.blade.php*/
 .card {
     margin: 5px;
-
 }
 
+/*produits.blade.php*/
+#divCardBorder {
+	 border: 1px solid #CCC; 
+	 padding: 5px;
+	 margin: 10px;
+}
+
+/*produits.blade.php*/
 .card-body {
     text-align: center;
 }
 
+/*produits.blade.php*/
 #search_container {
 	padding: 10px;
 	text-align: center;
 }
 
-/* Form */
+/*produits.blade.php*/
 #search_container form {
 	width: 50%;
 	margin: auto;
