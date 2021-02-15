@@ -24,13 +24,13 @@
     <!--  CONTAINER CARD  -->
     <div id="cards_container" class="row">
         @foreach($produits as $produit)
-        <div id="divCardBorder" class="col-md-3" style="width: 18rem;">
+        <div id="divCardBorder" class="col-md-3" >
             <img class="card-img-top" src="/img/produits/{{ $produit->img }}" alt="{{ $produit->nomProduit }}">
             
             <div class="card-body">
                 <h5 class="card-title">{{ $produit->nomProduit }}</h5>
                 <p class="card-text">${{ $produit->prix }}</p>
-                <a href="#" class="btn btn-primary">Details</a>
+                <a href="/produit/{{ $produit->id_produit }}" class="btn btn-primary">Details</a>
             </div>
         </div>
         @endforeach

@@ -38,9 +38,9 @@ class ProduitController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new product.
      *
-     * @return: array as category
+     * @return:  form view  and an array of category
      */
     public function create()
     {
@@ -54,8 +54,8 @@ class ProduitController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request get all input filds from form
-     * @return \Illuminate\Http\Response
+     * @param  $request send all input filds from form
+     * @return  a message succes
      */
     public function store(Request $request)
     {
@@ -67,7 +67,7 @@ class ProduitController extends Controller
         $produit->totalStock = $request->totalStock + 1;
         //Attache the relation (Set the FK).
         $produit->fk_id_categorie = $request->fk_id_categorie;
-        
+
         $pochette="default.png";
 
         /* Si une photo est envoyée, on fait l'Upload de l'image dans la pochette.
@@ -98,19 +98,22 @@ class ProduitController extends Controller
         //Save event in BD
          $produit->save();
 
-         //redirige vers la page de tous le sproduits avec une message de feedback
+         //redirige vers la page de tous le produits avec une message de feedback
          return redirect('/produits')->with('msg', 'Produit crée avec succes');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $id du produit
+     * @return un produit
      */
     public function show($id)
     {
-        //
+        //Cherche un produit par son id.
+        $produit = Produit::findOrFail($id);
+
+        return view('produits.show',['produit' => $produit]);
     }
 
     /**

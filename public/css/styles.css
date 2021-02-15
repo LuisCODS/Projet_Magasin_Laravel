@@ -70,11 +70,16 @@ footer {
     margin: 5px;
 }
 
+#produit_container {
+
+
+}
+
 /*produits.blade.php*/
 #divCardBorder {
 	 border: 1px solid #CCC; 
 	 padding: 5px;
-	 margin: 10px;
+	 margin: 5px;
 }
 
 /*produits.blade.php*/

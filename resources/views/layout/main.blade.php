@@ -34,6 +34,10 @@
 									<li class="nav-item ">
 										<a href="{{ route('create-produit') }}" class="nav-link">Ajouter produit</a>
 									</li>
+									<li class="nav-item ">
+										<a href="{{ route('create-categorie') }}" class="nav-link">Ajouter categorie</a>
+									</li>	
+
 								</ul>
 								<ul class="navbar-nav ml-md-auto">
 									<div class="dropdown">
@@ -41,8 +45,8 @@
 											Link dropdown
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											<a class="dropdown-item" href="#">Alguma ação</a>
-											<a class="dropdown-item" href="#">Outra ação</a>
+											<a class="dropdown-item" href="{{ route('create-produit') }}">Ajouter Categorie</a>
+											<a class="dropdown-item" href="#">Ajouter Produit</a>
 											<a class="dropdown-item" href="#">Alguma coisa aqui</a>
 										</div>
 									</div>
