@@ -40,7 +40,7 @@ class ProduitController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return: form view to create a product
+     * @return: array as category
      */
     public function create()
     {
@@ -63,11 +63,11 @@ class ProduitController extends Controller
         $produit = new Produit();
         $produit->nomProduit = trim($request->nomProduit);
         $produit->description = trim($request->description);
-        $produit->img = $request->img;
         $produit->prix = $request->prix;
-        $produit->totalStock = $request->totalStock;
+        $produit->totalStock = $request->totalStock + 1;
         //Attache the relation (Set the FK).
         $produit->fk_id_categorie = $request->fk_id_categorie;
+        
         $pochette="default.png";
 
         /* Si une photo est envoyée, on fait l'Upload de l'image dans la pochette.
@@ -75,15 +75,15 @@ class ProduitController extends Controller
 
         //----------------------- Image Upload -----------------------
 
-        if ( $request->hasFile('image') && $request->file('image')->isValid() )
+        if ( $request->hasFile('img') && $request->file('img')->isValid() )
          {
             //The image
-            $requestImage = $request->image;
+            $requestImage = $request->img;
             //The extention
             $extension = $requestImage->extension();
             //Create a hash
             $imageName = sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
-            //Save the imageName in a new folder
+            //Image path
             $requestImage->move(public_path('img/produits'),$imageName);
             $pochette = $imageName;
             //Save the image into BD
@@ -95,15 +95,11 @@ class ProduitController extends Controller
 
         // ----------------------- end Image Upload -----------------------
 
-
-        //Attache cet evenemnt à une categorie(Set the FK).
-
         //Save event in BD
          $produit->save();
 
          //redirige vers la page de tous le sproduits avec une message de feedback
          return redirect('/produits')->with('msg', 'Produit crée avec succes');
-
     }
 
     /**
