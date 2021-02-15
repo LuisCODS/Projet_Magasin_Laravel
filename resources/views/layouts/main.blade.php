@@ -31,12 +31,6 @@
 									<li class="nav-item">
 										<a href="{{ route('contact') }}" class="nav-link">Contact</a>
 									</li>
-									<li class="nav-item ">
-										<a href="{{ route('create-produit') }}" class="nav-link">Ajouter produit</a>
-									</li>
-									<li class="nav-item ">
-										<a href="{{ route('create-categorie') }}" class="nav-link">Ajouter categorie</a>
-									</li>
 								</ul>
 								<ul class="navbar-nav ml-md-auto">
 									<div class="dropdown">
@@ -51,6 +45,7 @@
 									</div>
 
 									<!-- ================= ONLY GUEST ====================== -->
+
 									@guest
 									<li class="nav-item">
 										<a href="/login" class="nav-link">Login</a>
@@ -61,9 +56,16 @@
 									@endguest
 
 									<!-- ================== ONLY AUTH. CAN SEE THIS ZONE ================= -->
+
 									@auth
+									<li class="nav-item ">
+										<a href="{{ route('create-produit') }}" class="nav-link">Ajouter produit</a>
+									</li>
+									<li class="nav-item ">
+										<a href="{{ route('create-categorie') }}" class="nav-link">Ajouter categorie</a>
+									</li>
 									<li class="nav-item">
-										<a href="/dashboard" class="nav-link">Mes événements</a>
+										<a href="/dashboard" class="nav-link">Gestion Produit</a>
 									</li>
 									<!--  LOGOUT  -->
 									<li class="nav-item">

@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('title', {{ $produit->nomProduit }})
 @section('content')
 <!-- =============== CONTAINER PRODUIT DETAILS  =============== -->

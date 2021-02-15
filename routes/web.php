@@ -35,10 +35,12 @@ Route::get('/produit/{id}', [ProduitController::class,'show']);
 //Send form(create product)
 Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
 
-// // ================== DASHBOARD ROUTES  ==================
 
-// //->middleware('auth'): only connected users have access
-// Route::get('/dashboard', [AdminController::class,'dashboard'])->middleware('auth');
+ // ================== DASHBOARD ROUTES  ==================
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 
 

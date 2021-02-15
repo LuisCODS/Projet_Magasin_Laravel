@@ -58,4 +58,20 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+
+    // ================= METHODES =================
+
+    /**
+     * Un utilisateur posseder aucun ou plusieurs adresses(1 to N).
+     */
+    // public function adresses()
+    // {
+    //     //1 to N
+    //     return $this->hasMany('App\Models\Adresse');
+    // }
+
+
+
 }

@@ -14,9 +14,9 @@ class CreateAdressesTable extends Migration
     public function up()
     {
         Schema::create('adresses', function (Blueprint $table) {
-            $table->id('id_adresse');
+            $table->id();
             $table->unsignedBigInteger('fk_id_user');
-            $table->foreign('fk_id_user')->references('id_user')->on('users')
+            $table->foreign('fk_id_user')->references('id')->on('users')
                                        ->onDelete('cascade')
                                        ->onUpdate('cascade');
             $table->string('nbCivic');

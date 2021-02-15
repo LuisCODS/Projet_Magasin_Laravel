@@ -16,7 +16,7 @@ class CreateAchatsTable extends Migration
         Schema::create('achats', function (Blueprint $table) {
             $table->id('id_achat');
             $table->unsignedBigInteger('fk_id_user');
-            $table->foreign('fk_id_user')->references('id_user')->on('users')
+            $table->foreign('fk_id_user')->references('id')->on('users')
                                          ->onUpdate('cascade');
             $table->double('sousTotal', 10,2);
             $table->double('tps', 10,2);

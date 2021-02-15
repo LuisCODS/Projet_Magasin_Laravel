@@ -47,7 +47,8 @@ class CategorieController extends Controller
 
         //Instacie le modele
         $categorie = new Categorie();
-        $categorie->nomCategorie = trim($request->old('nomCategorie') );
+       // $categorie->nomCategorie = trim($request->old('nomCategorie') );
+        $categorie->nomCategorie = trim($request->nomCategorie);
 
         //Save it into BD
          $categorie->save();

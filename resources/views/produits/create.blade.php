@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('title', 'Creer produit')
 @section('content')
 <!-- =============== CONTAINER PRODUIT CREATE  =============== -->
