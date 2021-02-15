@@ -27,7 +27,6 @@ class CategorieController extends Controller
     public function create()
     {
         return view('categories.createCategorie');
-
     }
 
     /**
@@ -38,9 +37,17 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Validate and store the category post
+
+        $validated = $request->validate([
+            'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
+        ]);
+
+
         //Instacie le modele
         $categorie = new Categorie();
-        $categorie->nomCategorie = trim($request->nomCategorie);
+        $categorie->nomCategorie = trim($request->old('nomCategorie') );
 
         //Save it into BD
          $categorie->save();

@@ -59,7 +59,14 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //Instacie le modele
+        // Validate and store the product post
+        // $request->validate([
+        //     'nomProduit'         => 'required|unique:posts|max:45',
+        //     'author.name'        => 'required',
+        //     'author.description' => 'required',
+        // ]);
+
+
         $produit = new Produit();
         $produit->nomProduit = trim($request->nomProduit);
         $produit->description = trim($request->description);
