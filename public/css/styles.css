@@ -42,9 +42,13 @@ footer {
 	 padding-right: 70px;
 }
 
-#genre_container h2,p {
+#genre_container h2 {
+ 	text-align: center;
+}
 
- text-align: center
+
+#genre_container p {
+ 	  text-align: justify;
 }
 
 #genre_container img {

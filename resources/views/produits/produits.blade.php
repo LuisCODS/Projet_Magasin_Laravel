@@ -5,6 +5,8 @@
 @section('content')
 
 <!-- ________________ CONTAINER SERCHE EVENEMENT ________________ -->
+
+<!-- Flash message -->
 @if(session('msg'))
 <p class="msg">{{ session('msg') }}</p>
 @endif
@@ -15,7 +17,9 @@
         <input type="text" name="search" id="search" class="form-control" placeholder="Cherche...">
     </form>
 </div>
+
 <!-- ________________ CONTAINER PRODUIT ________________ -->
+
 <div id="produit_container" class="col-md-12 ">
     <!--  CONTAINER CARD  -->
     <div id="cards_container" class="row">

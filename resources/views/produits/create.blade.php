@@ -8,6 +8,7 @@
     <br>
     <br>
 	<form action="{{ route('save-produit') }}" method="POST" enctype="multipart/form-data">
+		<!-- Prevencao contra os ataques -->
 		@csrf
 
 		<div class="form-group">
@@ -17,12 +18,12 @@
 
 		<div class="form-group">
 			<label for="prix">Prix</label>
-			<input type="text" class="form-control" id="prix" name="prix">
+			<input type="text" class="form-control" id="prix" name="prix" required>
 		</div>
 
 		<div class="form-group">
 			<label for="nomProduit">Nom du produit</label>
-			<input type="text" class="form-control" id="nomProduit" name="nomProduit">
+			<input type="text" class="form-control" id="nomProduit" name="nomProduit" required>
 		</div>
 
         <div class="form-group">
@@ -31,7 +32,7 @@
 
 		<div class="form-group">
 			<label for="fk_id_categorie">Categorie</label>
-			<select class="form-control" id="fk_id_categorie" name="fk_id_categorie">
+			<select class="form-control" id="fk_id_categorie" name="fk_id_categorie" required>
             @foreach($categories as $categorie)
  				<option value="{{ $categorie->id_categorie }}">{{ $categorie->nomCategorie }}</option>
             @endforeach
