@@ -36,17 +36,10 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-
-        // mensagem qualquer para o amigo
-        /**
-         *
-         * código comentado
-         *
-         */
         //dd($request->all());
         // Validate and store the category post
         try{
-            // meu comentário
+
             $validated = $request->validate([
                 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
             ]);
