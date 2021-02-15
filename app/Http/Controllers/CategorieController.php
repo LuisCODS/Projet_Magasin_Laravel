@@ -22,7 +22,7 @@ class CategorieController extends Controller
     /**
      * Show the form for create  a new category.
      *
-     * @return form view 
+     * @return form view
      */
     public function create()
     {
@@ -40,6 +40,7 @@ class CategorieController extends Controller
 
         // Validate and store the category post
         try{
+            // meu comentário
             $validated = $request->validate([
                 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
             ]);
