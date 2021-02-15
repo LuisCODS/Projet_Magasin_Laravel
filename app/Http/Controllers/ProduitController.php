@@ -32,21 +32,23 @@ class ProduitController extends Controller
         else{
             //Query all produits
             $produits = Produit::all();
-             //Query all category
-            $categories = Categorie::all();
         }
-        //Send back to view a list of products as array
+        //Send back to view all produits as array
         return view('produits.produits',['produits' => $produits, 'search' => $search]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return: form view to create a product
      */
     public function create()
     {
-        return view('produits.create');
+        //Query all category
+        $categories = Categorie::all();
+
+         //Send back to view all category as array
+        return view('produits.create', ['categories' => $categories]);
     }
 
     /**
@@ -98,8 +100,8 @@ class ProduitController extends Controller
         //Save event in BD
          $produit->save();
 
-         //redirige vers home avec une message de feedback
-         return redirect('/')->with('msg', 'Produit crée avec succes');
+         //redirige vers la page de tous le sproduits avec une message de feedback
+         return redirect('/produits')->with('msg', 'Produit crée avec succes');
 
     }
 
