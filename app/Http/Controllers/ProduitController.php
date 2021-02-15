@@ -8,6 +8,8 @@ use App\Models\Categorie;
 
 class ProduitController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -50,12 +52,55 @@ class ProduitController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  $request get all input filds from form
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        //Instacie le modele
+        $produit = new Produit();
+        $produit->nomProduit = trim($request->nomProduit);
+        $produit->description = trim($request->description);
+        $produit->img = $request->img;
+        $produit->prix = $request->prix;
+        $produit->totalStock = $request->totalStock;
+
+        $pochette="default.png";
+
+        /* Si une photo est envoyée, on fait l'Upload de l'image dans la pochette.
+        Si pas de photp, une photo est fournie par default dans la pochette.*/
+
+        //----------------------- Image Upload -----------------------
+
+        if ( $request->hasFile('image') && $request->file('image')->isValid() )
+         {
+            //The image
+            $requestImage = $request->image;
+            //The extention
+            $extension = $requestImage->extension();
+            //Create a hash
+            $imageName = sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
+            //Save the imageName in a new folder
+            $requestImage->move(public_path('img/produits'),$imageName);
+            $pochette = $imageName;
+            //Save the image into BD
+            $produit->image = $pochette;
+        }
+
+        //Set the image
+        $produit->image = $pochette;
+
+        // ----------------------- end Image Upload -----------------------
+
+
+        //Attache cet evenemnt à une categorie(Set the FK).
+
+        //Save event in BD
+         $produit->save();
+
+         //redirige vers home avec une message de feedback
+         return redirect('/')->with('msg', 'Produit crée avec succes');
+
     }
 
     /**
