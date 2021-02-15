@@ -60,15 +60,14 @@ class ProduitController extends Controller
     public function store(Request $request)
     {
 
+           //dd($request->all());
         try{
-            //dd($request->all());
             // Validate and store the product post
             $request->validate([
                 'nomProduit' => 'required|unique:Produits|max:45',
                 "prix"       => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-                "nomProduit" => 'required|max:45',
                 "totalStock" => "required|numeric|between:1,999999",
-                "fk_id_categorie" => 'required',
+                "NomCategorie" => 'required|min:1',
                 "description" => 'required',
             ]);
 
@@ -85,12 +84,12 @@ class ProduitController extends Controller
 
         $produit = new Produit();
 
-        $produit->nomProduit = trim($request->nomProduit);
-        $produit->description = trim($request->description);
-        $produit->prix = $request->prix;
-        $produit->totalStock = $request->totalStock;
+        $produit->nomProduit = trim($request->get('nomProduit'));
+        $produit->description = trim($request->get('description'));
+        $produit->prix = $request->get('prix');
+        $produit->totalStock = $request->get('totalStock');
         //Attache the relation (Set the FK).
-        $produit->fk_id_categorie = $request->fk_id_categorie;
+        $produit->fk_id_categorie = $request->get('NomCategorie');
         $pochette="default.png";
 
         /* Si une photo est envoyée, on fait l'Upload de l'image dans la pochette.
@@ -115,7 +114,7 @@ class ProduitController extends Controller
 
         //Set the image
         $produit->img = $pochette;
-
+        //dd('produt',$produit);
         // ----------------------- end Image Upload -----------------------
 
         //Save event in BD
