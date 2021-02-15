@@ -18,7 +18,7 @@ class UserFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array
+     * @return array  retorna o conjunto padrão de valores de atributos que devem ser aplicados ao criar um modelo usando a fábrica.
      */
     public function definition()
     {
