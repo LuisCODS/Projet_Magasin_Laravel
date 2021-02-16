@@ -1,18 +1,20 @@
 @extends('layouts.main')
-@section('title', 'produits')
-
-
+@section('title', '{{ $produit->nomProduit }}')
 @section('content')
 
 <!-- ________________ CONTAINER SERCHE EVENEMENT ________________ -->
 
 <!-- Flash message -->
+
 @if(session('msg'))
 <p class="msg">{{ session('msg') }}</p>
 @endif
+
+<!-- SEARCHE  CONTAINER -->
+
 <div id="search_container" class="col-md-12">
     <h3>Cherche un produit</h3>
-    <form action="/" method="GET">
+    <form action="{{ route('list-all') }}" method="GET">
         @csrf
         <input type="text" name="search" id="search" class="form-control" placeholder="Cherche...">
     </form>
@@ -26,7 +28,7 @@
         @foreach($produits as $produit)
         <div id="divCardBorder" class="col-md-3" >
             <img class="card-img-top" src="/img/produits/{{ $produit->img }}" alt="{{ $produit->nomProduit }}">
-            
+
             <div class="card-body">
                 <h5 class="card-title">{{ $produit->nomProduit }}</h5>
                 <p class="card-text">${{ $produit->prix }}</p>

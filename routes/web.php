@@ -8,8 +8,10 @@ use App\Http\Controllers\CategorieController;
 
 // ================== HOME ROUTES ==================
 
+//guest
 // Show home page
 Route::get('/', [HomeController::class, 'welcome']);
+//guest
 //Show contact page
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
@@ -23,15 +25,19 @@ Route::post('/categorie/store', [CategorieController::class,'store'])->name('sav
 //->middleware('auth');
 // ================== PRODUIT ROUTES ==================
 
+//user
 // //Display all products at home page
  Route::get('/produits', [ProduitController::class, 'index'])->name('list-all');
 
+ //admin
 //Show form to create a new product. Le ->middleware('auth') :only connected users have access
 Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
 
+//user
 //Show details about a product
 Route::get('/produit/{id}/', [ProduitController::class,'show']);
 
+//admin
 //Send form(create product)
 Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
 

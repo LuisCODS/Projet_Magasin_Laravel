@@ -1,5 +1,7 @@
 @extends('layouts.main')
 @section('title', $produit->nomProduit)
+
+
 @section('content')
 <!-- =============== CONTAINER PRODUIT DETAILS  =============== -->
 
@@ -23,7 +25,7 @@
 		<div class="col-md-12"  id="description_container" >
 			<h3>Description</h3>
 			<br>
-			<p class="produit_description">{{ $produit->description }}> </p><br><br>
+			<p class="produit_description">{{ $produit->description }}</p><br><br>
 		</div>
 
 	</div>

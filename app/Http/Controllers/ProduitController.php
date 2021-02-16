@@ -18,7 +18,7 @@ class ProduitController extends Controller
     public function index()
     {
 
-        // Get from form input fild
+        // Get form input fild
          $search = request('search');
 
          //Si le champs recherche à été remplis

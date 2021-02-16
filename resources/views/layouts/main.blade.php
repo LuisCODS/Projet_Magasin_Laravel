@@ -34,7 +34,7 @@
 								</ul>
 								<ul class="navbar-nav ml-md-auto">
 									<div class="dropdown">
-										<a class="btn btn-secondary dropdown-toggle" href="#" role="button" 
+										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 										id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											Link dropdown
 										</a>
@@ -59,15 +59,19 @@
 									<!-- ================== ONLY AUTH. CAN SEE THIS ZONE ================= -->
 
 									@auth
-									<li class="nav-item ">
-										<a href="{{ route('create-produit') }}" class="nav-link">Ajouter produit</a>
-									</li>
-									<li class="nav-item ">
-										<a href="{{ route('create-categorie') }}" class="nav-link">Ajouter categorie</a>
-									</li>
-									<li class="nav-item">
-										<a href="/dashboard" class="nav-link">Gestion Produit</a>
-									</li>
+
+                                            <li class="nav-item ">
+                                                <a href="{{ route('create-produit') }}" class="nav-link">Ajouter produit {{$user->nom}}</a>
+                                            </li>
+                                            <li class="nav-item ">
+                                                <a href="{{ route('create-categorie') }}" class="nav-link">Ajouter categorie</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/dashboard" class="nav-link">Gestion Produit</a>
+                                            </li>
+
+                                    @endauth
+
 									<!--  LOGOUT  -->
 									<li class="nav-item">
 										<form action="/logout" method="POST">
@@ -77,8 +81,8 @@
 											</a>
 										</form>
 									</li>
-									@endauth
-									
+
+
 								</ul>
 							</div>
 						</nav>
