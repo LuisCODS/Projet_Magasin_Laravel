@@ -14,14 +14,13 @@ class Adresse extends Model
 // ================= METHODES =================
 
 	/**
-	* Return à qui appartient l'adresses.
-	*	(Un adresse appartient à un utilisateur)
+	* Return à quel user appartient l'adresses.
 	*/
-	// public function user()
-	// {
-	// 	// 1 to 1
-	// 	return $this->belongsTo('App\Models\User');
-	// }
+	public function user()
+	{
+		// 1 to 1
+		return $this->belongsTo('App\Models\User');
+	}
 
 
 }

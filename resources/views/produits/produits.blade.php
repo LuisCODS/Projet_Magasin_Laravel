@@ -21,9 +21,10 @@
 <!-- ============================== MSN  SEARCHE PRODUIT  ============================== -->
 
 @if( count($produits) == 0 && $search)
-      <p>Aucune produit trouvé!</p>
+       <p>Aucune produit trouvé avec le mot: <b>{{ $search }}</b> <br><a href="{{ route('list-all') }}">Voir nos produits! </a></p> 
 @elseif(count($produits) == 0)
-    <p>Votre recherche pour: <b>{{ $search }}</b></p>
+    <p>Aucun produit disponible! </p>
+
 @endif
 
 <!-- ============================== CONTAINER PRODUIT ============================== -->

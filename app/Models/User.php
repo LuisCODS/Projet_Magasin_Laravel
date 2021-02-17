@@ -64,13 +64,13 @@ class User extends Authenticatable
     // ================= METHODES =================
 
     /**
-     * Un utilisateur posseder aucun ou plusieurs adresses(1 to N).
+     * Un utilisateur posseder un ou plusieurs adresses(1 to N).
      */
-    // public function adresses()
-    // {
-    //     //1 to N
-    //     return $this->hasMany('App\Models\Adresse');
-    // }
+    public function adresses()
+    {
+        //1 to N
+        return $this->hasMany('App\Models\Adresse');
+    }
 
 
 

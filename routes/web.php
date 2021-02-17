@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategorieController;
-
+use App\Http\Controllers\AdresseController;
 
 // ================== HOME ROUTES ==================
 
@@ -49,5 +49,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
+// ================== ADRESSE ROUTES ==================
 
+//user
+Route::get('/adresse/create', [AdresseController::class,'create'])->name('create-adresse');
+Route::post('/adresse/store', [AdresseController::class,'store'])->name('save-adresse');
 

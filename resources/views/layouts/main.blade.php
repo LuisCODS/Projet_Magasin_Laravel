@@ -35,7 +35,7 @@
 								<ul class="navbar-nav ml-md-auto">
 									<div class="dropdown">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-										id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											Link dropdown
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -44,8 +44,7 @@
 											<a class="dropdown-item" href="#">Alguma coisa aqui</a>
 										</div>
 									</div>
-
-									<!-- ================= ONLY GUEST ====================== -->
+									<!-- ================= ONLY GUEST CAN SEE THIS ZONE====================== -->
 
 									@guest
 									<li class="nav-item">
@@ -59,19 +58,19 @@
 									<!-- ================== ONLY AUTH. CAN SEE THIS ZONE ================= -->
 
 									@auth
-
-                                            <li class="nav-item ">
-                                                <a href="{{ route('create-produit') }}" class="nav-link">Ajouter produit {{$user->nom}}</a>
-                                            </li>
-                                            <li class="nav-item ">
-                                                <a href="{{ route('create-categorie') }}" class="nav-link">Ajouter categorie</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/dashboard" class="nav-link">Gestion Produit</a>
-                                            </li>
-
-                                    @endauth
-
+									<li class="nav-item ">
+										<a href="{{ route('create-produit') }}" class="nav-link">Ajouter Produit</a>
+									</li>
+									<li class="nav-item ">
+										<a href="{{ route('create-categorie') }}" class="nav-link">Ajouter Categorie</a>
+									</li>	
+									<li class="nav-item ">
+										<a href="{{ route('create-adresse') }}" class="nav-link">Ajouter Adresse</a>
+									</li>
+									<li class="nav-item">
+										<a href="/dashboard" class="nav-link">Gestion Produit</a>
+									</li>
+									
 									<!--  LOGOUT  -->
 									<li class="nav-item">
 										<form action="/logout" method="POST">
@@ -81,8 +80,12 @@
 											</a>
 										</form>
 									</li>
+									@endauth
+
+									<!-- ================== ADMIN ACCES ================= -->
 
 
+									
 								</ul>
 							</div>
 						</nav>
