@@ -114,6 +114,10 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('categories')->where('id_categorie', $id)->delete();
+
+         //redirige vers la meme page  avec une message de feedback
+         return redirect('/categorie/list')->with('msg', 'Categorie supprimée avec succes');
+
     }
 }
