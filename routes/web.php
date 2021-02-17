@@ -53,38 +53,48 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+
+
+
+
+
+
+
+
+
+
 // Route::get('/contact', function () {
 //     return view('contact');
 // });
 
 // Detran Routes
-Route::group([
-    'prefix' => 'detran',
-], function () {
-    // GET: /detran
-    Route::get('/', [
-        'as'   => 'detrans',
-        'uses' => 'DetranController@index',
-    ]);
+// Route::group([
+//     'prefix' => 'detran',
+// ], function () {
+//     // GET: /detran
+//     Route::get('/', [
+//         'as'   => 'detrans',
+//         'uses' => 'DetranController@index',
+//     ]);
 
-    // GET: /detran/{detran}
-    Route::get('/{detran}', [
-        'as'   => 'detran',
-        'uses' => 'DetranController@show',
-    ]);
-});
+//     // GET: /detran/{detran}
+//     Route::get('/{detran}', [
+//         'as'   => 'detran',
+//         'uses' => 'DetranController@show',
+//     ]);
+// });
 
 /**
  * Authenticated Routes.
  */
-Route::group([
-    'as'         => 'auth.',
-    'middleware' => ['auth'],
-], function () {
-    // GET: /escolher-perfil
-    Route::get('/escolher-perfil', [
-        'as'         => 'chooseProfileForm',
-        'uses'       => 'UsersController@chooseProfileForm',
-        'middleware' => 'doNotCacheResponse',
-    ]);
-});
+// Route::group([
+//     'as'         => 'auth.',
+//     'middleware' => ['auth'],
+// ], function () {
+//     // GET: /escolher-perfil
+//     Route::get('/escolher-perfil', [
+//         'as'         => 'chooseProfileForm',
+//         'uses'       => 'UsersController@chooseProfileForm',
+//         'middleware' => 'doNotCacheResponse',
+//     ]);
+// });

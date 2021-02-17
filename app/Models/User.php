@@ -29,10 +29,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function isAdmin() {
-        if($this->isAdmin===1)  return true;
-        else return false;
-    }
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -77,6 +74,10 @@ class User extends Authenticatable
         return $this->hasMany(Adresse::class);
     }
 
+    public function isAdmin() {
+        if($this->isAdmin===1)  return true;
+        else return false;
+    }
 
 
 }
