@@ -31,7 +31,7 @@
 
 		<div class="form-group">
 			<label for="nomCategorie">Nom categorie</label>
-			<input type="text" class="form-control" id="nomCategorie" name="nomCategorie" 
+			<input type="text" class="form-control" id="nomCategorie" name="nomCategorie"
 					value="{{ old('nomCategorie') }}" class="@error('nomCategorie') is-invalid @enderror">
 			@error('nomCategorie')
 			    <div class="alert alert-danger">{{ $message }}</div>

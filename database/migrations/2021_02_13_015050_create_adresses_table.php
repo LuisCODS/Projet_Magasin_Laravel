@@ -25,7 +25,7 @@ class CreateAdressesTable extends Migration
             $table->string('pays');
             $table->string('codePostal');
             $table->string('ville');
-            $table->string('defaulAdresse');
+            $table->integer('defaulAdresse')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

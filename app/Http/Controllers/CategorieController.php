@@ -51,7 +51,6 @@ class CategorieController extends Controller
             session()->save();
 
             return back();
-            // return response()->redirectToRoute('admin.brokers.index');
         }
 
 
@@ -64,7 +63,9 @@ class CategorieController extends Controller
         $categorie->save();
 
         //redirige vers la meme page avec une message de feedback
-        return redirect('/categorie/create')->with('msg', 'Categorie crée avec succes');
+      //  return redirect('/categorie/create')->with('msg', 'Categorie crée avec succes');
+        return response()->redirectToRoute('create-categorie')->with('msg', 'Categorie crée avec succes');
+
     }
 
     /**

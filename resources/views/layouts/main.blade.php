@@ -45,7 +45,9 @@
 										</div>
 									</div>
 									<!-- ================= ONLY GUEST CAN SEE THIS ZONE====================== -->
+    <?php
 
+    ?>
 									@guest
 									<li class="nav-item">
 										<a href="/login" class="nav-link">Login</a>
@@ -55,22 +57,27 @@
 									</li>
 									@endguest
 
-									<!-- ================== ONLY AUTH. CAN SEE THIS ZONE ================= -->
+									<!-- ================== ADMIN ACCES ================= -->
+
+
 
 									@auth
-									<li class="nav-item ">
-										<a href="{{ route('create-produit') }}" class="nav-link">Ajouter Produit</a>
-									</li>
-									<li class="nav-item ">
-										<a href="{{ route('create-categorie') }}" class="nav-link">Ajouter Categorie</a>
-									</li>	
-									<li class="nav-item ">
-										<a href="{{ route('create-adresse') }}" class="nav-link">Ajouter Adresse</a>
-									</li>
-									<li class="nav-item">
-										<a href="/dashboard" class="nav-link">Gestion Produit</a>
-									</li>
-									
+                                    @if(Auth::user()->isAdmin())
+                                        <li class="nav-item ">
+                                            <a href="{{ route('create-produit') }}" class="nav-link">Ajouter Produit</a>
+                                        </li>
+                                        <li class="nav-item ">
+                                            <a href="{{ route('create-categorie') }}" class="nav-link">Ajouter Categorie</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/dashboard" class="nav-link">Gestion Produit</a>
+                                        </li>
+                                    @endif
+
+                                    <li class="nav-item ">
+                                            <a href="{{ route('create-adresse') }}" class="nav-link">Ajouter Adresse</a>
+                                        </li>
+
 									<!--  LOGOUT  -->
 									<li class="nav-item">
 										<form action="/logout" method="POST">
@@ -85,7 +92,7 @@
 									<!-- ================== ADMIN ACCES ================= -->
 
 
-									
+
 								</ul>
 							</div>
 						</nav>

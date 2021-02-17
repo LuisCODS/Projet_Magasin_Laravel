@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('title', 'Creer produit')
 @section('content')
-<?php 
-//dd($__data); 
+<?php
+//dd($__data);
 ?>
 <!-- =============== CONTAINER PRODUIT CREATE  =============== -->
 
@@ -25,7 +25,7 @@
 
 		<div class="form-group">
 			<label for="prix">Prix</label>
-			<input type="text" id="prix" name="prix" 
+			<input type="text" id="prix" name="prix"
 		 value="{{ old('prix') }}" class="form-control @error('prix') is-invalid @enderror">
  			@error('prix')
 			    <div class="alert alert-danger">{{ $message }}</div>
@@ -38,16 +38,16 @@
 					value="{{ old('nomProduit') }}" class="form-control @error('nomProduit') is-invalid @enderror">
  			@error('nomProduit')
 			    <div class="alert alert-danger">{{ $message }}</div>
-			@enderror	
+			@enderror
 		</div>
 
         <div class="form-group">
         	<label for="totalStock">Total stock</label>
-			<input type="number" id="totalStock" name="totalStock" min="1" max="999999" 
+			<input type="number" id="totalStock" name="totalStock" min="1" max="999999"
 				   value="{{ old('totalStock') }}" class="form-control @error('totalStock') is-invalid @enderror">
  			@error('totalStock')
 			    <div class="alert alert-danger">{{ $message }}</div>
-			@enderror	
+			@enderror
 		</div>
 
 		<div class="form-group">

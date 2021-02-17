@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Adresse;
+use DB;
 
 class AdresseController extends Controller
 {
@@ -20,7 +22,7 @@ class AdresseController extends Controller
     /**
      * Show the form for creating a new adresse.
      *
-     * @return 
+     * @return
      */
     public function create()
     {
@@ -37,19 +39,20 @@ class AdresseController extends Controller
     public function store(Request $request)
     {
 
-       //dd($request->all());
+
+        //dd($request->all());
         try{
             // Validate input filds
-            $request->validate([
-                'nbCivic'       => 'required|max:10',
+            $validData = $request->validate([
+                'nbCivic'       => "required|regex:/[0-9][5]/",
                 'rue'           => 'required|max:70',
                 'quartie'       => 'required|max:50',
                 'pays'          => 'required|max:20',
-                "codePostal"    => 'required|regex:/[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d/',
+                "codePostal"    => 'required|regex:/[A-Za-z]\d[A-Za-z]?\d[A-Za-z]\d/', //H2E1X2
                 "ville"         => 'required|max:20',
-                "defaulAdresse" => 'required|max:20',
+                //"defaulAdresse" => 'required',//|max:20',
             ]);
-
+            //dd($validData);
         }catch(ValidationException $e){
             //dd($e);
 
@@ -57,27 +60,33 @@ class AdresseController extends Controller
             session()->put('old', $request->input());
             session()->save();
 
-            return back();
+            //return back();
             // return response()->redirectToRoute('admin.brokers.index');
         }
 
-        $adresse = new adresse();
+
+        $adresse = new Adresse();
         $adresse->nbCivic = trim($request->get('nbCivic'));
         $adresse->rue = trim($request->get('rue'));
         $adresse->quartie = $request->get('quartie');
         $adresse->pays = $request->get('pays');
         $adresse->codePostal = $request->get('codePostal');
         $adresse->ville = $request->get('ville');
-        $adresse->defaulAdresse = $request->get('defaulAdresse');
-
+        // $adresse->defaulAdresse = $request->get('defaulAdresse');
+        //dd($adresse);
         //Get authenticated user
         $user = auth()->user();
+        // $userAdresses = DB::table('adresses')
+        //         ->where('fk_id_user', '=', $user->id)
+        //         ->get();
+
+        // dd(count($userAdresses));
 
         //Attache  relation between address and user (Set the FK)
         $adresse->fk_id_user = $user->id;
 
-         //Save 
-         $produit->save();
+         //Save
+         $adresse->save();
 
          //Redirect to the same page with feedback messege
          return redirect('/adresse/create')->with('msg', 'Adresse ajouté avec succes!');

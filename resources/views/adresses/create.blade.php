@@ -72,13 +72,13 @@
 			@enderror
 		</div>
 
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<input type="checkbox" id="defaulAdresse" name="defaulAdresse"
 			value="{{ old('defaulAdresse') }}" class="@error('defaulAdresse') is-invalid @enderror"> <label for="defaulAdresse">Cochez si adresse principale</label>
 			@error('defaulAdresse')
 			<div class="alert alert-danger">{{ $message }}</div>
 			@enderror
-		</div>
+		</div> -->
 
 		<div class="form-group">
 			<input type="submit"  class="btn btn-primary form-control" value="Enregistrer">
