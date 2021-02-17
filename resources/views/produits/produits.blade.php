@@ -2,15 +2,13 @@
 @section('title', '{{ $produit->nomProduit }}')
 @section('content')
 
-<!-- ________________ CONTAINER SERCHE EVENEMENT ________________ -->
-
 <!-- Flash message -->
 
 @if(session('msg'))
-<p class="msg">{{ session('msg') }}</p>
+    <p class="msg">{{ session('msg') }}</p>
 @endif
 
-<!-- SEARCHE  CONTAINER -->
+<!-- ============================== FORM SEARCHE PRODUIT  ============================== -->
 
 <div id="search_container" class="col-md-12">
     <h3>Cherche un produit</h3>
@@ -20,7 +18,15 @@
     </form>
 </div>
 
-<!-- ________________ CONTAINER PRODUIT ________________ -->
+<!-- ============================== MSN  SEARCHE PRODUIT  ============================== -->
+
+@if( count($produits) == 0 && $search)
+      <p>Aucune produit trouvé!</p>
+@elseif(count($produits) == 0)
+    <p>Votre recherche pour: <b>{{ $search }}</b></p>
+@endif
+
+<!-- ============================== CONTAINER PRODUIT ============================== -->
 
 <div id="produit_container" class="col-md-12 ">
     <!--  CONTAINER CARD  -->
