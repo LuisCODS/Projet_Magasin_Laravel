@@ -5,10 +5,9 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\AdresseController;
+use App\Http\Controllers\UserController;
 
-
-
-/** admin routes */
+// admin routes ->middleware('auth');
 // ================== ADMIN ROUTES ==================
 
 Route::group([
@@ -18,37 +17,38 @@ Route::group([
     'middleware' => ['auth:sanctum', 'verified']
 
 ], function () {
+
+    //CATEGORIE
     Route::get('/categorie/create', [CategorieController::class,'create'])->name('create-categorie');
     Route::post('/categorie/store', [CategorieController::class,'store'])->name('save-categorie');
+    Route::get('/categorie/list', [CategorieController::class,'index'])->name('list-categories');
+    Route::get('/categorie/delete/{id}', [CategorieController::class,'destroy'])->name('delete-categories');
 
-    //Show form to create a new product. Le ->middleware('auth') :only connected users have access
+    //PRODUIT
     Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
-
-    //Send form(create product)
     Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
+
+    //USER
+    Route::get('/user/list', [UserController::class, 'index'])->name('list-user');
+
 });
-//->middleware('auth');
-// ================== USER  ROUTES ==================
+
+
+// ================================= USER  ROUTES =================================
 
 //ADRESSE
 Route::get('/adresse/create', [AdresseController::class,'create'])->name('create-adresse');
 Route::post('/adresse/store', [AdresseController::class,'store'])->name('save-adresse');
 
 //PRODUIT
-// //Display all products at home page
- Route::get('/produits', [ProduitController::class, 'index'])->name('list-all');
-//Show details about a product
+Route::get('/produits', [ProduitController::class, 'index'])->name('list-all');
 Route::get('/produit/{id}/', [ProduitController::class,'show']);
 
 //HOME
-// Show home page
 Route::get('/', [HomeController::class, 'welcome']);
-
-//Show contact page
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
- // ================== DASHBOARD ROUTES  ==================
-
+//DASHBOARD
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

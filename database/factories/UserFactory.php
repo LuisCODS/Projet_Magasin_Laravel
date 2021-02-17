@@ -8,18 +8,9 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
+
     protected $model = User::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array  retorna o conjunto padrão de valores de atributos que devem ser aplicados ao criar um modelo usando a fábrica.
-     */
     public function definition()
     {
         return [
@@ -30,4 +21,12 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
+
+
+
+
+
+
+
+
 }

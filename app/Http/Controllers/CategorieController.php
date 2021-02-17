@@ -15,7 +15,11 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        //Query all categories
+        $categories = Categorie::all();
+
+        //dd($categories);
+        return view('categories.list',['categories' => $categories]);
     }
 
     /**

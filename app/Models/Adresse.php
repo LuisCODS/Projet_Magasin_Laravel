@@ -23,4 +23,10 @@ class Adresse extends Model
 	}
 
 
+	// public function userAdresse()
+	// {
+	// 	return $this->belongsToMany('App\Models\User');
+	// }
+
+
 }

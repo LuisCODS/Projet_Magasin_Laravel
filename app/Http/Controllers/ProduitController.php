@@ -132,10 +132,8 @@ class ProduitController extends Controller
      */
     public function show($id)
     {
-
         //Cherche un produit par son id.
         $produit = Produit::findOrFail($id);
-
 
         return view('produits.show',['produit' => $produit]);
     }
@@ -148,7 +146,10 @@ class ProduitController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Cherche un produit par son id.
+        // $produit = Produit::findOrFail($id);
+
+        // return view('produits.edit',['produit' => $produit]);
     }
 
     /**
@@ -160,7 +161,9 @@ class ProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       //Cherche un produit par son id.
+       // $produit = Produit::findOrFail($id);
+      //  return view('produits.show',['produit' => $produit]);
     }
 
     /**
@@ -171,6 +174,9 @@ class ProduitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Cherche un produit par son id.
+       // $produit = Produit::findOrFail($id);
+       //  return redirect('/')->with('msg', 'Produit crée avec succes');
+
     }
 }

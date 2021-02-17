@@ -45,9 +45,6 @@
 										</div>
 									</div>
 									<!-- ================= ONLY GUEST CAN SEE THIS ZONE====================== -->
-    <?php
-
-    ?>
 									@guest
 									<li class="nav-item">
 										<a href="/login" class="nav-link">Login</a>
@@ -58,9 +55,6 @@
 									@endguest
 
 									<!-- ================== ADMIN ACCES ================= -->
-
-
-
 									@auth
                                     @if(Auth::user()->isAdmin())
                                         <li class="nav-item ">
@@ -69,8 +63,14 @@
                                         <li class="nav-item ">
                                             <a href="{{ route('create-categorie') }}" class="nav-link">Ajouter Categorie</a>
                                         </li>
+                                      <li class="nav-item ">
+                                            <a href="{{ route('list-user') }}" class="nav-link">Lister Users</a>
+                                        </li>
+                                        <li class="nav-item ">
+                                            <a href="{{ route('list-categories') }}" class="nav-link">Lister categories</a>
+                                        </li>
                                         <li class="nav-item">
-                                            <a href="/dashboard" class="nav-link">Gestion Produit</a>
+                                            <a href="/dashboard" class="nav-link">Dashboard</a>
                                         </li>
                                     @endif
 
@@ -88,11 +88,6 @@
 										</form>
 									</li>
 									@endauth
-
-									<!-- ================== ADMIN ACCES ================= -->
-
-
-
 								</ul>
 							</div>
 						</nav>

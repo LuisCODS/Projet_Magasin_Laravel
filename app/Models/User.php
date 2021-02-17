@@ -74,9 +74,13 @@ class User extends Authenticatable
         return $this->hasMany(Adresse::class);
     }
 
-    public function isAdmin() {
-        if($this->isAdmin===1)  return true;
-        else return false;
+    //Validation pour identifier le status de l'utilisateur
+    public function isAdmin() 
+    {
+        if($this->isAdmin === 1) 
+             return true;
+        else 
+            return false;
     }
 
 
