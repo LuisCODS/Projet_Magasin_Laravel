@@ -73,33 +73,27 @@ class CategorieController extends Controller
     //Update in data base
     public function update(Request $request, $id)
     {
-        //dd($request->all());
 
+        //dd($request->all());
         // Validate the category post
         try{
             $validated = $request->validate([
                 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
             ]);
         } catch (ValidationException $e) {
-            //dd($e);
-
             session()->put('errors', $e->validator->getMessageBag());
             session()->put('old', $request->input());
             session()->save();
-
             return back();
         }
 
       //Retrieving A Single Row / Column From A Table
       //$categorieToUpdate = DB::table('categories')->where('id_categorie', $id)->first();
-       $categorieToUpdate = Categorie::findOrFail($id);
-
+       
+       $cat = Categorie::findOrFail($request->id)->update($request->nomCategorie);
+       dd($cat);
        //Set update
-       $categorieToUpdate->nomCategorie = $request->nomCategorie;
-
-        //dd($categorieToUpdate);
-
-       //$categorieToUpdate->save();
+      // $categorieToUpdate->nomCategorie = $request->nomCategorie;
 
         //Query all 
         $categories = Categorie::all();

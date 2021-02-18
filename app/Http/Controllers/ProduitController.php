@@ -92,7 +92,6 @@ class ProduitController extends Controller
         $produit->totalStock = $request->get('totalStock');
         //Attache the relation (Set the FK).
         $produit->fk_id_categorie = $request->get('nomCategorie');
-        //pochette="default.png";
 
         //----------------------- Image Upload -----------------------
 
@@ -106,13 +105,10 @@ class ProduitController extends Controller
             $imageName = sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
             //Image path
             $requestImage->move(public_path('img/produits'),$imageName);
-            //$pochette = $imageName;
+
             $produit->img = $imageName;
         }
 
-        //Set the image
-        //$produit->img = $pochette;
-        //dd('produt',$produit);
         // ----------------------- end Image Upload -----------------------
 
         //Save event in BD
@@ -144,7 +140,6 @@ class ProduitController extends Controller
      */
     public function edit($id)
     {
-        //dd($produit);
         //Query all category
         $categories = Categorie::all();
         $produit = Produit::findOrFail($id);
@@ -160,9 +155,9 @@ class ProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Produit::findOrFail($id)->update($request->all());
 
-        //Begin validation
+
+        // _____________________ Begin validation _____________________
        try{
             $request->validate([
                 'nomProduit' => 'required|unique:Produits|max:45',
@@ -180,13 +175,21 @@ class ProduitController extends Controller
             return back();
             // return response()->redirectToRoute('admin.brokers.index');
         }
+        // _____________________ End validation _____________________
 
-        //End of validation
 
         //Get all inputs
-        $data = $request->all();
+        //$data = $request->all();
 
-        //dd($data);
+        //Get product to be updated
+        $produit = Produit::findOrFail($id);
+        $produit->nomProduit = trim($request->get('nomProduit'));
+        $produit->description = trim($request->get('description'));
+        $produit->prix = $request->get('prix');
+        $produit->totalStock = $request->get('totalStock');
+        //Attache the relation (Set the FK).
+        $produit->fk_id_categorie = $request->get('nomCategorie');
+
         //----------------------- Image Upload -----------------------
 
         if ( $request->hasFile('img') && $request->file('img')->isValid() )
@@ -200,25 +203,19 @@ class ProduitController extends Controller
             //Image path
             $requestImage->move(public_path('img/produits'),$imageName); 
             //Change image path       
-            $data['img'] = $imageName;
+            $produit->img = $imageName;
         }
 
         //dd('produt',$produit);
         // ----------------------- end Image Upload -----------------------
 
-        //Get product to be updated
-        $produit = Produit::findOrFail($id);
+        $produit->update();
 
-        $produit->nomProduit = trim($request->get('nomProduit'));
-        $produit->description = trim($request->get('description'));
-        $produit->prix = $request->get('prix');
-        $produit->totalStock = $request->get('totalStock');
-        //Attache the relation (Set the FK).
-        $produit->fk_id_categorie = $request->get('nomCategorie');
-        $produit->save();
+        //Produit::findOrFail($request->id)->update($data);
 
          //redirige vers la page de tous le produits avec une message de feedback
-         return redirect('{/produits/list}')->with('msg', 'Produit edité avec succes');
+         return redirect('/produits/list')->with('msg', 'Produit edité avec succes');
+
     }
 
 

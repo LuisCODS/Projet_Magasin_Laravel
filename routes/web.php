@@ -34,8 +34,8 @@ Route::group([
 });
 
 //?
-Route::get('/categorie/edit/{id}', [CategorieController::class,'edit']);
-Route::post('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
+Route::get('/categorie/edit/{id}', [CategorieController::class,'edit'])->name('edit-categorie');
+Route::put('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
 Route::get('/produit/edit/{id}', [ProduitController::class,'edit'])->name('edit-produit');
 Route::put('/produit/update/{id}', [ProduitController::class,'update'])->name('update-produit');
 

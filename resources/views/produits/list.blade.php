@@ -1,12 +1,13 @@
 @extends('layouts.main')
 @section('title', 'Liste Produits')
+@section('content')
+
 
 <!-- ================================= Flash message =================================-->
 
 @if(session('msg'))
 <p class="msg">{{ session('msg') }}</p>
 @endif
-@section('content')
 
 <!--  =======================================  PRODUIT TABLE  ======================================= -->
 

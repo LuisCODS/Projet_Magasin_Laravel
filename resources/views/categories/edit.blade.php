@@ -1,6 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Edit'.$categorie->nomCategorie)
-
+@section('title', 'Edit categorie')
 <!-- ================================= Flash message =================================-->
 
 @if(session('msg'))
@@ -10,11 +9,11 @@
 
 @section('content')
 
-<!--  =======================================  CATEGORIE FORM UPDATE   ======================================= -->
+<!--  =======================================  CATEGORIE UPDATE   ======================================= -->
 
 <div  class="col-md-6 offset md-3">
 	<h2 style="text-align: center;">Edition Categorie</h2>
-	<form action="/categorie/update/{{ $categorie->id_categorie }}" method="POST" enctype="multipart/form-data">
+	<form action="/categorie/update/{{ $categorie->id_categorie }}" method="POST" >
 		<!-- Prevencao contra os ataques -->
 		@csrf
 		@method('PUT')

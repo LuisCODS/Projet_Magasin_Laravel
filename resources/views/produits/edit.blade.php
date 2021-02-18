@@ -4,7 +4,7 @@
 <?php
 //dd($__data);
 ?>
-<!-- =============== CONTAINER PRODUIT EDIT  =============== -->
+<!-- ===============  PRODUIT  EDIT  =============== -->
 
 <div class="col-md-6 offset md-3">
 	<h2 style="text-align: center;">Edition Produit</h2>
