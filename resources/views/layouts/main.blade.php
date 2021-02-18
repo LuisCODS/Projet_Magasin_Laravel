@@ -50,10 +50,10 @@
 
 									<!-- ================== ADMIN INTERFACE ================= -->
 
-									@if(Auth::user()->isAdmin())
-<!-- 									<li class="nav-item">
+									@if(Auth::user()->isAdmin())<!-- Admin user -->
+									<!-- <li class="nav-item">
 										<a href="/dashboard" class="nav-link">Dashboard</a>
-							</li> -->		
+									</li> -->		
 									<!-- DROPDOWN -->
 									<div class="dropdown dropleft">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
@@ -62,21 +62,22 @@
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 											<h6 class="dropdown-header">PRODUITS</h6>
-											<a class="dropdown-item" href="{{ route('create-produit') }}" >Ajouter Produit</a>
-											<a class="dropdown-item" href="{{ route('create-produit') }}" >Lister Produit</a>
+											<a class="dropdown-item" href="{{ route('create-produit') }}" >Ajouter </a>
+											<a class="dropdown-item" href="{{ route('create-produit') }}" >Lister </a><hr>
 											<h6 class="dropdown-header">CATEGORIES</h6>
-											<a class="dropdown-item" href="{{ route('create-categorie') }}" >Ajouter Categorie</a>
-											<a class="dropdown-item" href="{{ route('list-categories') }}" >Lister categories</a><hr>
+											<a class="dropdown-item" href="{{ route('create-categorie') }}" >Ajouter </a>
+											<a class="dropdown-item" href="{{ route('list-categories') }}" >Lister </a><hr>
 											<h6 class="dropdown-header">CLIENTS</h6>
-											<a class="dropdown-item" href="{{ route('list-user') }}" >Lister Clients</a>
+											<a class="dropdown-item" href="{{ route('list-user') }}" >Lister </a>
 										</div>
 									</div>
-									@endif
+
+									@else<!-- normal user -->
 
 									<!-- ================== USER INTERFACE ================= -->
-									@if(Auth::user()->isAdmin()===0)
+
 									<!-- DROPDOWN -->
-									<div class="dropdown dropleft">
+									<div class="dropdown ">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											Mon Compte
@@ -87,6 +88,9 @@
 											<a class="dropdown-item" href="{{ route('create-adresse') }}"><ion-icon name="home-outline"></ion-icon>  Ajouter Adresse</a>
 										</div>
 									</div>
+
+									@endif
+
 									<!--  LOGOUT  -->
 									<li class="nav-item">
 										<form action="/logout" method="POST">
@@ -96,8 +100,6 @@
 											</a>
 										</form>
 									</li>
-									@endif
-
 									@endauth
 									<!-- ////////////////////////////////// AUTH ZONE - END //////////////////////////////////////////////// -->
 								</ul>

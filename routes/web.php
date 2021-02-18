@@ -8,7 +8,7 @@ use App\Http\Controllers\AdresseController;
 use App\Http\Controllers\UserController;
 
 // admin routes ->middleware('auth');
-// ================== ADMIN ROUTES ==================
+// ================================= ADMIN ROUTES =================================
 
 Route::group([
 
@@ -34,7 +34,7 @@ Route::group([
 
     //?
     Route::get('/categorie/edit/{id}', [CategorieController::class,'edit']);
-  Route::post('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
+    Route::post('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
 
 
 // ================================= USER  ROUTES =================================
@@ -50,6 +50,8 @@ Route::get('/produit/{id}/', [ProduitController::class,'show']);
 //HOME
 Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+// ==================================================================
 
 //DASHBOARD
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
