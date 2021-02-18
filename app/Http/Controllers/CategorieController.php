@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+use Illuminate\Support\Facades\DB;
 
 class CategorieController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //Query all categories
@@ -22,28 +19,16 @@ class CategorieController extends Controller
         return view('categories.list',['categories' => $categories]);
     }
 
-    /**
-     * Show the form for create  a new category.
-     *
-     * @return form view
-     */
     public function create()
     {
         return view('categories.createCategorie');
     }
 
-    /**
-     * Store a newly created category in storage.
-     *
-     * @param  $request send all input filds from form
-     * @return  a message succes
-     */
     public function store(Request $request)
     {
         //dd($request->all());
         // Validate and store the category post
         try{
-
             $validated = $request->validate([
                 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
             ]);
@@ -72,52 +57,54 @@ class CategorieController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+      //Retrieving A Single Row / Column From A Table
+      $categorie = DB::table('categories')->where('id_categorie', $id)->first();
+      //dd($categorie);
+      return view('categories.edit',['categorie'=> $categorie]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+        // Validate and store the category post
+        try{
+            $validated = $request->validate([
+                'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
+            ]);
+        } catch (ValidationException $e) {
+            //dd($e);
+
+            session()->put('errors', $e->validator->getMessageBag());
+            session()->put('old', $request->input());
+            session()->save();
+
+            return back();
+        }
+
+      //Retrieving A Single Row / Column From A Table
+      $categorie = DB::table('categories')->where('id_categorie', $id)->first();
+       //Set new date
+        $categorie->update($request->all() );
+       //$categorie->nomCategorie = $request->nomCategorie;
+
+       // dd($inputCategorie);
+        //return view('categories.list',['categorie'=>$categorie,'$inputCategorie' => $ $inputCategorie]);
+        return redirect('categories.list')->with('msg', 'Categorie editée avec succes');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        DB::table('categories')->where('id_categorie', $id)->delete();
 
-         //redirige vers la meme page  avec une message de feedback
-         return redirect('/categorie/list')->with('msg', 'Categorie supprimée avec succes');
-
+    
     }
 }

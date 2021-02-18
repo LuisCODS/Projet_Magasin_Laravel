@@ -24,6 +24,7 @@
 							<span class="navbar-toggler-icon"></span>
 							</button> <a class="navbar-brand" href="/">C&A Mode</a>
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<!-- MENUE COTE GAUCHE -->
 								<ul class="navbar-nav">
 									<li class="nav-item ">
 										<a class="nav-link" href="{{ route('list-all') }}">Nos produits </a>
@@ -32,19 +33,9 @@
 										<a href="{{ route('contact') }}" class="nav-link">Contact</a>
 									</li>
 								</ul>
+								<!-- MENUE COTE DROIT -->
 								<ul class="navbar-nav ml-md-auto">
-									<div class="dropdown">
-										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Link dropdown
-										</a>
-										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											<a class="dropdown-item" href="#">Ajouter Categorie</a>
-											<a class="dropdown-item" href="#">Ajouter Produit</a>
-											<a class="dropdown-item" href="#">Alguma coisa aqui</a>
-										</div>
-									</div>
-									<!-- ================= ONLY GUEST CAN SEE THIS ZONE====================== -->
+									<!-- =================  GUEST INTERFACE ====================== -->
 									@guest
 									<li class="nav-item">
 										<a href="/login" class="nav-link">Login</a>
@@ -53,31 +44,44 @@
 										<a href="/register" class="nav-link">Enregistrer</a>
 									</li>
 									@endguest
-
-									<!-- ================== ADMIN ACCES ================= -->
+									<!-- ================== ADMIN INTERFACE ================= -->
 									@auth
-                                    @if(Auth::user()->isAdmin())
-                                        <li class="nav-item ">
-                                            <a href="{{ route('create-produit') }}" class="nav-link">Ajouter Produit</a>
-                                        </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ route('create-categorie') }}" class="nav-link">Ajouter Categorie</a>
-                                        </li>
-                                      <li class="nav-item ">
-                                            <a href="{{ route('list-user') }}" class="nav-link">Lister Users</a>
-                                        </li>
-                                        <li class="nav-item ">
-                                            <a href="{{ route('list-categories') }}" class="nav-link">Lister categories</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/dashboard" class="nav-link">Dashboard</a>
-                                        </li>
-                                    @endif
+									@if(Auth::user()->isAdmin())
+									<li class="nav-item">
+										<a href="/dashboard" class="nav-link">Dashboard</a>
+									</li>
+									<!-- DROPDOWN -->
+									<div class="dropdown">
+										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Gestion
+										</a>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+											<h6 class="dropdown-header">PRODUITS</h6>
+											<a class="dropdown-item" href="{{ route('create-produit') }}" >Ajouter Produit</a>
+											<a class="dropdown-item" href="{{ route('create-produit') }}" >Lister Produit</a>
+											<h6 class="dropdown-header">CATEGORIES</h6>
+											<a class="dropdown-item" href="{{ route('create-categorie') }}" >Ajouter Categorie</a>
+											<a class="dropdown-item" href="{{ route('list-categories') }}" >Lister categories</a><hr>
+											<h6 class="dropdown-header">CLIENTS</h6>
+											<a class="dropdown-item" href="{{ route('list-user') }}" >Lister Clients</a>
+										</div>
+									</div>
+									@endif
+									<!-- ================== USER INTERFACE ================= -->
 
-                                    <li class="nav-item ">
-                                            <a href="{{ route('create-adresse') }}" class="nav-link">Ajouter Adresse</a>
-                                        </li>
-
+									<!-- DROPDOWN -->
+									<div class="dropdown">
+										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Mon Compte
+										</a>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+											<a class="dropdown-item" href="#"><ion-icon name="person-outline"></ion-icon>  Profil </a>
+											<a class="dropdown-item" href="#"><ion-icon name="cart-outline"></ion-icon>  Panier </a>
+											<a class="dropdown-item" href="{{ route('create-adresse') }}"><ion-icon name="home-outline"></ion-icon>  Ajouter Adresse</a>
+										</div>
+									</div>
 									<!--  LOGOUT  -->
 									<li class="nav-item">
 										<form action="/logout" method="POST">
@@ -105,6 +109,9 @@
 				</div>
 			</div>
 		</main>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
 		<!--ICONS : https://ionicons.com/ -->
 		<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 	</body>

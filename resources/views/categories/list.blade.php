@@ -2,6 +2,11 @@
 @section('title', 'Liste categorie')
 
 
+<!-- ================================= Flash message =================================-->
+
+@if(session('msg'))
+<p class="msg">{{ session('msg') }}</p>
+@endif
 
 @section('content')
 <!--  =======================================  CATEGORIE TABLE  ======================================= -->
@@ -14,9 +19,8 @@
 				  <thead class="thead-light">
 					<tr>
 						<th># ID</th>
-						<th>Nom</th>
-						<th>Action</th>
-						<th></th>
+						<th>NOM</th>
+						<th>ACTION</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -24,8 +28,8 @@
 					<tr>
 						<td>{{ $cat->id_categorie }}</td>
 						<td>{{ $cat->nomCategorie }}</td>
-						<td><a  href="/categorie/delete/{{$cat->id_categorie}}" class="btn btn-outline-danger"   role="button">Delete </a></td>
-						<td><a  href="/categorie/edit/{{$cat->id_categorie}}" class="btn btn-outline-secondary"   role="button">Edite </a></td>
+						<td><a href="/categorie/edit/{{$cat->id_categorie}}" class="btn btn-primary">Editer</a></td>
+ 						
 					</tr>
 					@endforeach
 				</tbody>

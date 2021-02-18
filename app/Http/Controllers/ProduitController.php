@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produit;
 use App\Models\Categorie;
+use Illuminate\Support\Facades\DB;
 
 class ProduitController extends Controller
 {
@@ -146,10 +147,10 @@ class ProduitController extends Controller
      */
     public function edit($id)
     {
-        //Cherche un produit par son id.
-        // $produit = Produit::findOrFail($id);
-
-        // return view('produits.edit',['produit' => $produit]);
+      //Retrieving A Single Row / Column From A Table
+      $produit = DB::table('produits')->where('id_produit', $id)->first();
+      //dd($produit);
+      return view('produits.edit',['produit'=> $produit]);
     }
 
     /**

@@ -86,6 +86,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Auth::user()->delete($statusId);
+        //return redirect()->route('home')->with('success', 'Post deleted.');
+
     }
 }
