@@ -129,7 +129,11 @@ footer {
     vertical-align: middle;
 } 
 
-
+/*edit.blade.php*/
+.img-preview{
+	width: 100px;
+	margin-bottom: 20px;
+}
 
 /*==================  ALL - ADRESSES PAGES ====================*/
 
