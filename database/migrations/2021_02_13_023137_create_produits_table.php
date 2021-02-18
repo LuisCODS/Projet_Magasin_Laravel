@@ -18,7 +18,7 @@ class CreateProduitsTable extends Migration
             $table->unsignedBigInteger('fk_id_categorie');
             $table->foreign('fk_id_categorie')->references('id_Categorie')->on('categories');
             $table->integer('totalStock');
-            $table->string('nomProduit', 50);
+            $table->string('nomProduit', 50)->unique();
             $table->string('description', 200);
             $table->string('img', 100);
             $table->double('prix', 10, 2);

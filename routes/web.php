@@ -22,8 +22,7 @@ Route::group([
     Route::get('/categorie/create', [CategorieController::class,'create'])->name('create-categorie');
     Route::post('/categorie/store', [CategorieController::class,'store'])->name('save-categorie');
     Route::get('/categorie/list', [CategorieController::class,'index'])->name('list-categories');
-    Route::get('/categorie/delete/{id}', [CategorieController::class,'destroy'])->name('delete-categories');
-
+  
     //PRODUIT
     Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
     Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
@@ -32,6 +31,10 @@ Route::group([
     Route::get('/user/list', [UserController::class, 'index'])->name('list-user');
 
 });
+
+    //?
+    Route::get('/categorie/edit/{id}', [CategorieController::class,'edit']);
+  Route::post('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
 
 
 // ================================= USER  ROUTES =================================
