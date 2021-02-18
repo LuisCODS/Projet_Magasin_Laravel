@@ -44,14 +44,18 @@
 										<a href="/register" class="nav-link">Enregistrer</a>
 									</li>
 									@endguest
-									<!-- ================== ADMIN INTERFACE ================= -->
+
+									<!-- ////////////////////////////////// AUTH ZONE - BEGIN //////////////////////////////////////////////// -->
 									@auth
+
+									<!-- ================== ADMIN INTERFACE ================= -->
+
 									@if(Auth::user()->isAdmin())
-									<li class="nav-item">
+<!-- 									<li class="nav-item">
 										<a href="/dashboard" class="nav-link">Dashboard</a>
-									</li>
+							</li> -->		
 									<!-- DROPDOWN -->
-									<div class="dropdown">
+									<div class="dropdown dropleft">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											Gestion
@@ -68,10 +72,11 @@
 										</div>
 									</div>
 									@endif
-									<!-- ================== USER INTERFACE ================= -->
 
+									<!-- ================== USER INTERFACE ================= -->
+									@if(Auth::user()->isAdmin()===0)
 									<!-- DROPDOWN -->
-									<div class="dropdown">
+									<div class="dropdown dropleft">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											Mon Compte
@@ -91,7 +96,10 @@
 											</a>
 										</form>
 									</li>
+									@endif
+
 									@endauth
+									<!-- ////////////////////////////////// AUTH ZONE - END //////////////////////////////////////////////// -->
 								</ul>
 							</div>
 						</nav>
