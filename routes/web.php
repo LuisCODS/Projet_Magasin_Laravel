@@ -26,15 +26,16 @@ Route::group([
     //PRODUIT
     Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
     Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
+    Route::get('/produit/list', [ProduitController::class,'list'])->name('list-produit');
 
     //USER
     Route::get('/user/list', [UserController::class, 'index'])->name('list-user');
 
 });
 
-    //?
-    Route::get('/categorie/edit/{id}', [CategorieController::class,'edit']);
-    Route::post('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
+//?
+Route::get('/categorie/edit/{id}', [CategorieController::class,'edit']);
+Route::post('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
 
 
 // ================================= USER  ROUTES =================================

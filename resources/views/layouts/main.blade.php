@@ -51,6 +51,7 @@
 									<!-- ================== ADMIN INTERFACE ================= -->
 
 									@if(Auth::user()->isAdmin())<!-- Admin user -->
+
 									<!-- <li class="nav-item">
 										<a href="/dashboard" class="nav-link">Dashboard</a>
 									</li> -->		
@@ -58,12 +59,12 @@
 									<div class="dropdown dropleft">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Gestion
+											 <ion-icon name="settings-outline"></ion-icon>
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 											<h6 class="dropdown-header">PRODUITS</h6>
 											<a class="dropdown-item" href="{{ route('create-produit') }}" >Ajouter </a>
-											<a class="dropdown-item" href="{{ route('create-produit') }}" >Lister </a><hr>
+											<a class="dropdown-item" href="{{ route('list-produit') }}" >Lister </a><hr>
 											<h6 class="dropdown-header">CATEGORIES</h6>
 											<a class="dropdown-item" href="{{ route('create-categorie') }}" >Ajouter </a>
 											<a class="dropdown-item" href="{{ route('list-categories') }}" >Lister </a><hr>

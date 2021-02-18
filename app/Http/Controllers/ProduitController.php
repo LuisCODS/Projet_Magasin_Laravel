@@ -168,6 +168,20 @@ class ProduitController extends Controller
     }
 
     /**
+     * Display all product in a table.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list()
+    {
+        //Query all produits
+        $produits = Produit::all();
+
+        //Send back to view all produits in table
+        return view('produits.list',['produits'=> $produits]);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -177,7 +191,9 @@ class ProduitController extends Controller
     {
         //Cherche un produit par son id.
        // $produit = Produit::findOrFail($id);
-       //  return redirect('/')->with('msg', 'Produit crée avec succes');
+        // $produit->delete();
+
+        // return view('produit.list',['categories'=>$categories])->with('msg', 'produit supprimée avec succes');
 
     }
 }
