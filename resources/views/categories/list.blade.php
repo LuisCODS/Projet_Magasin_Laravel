@@ -6,7 +6,7 @@
 @endif
 @section('content')
 <!--  =======================================  CATEGORIE TABLE  ======================================= -->
-<div id="tableCategorie" class="container-fluid">
+<div id="container_table_categorie" class="container">
 	<H2>Liste des Categories</H2><br>
 	<div class="row">
 		<div class="col-md-12">

@@ -27,7 +27,7 @@ footer {
 	width: 100%;
 }
 
-/*================== WELCOME PAGE ====================*/
+/*================== ALL - WELCOME PAGE ====================*/
 
 #carouselExampleControls img {
     height: 500px;
@@ -58,12 +58,12 @@ footer {
     margin-right: auto;
 
 }
-/*================== MAIN PAGE ====================*/
+/*================== ALL - MAIN PAGE ====================*/
 #mainContentLayout {
 	 padding-top: 30px;
 }
 
-/*==================  PRODUITS PAGE ====================*/
+/*==================  ALL - PRODUITS PAGE ====================*/
 
 /*produits.blade.php*/
 .card {
@@ -120,15 +120,18 @@ footer {
 }
 
 /*list.blade.php*/
-#tableProduits table tr th{
+ #container_table_produit  {
+	text-align: center;
+} 
+
+/*list.blade.php*/
+ #container_table_produit td {
+    vertical-align: middle;
+} 
 
 
-}
 
-
-
-
-/*==================  ADRESSES PAGES ====================*/
+/*==================  ALL - ADRESSES PAGES ====================*/
 
 
 #createAdresseContainer form {
@@ -136,28 +139,29 @@ footer {
 	width: 400px;
 }
 
-/*==================  CATEGORIES PAGES ====================*/
+/*==================  ALL - CATEGORIES PAGES ====================*/
+
 
 /*list.blade.php*/
-#tableCategorie {
-
-	width: 700px;
-}
-
-/*list.blade.php*/
-#tableCategorie  h2{
-
+ #container_table_categorie  {
 	text-align: center;
-}
-
-/*==================  USERS PAGES ====================*/
+} 
 
 /*list.blade.php*/
-#tableUsers {
+ #container_table_categorie td {
+    vertical-align: middle;
+} 
 
-	width: 900px;
-}
-#tableUsers  h2{
 
+
+/*==================  ALL - USERS PAGES ====================*/
+
+/*list.blade.php*/
+ #container_table_user  {
 	text-align: center;
-}
+} 
+
+/*list.blade.php*/
+ #container_table_user td {
+    vertical-align: middle;
+} 
