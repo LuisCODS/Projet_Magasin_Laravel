@@ -22,7 +22,7 @@
 						<th>IMAGE</th>
 						<th>TITRE</th>
 						<th>PRIX</th>
-						<th>QUANTITÉ</th>
+						<th>QUANTITÉ EN STOCK</th>
 						<th>EDITER</th>
 						<th>SUPPRIMER</th>
 					</tr>
