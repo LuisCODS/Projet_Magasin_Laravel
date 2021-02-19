@@ -2,7 +2,7 @@
 @section('title', 'List users')
 @section('content')
 <!--  =======================================  USER TABLE  ======================================= -->
-<div id="tableUsers" class="container-fluid">
+<div id="container_table_user" class="container-fluid">
 	<H2>Liste de Clients</H2><br>
 	<div class="row">
 		<div class="col-md-12">

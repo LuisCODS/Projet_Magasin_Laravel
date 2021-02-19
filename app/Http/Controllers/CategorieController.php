@@ -62,42 +62,45 @@ class CategorieController extends Controller
         
     }
 
+    //Show form to modifie input
     public function edit($id)
     {
-      //Retrieving A Single Row / Column From A Table
-      $categorie = DB::table('categories')->where('id_categorie', $id)->first();
-      //dd($categorie);
-      return view('categories.edit',['categorie'=> $categorie]);
+          //Retrieving A Single Row / Column From A Table
+          $categorie = DB::table('categories')->where('id_categorie', $id)->first();
+           return view('categories.edit',['categorie'=> $categorie]);
     }
 
-
+    //Update in data base
     public function update(Request $request, $id)
     {
+
         //dd($request->all());
-        // Validate and store the category post
+        // Validate the category post
         try{
             $validated = $request->validate([
                 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
             ]);
         } catch (ValidationException $e) {
-            //dd($e);
-
             session()->put('errors', $e->validator->getMessageBag());
             session()->put('old', $request->input());
             session()->save();
-
             return back();
         }
 
       //Retrieving A Single Row / Column From A Table
-      $categorie = DB::table('categories')->where('id_categorie', $id)->first();
-       //Set new date
-        $categorie->update($request->all() );
-       //$categorie->nomCategorie = $request->nomCategorie;
+      //$categorieToUpdate = DB::table('categories')->where('id_categorie', $id)->first();
+       
+       $cat = Categorie::findOrFail($request->id)->update($request->nomCategorie);
+       dd($cat);
+       //Set update
+      // $categorieToUpdate->nomCategorie = $request->nomCategorie;
+
+        //Query all 
+        $categories = Categorie::all();
 
        // dd($inputCategorie);
-        //return view('categories.list',['categorie'=>$categorie,'$inputCategorie' => $ $inputCategorie]);
-        return redirect('categories.list')->with('msg', 'Categorie editée avec succes');
+        return view('categories.list',['categories'=>$categories])->with('msg', 'Categorie editée avec succes');
+        //return redirect('categories.list')->with('msg', 'Categorie editée avec succes');
 
     }
 
@@ -105,6 +108,10 @@ class CategorieController extends Controller
     public function destroy($id)
     {
 
-    
+
     }
+
+
+
+
 }

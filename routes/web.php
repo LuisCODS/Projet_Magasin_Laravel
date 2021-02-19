@@ -8,7 +8,7 @@ use App\Http\Controllers\AdresseController;
 use App\Http\Controllers\UserController;
 
 // admin routes ->middleware('auth');
-// ================== ADMIN ROUTES ==================
+// ================================= ADMIN ROUTES =================================
 
 Route::group([
 
@@ -26,15 +26,18 @@ Route::group([
     //PRODUIT
     Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
     Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
+    Route::get('/produit/list', [ProduitController::class,'list'])->name('list-produit');
+   
 
     //USER
     Route::get('/user/list', [UserController::class, 'index'])->name('list-user');
-
 });
 
-    //?
-    Route::get('/categorie/edit/{id}', [CategorieController::class,'edit']);
-  Route::post('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
+//?
+Route::get('/categorie/edit/{id}', [CategorieController::class,'edit'])->name('edit-categorie');
+Route::put('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
+Route::get('/produit/edit/{id}', [ProduitController::class,'edit'])->name('edit-produit');
+Route::put('/produit/update/{id}', [ProduitController::class,'update'])->name('update-produit');
 
 
 // ================================= USER  ROUTES =================================
@@ -50,6 +53,8 @@ Route::get('/produit/{id}/', [ProduitController::class,'show']);
 //HOME
 Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+// ==================================================================
 
 //DASHBOARD
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

@@ -19,7 +19,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<nav class="navbar navbar-expand-lg navbar-light bg-light">
+						<nav id="navbar_menu" class="navbar navbar-expand-lg navbar-light bg-light">
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="navbar-toggler-icon"></span>
 							</button> <a class="navbar-brand" href="/">C&A Mode</a>
@@ -33,6 +33,7 @@
 										<a href="{{ route('contact') }}" class="nav-link">Contact</a>
 									</li>
 								</ul>
+
 								<!-- MENUE COTE DROIT -->
 								<ul class="navbar-nav ml-md-auto">
 									<!-- =================  GUEST INTERFACE ====================== -->
@@ -44,34 +45,41 @@
 										<a href="/register" class="nav-link">Enregistrer</a>
 									</li>
 									@endguest
-									<!-- ================== ADMIN INTERFACE ================= -->
+
+									<!-- ////////////////////////////////// AUTH ZONE - BEGIN //////////////////////////////////////////////// -->
 									@auth
-									@if(Auth::user()->isAdmin())
-									<li class="nav-item">
+
+									<!-- ================== ADMIN INTERFACE ================= -->
+
+									@if(Auth::user()->isAdmin())<!-- Admin user -->
+
+									<!-- <li class="nav-item">
 										<a href="/dashboard" class="nav-link">Dashboard</a>
-									</li>
+									</li> -->		
 									<!-- DROPDOWN -->
-									<div class="dropdown">
+									<div class="dropdown dropleft">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											Gestion
+											   <ion-icon  id="icon_outils" name="settings-outline"></ion-icon>
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 											<h6 class="dropdown-header">PRODUITS</h6>
-											<a class="dropdown-item" href="{{ route('create-produit') }}" >Ajouter Produit</a>
-											<a class="dropdown-item" href="{{ route('create-produit') }}" >Lister Produit</a>
+											<a class="dropdown-item" href="{{ route('create-produit') }}" >Ajouter </a>
+											<a class="dropdown-item" href="{{ route('list-produit') }}" >Lister </a><hr>
 											<h6 class="dropdown-header">CATEGORIES</h6>
-											<a class="dropdown-item" href="{{ route('create-categorie') }}" >Ajouter Categorie</a>
-											<a class="dropdown-item" href="{{ route('list-categories') }}" >Lister categories</a><hr>
+											<a class="dropdown-item" href="{{ route('create-categorie') }}" >Ajouter </a>
+											<a class="dropdown-item" href="{{ route('list-categories') }}" >Lister </a><hr>
 											<h6 class="dropdown-header">CLIENTS</h6>
-											<a class="dropdown-item" href="{{ route('list-user') }}" >Lister Clients</a>
+											<a class="dropdown-item" href="{{ route('list-user') }}" >Lister </a>
 										</div>
 									</div>
-									@endif
+
+									@else<!-- normal user -->
+
 									<!-- ================== USER INTERFACE ================= -->
 
 									<!-- DROPDOWN -->
-									<div class="dropdown">
+									<div class="dropdown ">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											Mon Compte
@@ -82,6 +90,9 @@
 											<a class="dropdown-item" href="{{ route('create-adresse') }}"><ion-icon name="home-outline"></ion-icon>  Ajouter Adresse</a>
 										</div>
 									</div>
+
+									@endif
+
 									<!--  LOGOUT  -->
 									<li class="nav-item">
 										<form action="/logout" method="POST">
@@ -92,6 +103,7 @@
 										</form>
 									</li>
 									@endauth
+									<!-- ////////////////////////////////// AUTH ZONE - END //////////////////////////////////////////////// -->
 								</ul>
 							</div>
 						</nav>
@@ -99,6 +111,7 @@
 				</div>
 			</div>
 		</header>
+
 		<!-- ======================================= MAIN ======================================= -->
 		<main>
 			<div id ="mainContentLayout" class="container h-100">
@@ -118,5 +131,8 @@
 	<!-- ======================================= FOOTER ======================================= -->
 	<footer>
 		<p>LuisCODS- &copy; 2021</p>
+<!-- 		<address>
+		<strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890
+		</address> -->
 	</footer>
 </html>

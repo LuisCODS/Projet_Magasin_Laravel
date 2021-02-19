@@ -25,9 +25,13 @@ footer {
 	position: absolute;/*cola no fundo da tela*/
 	bottom: 0px;
 	width: 100%;
+	text-align: center;
 }
 
-/*================== WELCOME PAGE ====================*/
+
+
+
+/*================== ALL - WELCOME PAGE ====================*/
 
 #carouselExampleControls img {
     height: 500px;
@@ -36,8 +40,8 @@ footer {
 }
 #genre_container  {
 
-	 padding-top: 20px;
-	 padding-bottom: 20px;
+	 padding-top: 80px;
+	 padding-bottom: 100px;
 	 padding-left: 70px;
 	 padding-right: 70px;
 }
@@ -58,12 +62,26 @@ footer {
     margin-right: auto;
 
 }
-/*================== MAIN PAGE ====================*/
+/*================== ALL - MAIN PAGE ====================*/
+
+/*main.blade.php*/
 #mainContentLayout {
 	 padding-top: 30px;
 }
 
-/*==================  PRODUITS PAGE ====================*/
+/*main.blade.php*/
+#icon_outils {
+  font-size: 30px;
+}
+
+#navbar_menu {
+	padding-left:30px;
+	padding-right:30px;
+}
+
+
+
+/*==================  ALL - PRODUITS PAGE ====================*/
 
 /*produits.blade.php*/
 .card {
@@ -119,37 +137,69 @@ footer {
 	 padding: 10px;
 }
 
+/*list.blade.php*/
+ #container_table_produit  {
+	text-align: center;
+	margin-bottom: 50px;
+	width: 900px;
+} 
 
-/*==================  ADRESSES PAGES ====================*/
+/*list.blade.php*/
+ #container_table_produit td {
+    vertical-align: middle;
+} 
+
+/*edit.blade.php*/
+.img-preview{
+	width: 100px;
+	margin-bottom: 20px;
+}
+
+#produit_container {
+	margin-bottom: 50px;
+}
+
+#incon_btn_acheter {
+
+ font-size: 30px;
+}
+
+/*==================  ALL - ADRESSES PAGES ====================*/
 
 
 #createAdresseContainer form {
-
 	width: 400px;
 }
 
-/*==================  CATEGORIES PAGES ====================*/
+/*==================  ALL - CATEGORIES PAGES ====================*/
+
 
 /*list.blade.php*/
-#tableCategorie {
-
-	width: 700px;
-}
-
-/*list.blade.php*/
-#tableCategorie  h2{
-
+ #container_table_categorie  {
 	text-align: center;
-}
-
-/*==================  USERS PAGES ====================*/
+	margin-bottom: 50px;
+	width: 800px;
+} 
 
 /*list.blade.php*/
-#tableUsers {
+ #container_table_categorie td {
+    vertical-align: middle;
+} 
 
-	width: 900px;
-}
-#tableUsers  h2{
 
+
+/*==================  ALL - USERS PAGES ====================*/
+
+/*list.blade.php*/
+ #container_table_user  {
 	text-align: center;
-}
+	margin-bottom: 50px;
+	width: 800px;
+
+} 
+
+/*list.blade.php*/
+ #container_table_user td {
+    vertical-align: middle;
+} 
+

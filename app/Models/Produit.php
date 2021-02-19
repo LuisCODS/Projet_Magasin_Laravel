@@ -10,4 +10,7 @@ class Produit extends Model
     use HasFactory;
     protected $primaryKey = 'id_produit';
 
+    // atributos podem ser atribuídos em massa, 
+    protected $guarded = [];
+
 }
