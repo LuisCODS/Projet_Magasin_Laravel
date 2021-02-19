@@ -8,10 +8,7 @@ class UsersTableSeeder extends Seeder
 {
     public function run()
     {
-      // factory('App\User', 20)->create();
-
         \App\Models\User::factory()->count(20)->create();
-
     }
 
 }

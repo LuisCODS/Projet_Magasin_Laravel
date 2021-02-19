@@ -19,7 +19,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<nav class="navbar navbar-expand-lg navbar-light bg-light">
+						<nav id="navbar_menu" class="navbar navbar-expand-lg navbar-light bg-light">
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="navbar-toggler-icon"></span>
 							</button> <a class="navbar-brand" href="/">C&A Mode</a>
@@ -33,6 +33,7 @@
 										<a href="{{ route('contact') }}" class="nav-link">Contact</a>
 									</li>
 								</ul>
+
 								<!-- MENUE COTE DROIT -->
 								<ul class="navbar-nav ml-md-auto">
 									<!-- =================  GUEST INTERFACE ====================== -->
@@ -59,7 +60,7 @@
 									<div class="dropdown dropleft">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											   <ion-icon  id="iconOutils" name="settings-outline"></ion-icon>
+											   <ion-icon  id="icon_outils" name="settings-outline"></ion-icon>
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 											<h6 class="dropdown-header">PRODUITS</h6>
@@ -110,6 +111,7 @@
 				</div>
 			</div>
 		</header>
+
 		<!-- ======================================= MAIN ======================================= -->
 		<main>
 			<div id ="mainContentLayout" class="container h-100">
@@ -129,5 +131,8 @@
 	<!-- ======================================= FOOTER ======================================= -->
 	<footer>
 		<p>LuisCODS- &copy; 2021</p>
+<!-- 		<address>
+		<strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890
+		</address> -->
 	</footer>
 </html>

@@ -37,7 +37,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $produit->nomProduit }}</h5>
                 <p class="card-text">${{ $produit->prix }}</p>
-                <a href="/produit/add-cart/{{ $produit->id_produit }}"><ion-icon id="panier" name="cart-outline"></ion-icon></a><br>
+                <a href="/produit/add-cart/{{ $produit->id_produit }}"><ion-icon id="panier" name="heart-outline"></ion-icon></a><br>
                 <a href="/produit/{{ $produit->id_produit }}" class="btn btn-primary">Details</a><br>
             </div>
         </div>
