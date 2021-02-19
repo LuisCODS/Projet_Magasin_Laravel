@@ -59,7 +59,7 @@
 									<div class="dropdown dropleft">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											 <ion-icon name="settings-outline"></ion-icon>
+											 Gestion  <ion-icon name="settings-outline"></ion-icon>
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 											<h6 class="dropdown-header">PRODUITS</h6>

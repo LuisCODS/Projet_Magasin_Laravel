@@ -10,7 +10,7 @@ class Produit extends Model
     use HasFactory;
     protected $primaryKey = 'id_produit';
 
-    //Allow to update all inputs
+    // atributos podem ser atribuídos em massa, 
     protected $guarded = [];
 
 }
