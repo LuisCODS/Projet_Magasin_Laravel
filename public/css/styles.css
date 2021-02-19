@@ -59,8 +59,15 @@ footer {
 
 }
 /*================== ALL - MAIN PAGE ====================*/
+
+/*main.blade.php*/
 #mainContentLayout {
 	 padding-top: 30px;
+}
+
+/*main.blade.php*/
+#iconOutils {
+  font-size: 30px;
 }
 
 /*==================  ALL - PRODUITS PAGE ====================*/
@@ -169,3 +176,4 @@ footer {
  #container_table_user td {
     vertical-align: middle;
 } 
+
