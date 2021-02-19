@@ -44,8 +44,8 @@ class AdresseController extends Controller
         try{
             // Validate input filds
             $validData = $request->validate([
-                'nbCivic'       => "required|regex:/[0-9][5]/",
-                'rue'           => 'required|max:70',
+                'nbCivic'       => "required|regex:/^[0-9]+$/",//Only numbers
+                'rue'           => "required|max:70', regex:/^ [a-zA-Z] + $/",//Only strings
                 'quartie'       => 'required|max:50',
                 'pays'          => 'required|max:20',
                 "codePostal"    => 'required|regex:/[A-Za-z]\d[A-Za-z]?\d[A-Za-z]\d/', //H2E1X2

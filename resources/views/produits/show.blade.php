@@ -16,9 +16,10 @@
 		</div>
 		<div class="col-md-6">
 				<h1>Titre: {{ $produit->nomProduit }}</h1>
-				<p>Prix: $  {{ $produit->prix }} </p>
-				<h3>Description</h3>
-				<br>
+				<br><br>
+				<span>Prix: $  {{ $produit->prix }} </span>
+				<br><br>
+				<h4>Description</h4>				
 				<p class="produit_description">{{ $produit->description }}</p><br><br>
 				<button type="button" class="btn btn-lg btn-info btn-block">Acheter</button>
 				<button type="button" class="btn btn-lg btn-info btn-block"><ion-icon id="incon_btn_acheter" name="cart-outline"></ion-icon></button>
