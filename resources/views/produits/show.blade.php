@@ -11,7 +11,7 @@
 		<div class="col-md-6">
 			<!-- IMAGE -->
 			<div id="image_container" class="col-md-6">
-				<img src="{{ $produit->img }}" class="img-fluid" alt="{{ $produit->nomProduit }}">
+				<img src="/{{ $produit->img }}" class="img-fluid" alt="{{ $produit->nomProduit }}">
 			</div>
 		</div>
 		<div class="col-md-6">

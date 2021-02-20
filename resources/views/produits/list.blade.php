@@ -32,7 +32,7 @@
 					@foreach($produits as $produit)
 					<tr>
 						<td>{{ $produit->id_produit }}</td>
-						<td><img style="width: 100px; height:100px;"  class="image-preview" src="{{ $produit->img }}"></td>
+						<td><img style="width: 100px; height:100px;"  class="image-preview" src="/{{ $produit->img }}" ></td>
 						<td>{{ $produit->nomProduit }}</td>
 						<td>{{ $produit->getFormatPrice() }}</td>
 						<td>{{ $produit->totalStock }}</td>
