@@ -55,7 +55,7 @@
 
 									<!-- <li class="nav-item">
 										<a href="/dashboard" class="nav-link">Dashboard</a>
-									</li> -->		
+									</li> -->
 									<!-- DROPDOWN -->
 									<div class="dropdown dropleft">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
@@ -85,7 +85,7 @@
 											Mon Compte
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											<a class="dropdown-item" href="#"><ion-icon name="person-outline"></ion-icon>  Profil </a>
+											<a class="dropdown-item" href="/user/profile"><ion-icon name="person-outline"></ion-icon>  Profil </a>
 											<a class="dropdown-item" href="#"><ion-icon name="cart-outline"></ion-icon>  Panier </a>
 											<a class="dropdown-item" href="{{ route('create-adresse') }}"><ion-icon name="home-outline"></ion-icon>  Ajouter Adresse</a>
 										</div>

@@ -16,7 +16,7 @@
 		@method('PUT')
 		<div class="form-group">
 			<!-- <label for="img">Image</label> -->
-			<img  src="/img/produits/{{ $produit->img }}" alt="{{ $produit->nomProduit }}" value="{{ old('img') }}" class="img-preview @error('img') is-invalid @enderror">
+			<img  src="{{ $produit->img }}" alt="{{ $produit->nomProduit }}" value="{{ old('img') }}" class="img-preview @error('img') is-invalid @enderror">
 			<input type="file"  id="img" name="img" class="form-control-file">
  			@error('img')<div class="alert alert-danger">{{ $message }}</div>@enderror
 		</div>

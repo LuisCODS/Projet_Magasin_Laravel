@@ -14,15 +14,15 @@ class ProduitsTableSeeder extends Seeder
     {
     	//$faker = Faker\Factory::create();
 
-        for ($i=0; $i < 30 ; $i++) { 
+        for ($i=0; $i < 30 ; $i++) {
 
         	Produit::create([
         		'fk_id_categorie' => 1,
-        		'nomProduit' 	  => 'Nom produit',
-        		'totalStock'	  => 100,
-        		'img' 			  => '50d0b79b6a64c06bd3efcd0e834f53e8b5b9222d.jpg',
-        		'description'     => 'Som text...',
-        		'prix' 		      => 25
+        		'nomProduit' 	  => 'Nom produit'.$i,
+        		'totalStock'	  => (100+$i),
+        		'img' 			  => 'https://via.placeholder.com/345x517',
+        		'description'     => 'Som text...'.$i,
+        		'prix' 		      => (25+$i)
         	]);
         }
     }

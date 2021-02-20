@@ -102,9 +102,9 @@ class ProduitController extends Controller
             //The extention
             $extension = $requestImage->extension();
             //Create a hash
-            $imageName = sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
+            $imageName = 'img/produits/'.sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
             //Image path
-            $requestImage->move(public_path('img/produits'),$imageName);
+            $requestImage->move(public_path('/'),$imageName);
 
             $produit->img = $imageName;
         }
@@ -195,7 +195,7 @@ class ProduitController extends Controller
         if ( $request->hasFile('img') && $request->file('img')->isValid() )
          {
             //delete old file
-            $oldImg = public_path('img/produits').'/'.$produit->img;
+            $oldImg = public_path('/').'/'.$produit->img;
             unlink($oldImg);
 
 
@@ -204,9 +204,9 @@ class ProduitController extends Controller
             //The extention
             $extension = $requestImage->extension();
             //Create a hash
-            $imageName = sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
+            $imageName = 'img/produits/'.sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
             //Image path
-            $requestImage->move(public_path('img/produits'),$imageName);
+            $requestImage->move(public_path('/'),$imageName);
             //Change image path
             $produit->img = $imageName;
         }
@@ -236,6 +236,8 @@ class ProduitController extends Controller
 //Query all category
         $categories = Categorie::all();
 
+
+
         //Send back to view all produits in table
         return view('produits.list',['produits'=> $produits, 'categories'=>$categories]);
     }
@@ -252,8 +254,8 @@ class ProduitController extends Controller
         $produit = Produit::findOrFail($id);
         //$produit->delete();
 
-        //delete old file
-        $oldImg = public_path('img/produits').'/'.$produit->img;
+        //delete old file  // img/produits
+        $oldImg = public_path('/').'/'.$produit->img;
 
         $produit->delete();
         if(file_exists($oldImg))   unlink($oldImg);

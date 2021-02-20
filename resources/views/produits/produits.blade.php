@@ -21,7 +21,7 @@
 <!-- ============================== MSN  SEARCHE PRODUIT  ============================== -->
 
 @if( count($produits) == 0 && $search)
-       <p>Aucune produit trouvé avec le mot: <b>{{ $search }}</b> <br><a href="{{ route('list-all') }}">Voir nos produits! </a></p> 
+       <p>Aucune produit trouvé avec le mot: <b>{{ $search }}</b> <br><a href="{{ route('list-all') }}">Voir nos produits! </a></p>
 @elseif(count($produits) == 0)
     <p>Aucun produit disponible! </p>
 
@@ -33,11 +33,13 @@
     <div id="cards_container" class="row">
         @foreach($produits as $produit)
         <div id="divCardBorder" class="col-md-3" >
-            <img class="card-img-top" src="/img/produits/{{ $produit->img }}" alt="{{ $produit->nomProduit }}">
+            <img class="card-img-top" src="{{ $produit->img }}" alt="{{ $produit->nomProduit }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $produit->nomProduit }}</h5>
                 <p class="card-text">{{ $produit->getFormatPrice() }}</p>
+                @if(Auth::user())
                 <a href="/produit/add-cart/{{ $produit->id_produit }}"><ion-icon id="panier" name="heart-outline"></ion-icon></a><br>
+                @endif
                 <a href="/produit/{{ $produit->id_produit }}" class="btn btn-primary">Details</a><br>
             </div>
         </div>
