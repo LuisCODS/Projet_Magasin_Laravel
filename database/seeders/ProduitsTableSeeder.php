@@ -31,16 +31,8 @@ class ProduitsTableSeeder extends Seeder
         // }
 
         //With Factory
-        \App\Models\Produit::factory()->count(10)->create();
+        \App\Models\Produit::factory()->count(5)->create();
     }
 
 
 }
-
-
-/*        		'fk_id_categorie' => $faker->numberBetween(1, 2),
-        		'nomProduit' 	  => $faker->sentence(10),
-        		'totalStock'	  => $faker->numberBetween(10, 100),
-        		'img' 			  => 'https://via.placeholder.com/345x517',
-        		'description'     => $faker->text,
-        		'prix' 		      => $faker->numberBetween(10, 100)* 100 */

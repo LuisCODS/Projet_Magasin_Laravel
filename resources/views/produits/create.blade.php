@@ -24,7 +24,7 @@
 
 		<div class="form-group">
 			<label for="prix">Prix</label>
-			<input type="text" id="prix" name="prix"
+			<input type="text" id="prix" name="prix" placeholder="00.00" pattern="[0-9]{2,3}[.][0-9][0-9]?"
 		 value="{{ old('prix') }}" class="form-control @error('prix') is-invalid @enderror">
  			@error('prix')
 			    <div class="alert alert-danger">{{ $message }}</div>

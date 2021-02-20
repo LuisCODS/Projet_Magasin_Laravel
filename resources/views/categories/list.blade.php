@@ -1,10 +1,14 @@
 @extends('layouts.main')
 @section('title', 'Liste categorie')
+
 <!-- ================================= Flash message =================================-->
+
 @if(session('msg'))
 <p class="msg">{{ session('msg') }}</p>
 @endif
+
 @section('content')
+
 <!--  =======================================  CATEGORIE TABLE  ======================================= -->
 <div id="container_table_categorie" class="container">
 	<H2>Liste des Categories</H2><br>
@@ -23,7 +27,7 @@
 					<tr>
 						<td>{{ $cat->id_categorie }}</td>
 						<td>{{ $cat->nomCategorie }}</td>
-						<td><a href="/categorie/edit/{{ $cat->id_categorie }}" class="btn btn-primary">Editer</a></td>
+                        <td><a href="{{ route('edit-categorie', [$cat->id_categorie]) }}" class="btn btn-primary">Editer</a></td>
 					</tr>
 					@endforeach
 				</tbody>

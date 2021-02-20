@@ -11,9 +11,10 @@ class UsersTableSeeder extends Seeder
     {
         //\App\Models\User::factory()->count(5)->create();
 
-        \App\Models\User::factory()
-                        ->has(Adresse::factory())
-                        ->count(4)
+                        User::factory()
+                        // ->has(Adresse::factory())
+                        ->hasAdresses(3)
+                        // ->count(4)
                         ->create();
     }
 

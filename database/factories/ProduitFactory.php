@@ -19,7 +19,7 @@ class ProduitFactory extends Factory
             'totalStock' => $this->faker->numberBetween($min = 100, $max = 300),
             'nomProduit' => 'Produit sans nom',
             'description' => 'Chemise à carreaux en douce flanelle de coton. Modèle avec col rabattu, deux poches de poitrine et boutonnage classique. Manches longues terminées par fente',
-            'img' => '/img/avatar.png',
+            'img' => 'img/produits/avatar.png',
             'prix' => $this->faker->numberBetween($min = 10, $max = 50),
         ];
     }

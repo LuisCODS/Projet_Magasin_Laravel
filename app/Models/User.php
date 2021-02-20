@@ -70,6 +70,7 @@ class User extends Authenticatable
     public function adresses()
     {
         return $this->hasMany(Adresse::class);
+        //return $this->belongsTo(Adresse::class);
     }
 
     //Validation pour identifier le status de l'utilisateur

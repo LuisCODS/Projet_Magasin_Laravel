@@ -59,7 +59,7 @@ class CategorieController extends Controller
 
     public function show($id)
     {
-        
+
     }
 
     //Show form to modifie input
@@ -74,7 +74,7 @@ class CategorieController extends Controller
     public function update(Request $request, $id)
     {
 
-        //dd($request->all());
+       //dd($id);
         // Validate the category post
         try{
             $validated = $request->validate([
@@ -87,20 +87,21 @@ class CategorieController extends Controller
             return back();
         }
 
-      //Retrieving A Single Row / Column From A Table
-      //$categorieToUpdate = DB::table('categories')->where('id_categorie', $id)->first();
-       
-       $cat = Categorie::findOrFail($request->id)->update($request->nomCategorie);
-       dd($cat);
+        //Get category to be updated
+      // $cat = Categorie::findOrFail($id)->update($request->nomCategorie);
+       $cat = DB::table('categories')->where('id_categorie', $id)->first();
        //Set update
-      // $categorieToUpdate->nomCategorie = $request->nomCategorie;
+       $cat->nomCategorie = $request->nomCategorie;
+       //$cat->update();
 
-        //Query all 
-        $categories = Categorie::all();
+       //dd($cat);
 
-       // dd($inputCategorie);
+
+        //Query all
+         $categories = Categorie::all();
+
         return view('categories.list',['categories'=>$categories])->with('msg', 'Categorie editée avec succes');
-        //return redirect('categories.list')->with('msg', 'Categorie editée avec succes');
+       // return redirect('categories.list')->with('msg', 'Categorie editée avec succes');
 
     }
 

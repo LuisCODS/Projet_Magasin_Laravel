@@ -28,7 +28,7 @@
 @endif
 
 <!-- ============================== CONTAINER PRODUIT ============================== -->
-<div id="produit_container" class="col-md-12 ">
+<div  class="col-md-12 ">
     <!--  CONTAINER CARD  -->
     <div id="cards_container" class="row">
         @foreach($produits as $produit)

@@ -63,7 +63,7 @@ class ProduitController extends Controller
         //dd($request->all());
         //----------------------- VALIDATION -----------------------
         try{
-            // Validate and store the product 
+            // Validate and store the product
             $validated = $request->validate([
                 'nomProduit' => ['bail','required','unique:Produits','max:45','regex:/[a-zA-Z]+/'],
                 'img'        => ['required','max:100'],
@@ -151,7 +151,7 @@ class ProduitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int    'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/'
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -161,7 +161,7 @@ class ProduitController extends Controller
             $request->validate([
                 'nomProduit' => 'required|unique:Produits|max:45',
                 'img'        => 'required|max:100',
-                "prix"       => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+                "prix"       => 'required|regex:/^\d{2,3}+([.]\d{2})?$/',
                 "totalStock" => "required|numeric|between:1,999999",
                 "nomCategorie" => 'required|min:1',
                 "description" => 'required',
@@ -191,13 +191,20 @@ class ProduitController extends Controller
 
         //----------------------- Image Upload -----------------------
 
-        if ( $request->hasFile('img') && $request->file('img')->isValid() )
-         {
-            //delete old file
+        if ( $request->hasFile('img') && $request->file('img')->isValid() ) {
+
+
+            //Get old picture
             $oldImg = public_path('/').'/'.$produit->img;
+
+            //dd($oldImg)
+
+            // if( ! $oldImg == 'avatar.png' )
+            // {
+            //        unlink($oldImg);
+            // }
+            //Delete image
             unlink($oldImg);
-
-
             //The image
             $requestImage = $request->img;
             //The extention
@@ -206,10 +213,9 @@ class ProduitController extends Controller
             $imageName = 'img/produits/'.sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
             //Image path
             $requestImage->move(public_path('img/produits/'),$imageName);
-            //Change image path
+            //Set image name + path
             $produit->img = $imageName;
         }
-
         //dd('produt',$produit);
         // ----------------------- end Image Upload -----------------------
 

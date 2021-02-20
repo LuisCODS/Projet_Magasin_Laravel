@@ -13,7 +13,8 @@
 
 <div  class="col-md-6 offset md-3">
 	<h2 style="text-align: center;">Edition Categorie</h2>
-	<form action="/categorie/update/{{ $categorie->id_categorie }}" method="POST" >
+	<form  action="{{ route('update-categorie', [$categorie->id_categorie]) }}" method="POST" >
+
 		<!-- Prevencao contra os ataques -->
 		@csrf
 		@method('PUT')

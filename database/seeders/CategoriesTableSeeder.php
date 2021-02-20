@@ -18,7 +18,7 @@ class CategoriesTableSeeder extends Seeder
         // }
 
         //With Factory
-        \App\Models\Categorie::factory()->count(5)->create();
+        \App\Models\Categorie::factory()->create();
 
     }
 }
