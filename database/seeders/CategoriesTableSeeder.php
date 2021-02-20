@@ -7,18 +7,18 @@ use App\Models\Categorie;
 
 class CategoriesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
-        for ($i = 0; $i < 5 ; $i++) {
+        //Without Factory
+        // for ($i = 0; $i < 5 ; $i++) {
+        // 	Categorie::create([
+        // 		'nomCategorie' 	  => 'Categorie - '.$i,
+        // 	]);
+        // }
 
-        	Categorie::create([
-        		'nomCategorie' 	  => 'Categorie - '.$i,
-        	]);
-        }
+        //With Factory
+        \App\Models\Categorie::factory()->count(5)->create();
+
     }
 }

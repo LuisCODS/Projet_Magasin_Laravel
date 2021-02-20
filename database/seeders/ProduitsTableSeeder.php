@@ -18,17 +18,20 @@ class ProduitsTableSeeder extends Seeder
     {
     	//$faker = Faker\Factory::create();
 
-        for ($i=0; $i < 10 ; $i++) {
+        //Without Factory
+        // for ($i=0; $i < 10 ; $i++) {
+        // 	Produit::create([
+        // 		'fk_id_categorie' => 1,
+        // 		'nomProduit' 	  => 'Nom produit-'.$i,
+        // 		'totalStock'	  => (100+$i),
+        // 		'img' 			  => 'https://via.placeholder.com/345x517',
+        // 		'description'     => $this->description,
+        // 		'prix' 		      => (25+$i)
+        // 	]);
+        // }
 
-        	Produit::create([
-        		'fk_id_categorie' => 1,
-        		'nomProduit' 	  => 'Nom produit-'.$i,
-        		'totalStock'	  => (100+$i),
-        		'img' 			  => 'https://via.placeholder.com/345x517',
-        		'description'     => $this->description,
-        		'prix' 		      => (25+$i)
-        	]);
-        }
+        //With Factory
+        \App\Models\Produit::factory()->count(10)->create();
     }
 
 
