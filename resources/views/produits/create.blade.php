@@ -10,10 +10,9 @@
 	<h2>Nouveau Produit</h2>
     <br>
     <br>
-	<form action="{{ route('save-produit') }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('store-produit') }}" method="POST" enctype="multipart/form-data">
 		<!-- Prevencao contra os ataques -->
 		@csrf
-
 		<div class="form-group">
 			<label for="img">Image</label>
 			<input type="file"  id="img" name="img" value="{{ old('img') }}"

@@ -60,10 +60,10 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-
-           //dd($request->all());
+        //dd($request->all());
+        //----------------------- VALIDATION -----------------------
         try{
-            // Validate and store the product post
+            // Validate and store the product 
             $validated = $request->validate([
                 'nomProduit' => ['bail','required','unique:Produits','max:45','regex:/[a-zA-Z]+/'],
                 'img'        => ['required','max:100'],
@@ -92,6 +92,7 @@ class ProduitController extends Controller
         $produit->totalStock = $validated['totalStock'];
         //Attache the relation (Set the FK).
         $produit->fk_id_categorie = $validated['nomCategorie'];
+       // dd($produit->fk_id_categorie )
 
         //----------------------- Image Upload -----------------------
 
@@ -104,8 +105,8 @@ class ProduitController extends Controller
             //Create a hash
             $imageName = 'img/produits/'.sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
             //Image path
-            $requestImage->move(public_path('/'),$imageName);
-
+            $requestImage->move(public_path('img/produits/'),$imageName);
+           // $requestImage->move(public_path('/'),$imageName);
             $produit->img = $imageName;
         }
 
@@ -155,8 +156,6 @@ class ProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
         // _____________________ Begin validation _____________________
        try{
             $request->validate([
@@ -206,7 +205,7 @@ class ProduitController extends Controller
             //Create a hash
             $imageName = 'img/produits/'.sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
             //Image path
-            $requestImage->move(public_path('/'),$imageName);
+            $requestImage->move(public_path('img/produits/'),$imageName);
             //Change image path
             $produit->img = $imageName;
         }
@@ -233,10 +232,8 @@ class ProduitController extends Controller
     {
         //Query all produits
         $produits = Produit::all();
-//Query all category
+        //Query all category
         $categories = Categorie::all();
-
-
 
         //Send back to view all produits in table
         return view('produits.list',['produits'=> $produits, 'categories'=>$categories]);
