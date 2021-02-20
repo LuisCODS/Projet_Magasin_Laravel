@@ -77,7 +77,7 @@ class UserController extends Controller
     {
         //
     }
-
+$categories[$produit->fk_id_categorie]->nomCategorie
     /**
      * Remove the specified resource from storage.
      *

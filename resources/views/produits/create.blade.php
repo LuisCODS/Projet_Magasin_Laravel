@@ -55,7 +55,7 @@
 			<select class="form-control" id="categorie" name="nomCategorie" >
  				<option value=""  > Selecione </option>
             @foreach($categories as $categorie)
- 				<option {{ (old('nomCategorie') === $categorie->id_categorie) ? ' selected ': '' }} value="{{ $categorie->id_categorie }}">{{ $categorie->nomCategorie }}</option>
+ 				<option {{ (old('nomCategorie') == $categorie->id_categorie) ? ' selected ': '' }} value="{{ $categorie->id_categorie }}">{{ $categorie->nomCategorie }}</option>
             @endforeach
 			</select>
 			@error('nomCategorie')
