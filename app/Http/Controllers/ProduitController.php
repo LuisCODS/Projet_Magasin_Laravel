@@ -55,7 +55,7 @@ class ProduitController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $request send all input filds from form
+     * @param bail:interromper a execução de regras de validação em um atributo após a primeira falha de *validação.
      * @return  a message succes
      */
     public function store(Request $request)
@@ -64,18 +64,18 @@ class ProduitController extends Controller
            //dd($request->all());
         try{
             // Validate and store the product post
-            $request->validate([
-                'nomProduit' => 'required|unique:Produits|max:45',
-                'img'        => 'required|max:100',
-                "prix"       => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-                "totalStock" => "required|numeric|between:1,999999",
-                "nomCategorie" => 'required|min:1',
-                "description" => 'required',
+            $validated = $request->validate([
+                'nomProduit' => ['bail','required','unique:Produits','max:45','regex:/[a-zA-Z]+/'],
+                'img'        => ['required','max:100'],
+                "prix"       => ['bail','required','regex:/^[0-9]+(\.[0-9][0-9]?)?$/'],
+                "totalStock" => ['bail','required','numeric', 'between:1,999999'],
+                "nomCategorie" => ['bail','required','min:1'],
+                "description" => ['bail','required'],
             ]);
 
         }catch(ValidationException $e){
             //dd($e);
-
+            //validar e armazenar quaisquer mensagens de erro em um pacote de erro nomeado
             session()->put('errors', $e->validator->getMessageBag());
             session()->put('old', $request->input());
             session()->save();
@@ -86,12 +86,12 @@ class ProduitController extends Controller
 
         $produit = new Produit();
 
-        $produit->nomProduit = trim($request->get('nomProduit'));
-        $produit->description = trim($request->get('description'));
-        $produit->prix = $request->get('prix');
-        $produit->totalStock = $request->get('totalStock');
+        $produit->nomProduit = trim($validated['nomProduit']);
+        $produit->description = trim($validated['description']);
+        $produit->prix = $validated['prix'];
+        $produit->totalStock = $validated['totalStock'];
         //Attache the relation (Set the FK).
-        $produit->fk_id_categorie = $request->get('nomCategorie');
+        $produit->fk_id_categorie = $validated['nomCategorie'];
 
         //----------------------- Image Upload -----------------------
 
@@ -168,7 +168,7 @@ class ProduitController extends Controller
                 "description" => 'required',
             ]);
 
-        }catch(ValidationException $e){    
+        }catch(ValidationException $e){
             session()->put('errors', $e->validator->getMessageBag());
             session()->put('old', $request->input());
             session()->save();
@@ -194,6 +194,11 @@ class ProduitController extends Controller
 
         if ( $request->hasFile('img') && $request->file('img')->isValid() )
          {
+            //delete old file
+            $oldImg = public_path('img/produits').'/'.$produit->img;
+            unlink($oldImg);
+
+
             //The image
             $requestImage = $request->img;
             //The extention
@@ -201,8 +206,8 @@ class ProduitController extends Controller
             //Create a hash
             $imageName = sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
             //Image path
-            $requestImage->move(public_path('img/produits'),$imageName); 
-            //Change image path       
+            $requestImage->move(public_path('img/produits'),$imageName);
+            //Change image path
             $produit->img = $imageName;
         }
 
@@ -214,7 +219,7 @@ class ProduitController extends Controller
         //Produit::findOrFail($request->id)->update($data);
 
          //redirige vers la page de tous le produits avec une message de feedback
-         return redirect('/produits/list')->with('msg', 'Produit edité avec succes');
+         return response()->redirectToRoute('list-produit')->with('msg', 'Produit edité avec succes');
 
     }
 
@@ -228,9 +233,11 @@ class ProduitController extends Controller
     {
         //Query all produits
         $produits = Produit::all();
+//Query all category
+        $categories = Categorie::all();
 
         //Send back to view all produits in table
-        return view('produits.list',['produits'=> $produits]);
+        return view('produits.list',['produits'=> $produits, 'categories'=>$categories]);
     }
 
     /**
@@ -242,12 +249,22 @@ class ProduitController extends Controller
     public function destroy($id)
     {
         //Cherche un produit par son id.
-        //$produit = Produit::findOrFail($id);
-       // $produit->delete();
+        $produit = Produit::findOrFail($id);
+        //$produit->delete();
 
-        Produit::findOrFail($id)->delete();
+        //delete old file
+        $oldImg = public_path('img/produits').'/'.$produit->img;
 
-        return view('produit.list')->with('msg', 'produit supprimée avec succes');
+        $produit->delete();
+        if(file_exists($oldImg))   unlink($oldImg);
+
+                //Query all produits
+        $produits = Produit::all();
+        //Query all category
+        $categories = Categorie::all();
+
+        //Send back to view all produits in table
+        return view('produits.list',['produits'=> $produits, 'categories'=>$categories])->with('msg', 'produit supprimée avec succes');
 
     }
 }

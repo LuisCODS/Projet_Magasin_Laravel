@@ -10,14 +10,14 @@
 	<h2 style="text-align: center;">Edition Produit</h2>
     <br>
     <br>
-	<form action="/produit/update/{{ $produit->id_produit }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('update-produit', [$produit->id_produit]) }}" method="POST" enctype="multipart/form-data">
 		<!-- Prevencao contra os ataques -->
 		@csrf
 		@method('PUT')
 		<div class="form-group">
 			<!-- <label for="img">Image</label> -->
 			<img  src="/img/produits/{{ $produit->img }}" alt="{{ $produit->nomProduit }}" value="{{ old('img') }}" class="img-preview @error('img') is-invalid @enderror">
-			<input type="file"  id="img" name="img" class="form-control-file"> 
+			<input type="file"  id="img" name="img" class="form-control-file">
  			@error('img')<div class="alert alert-danger">{{ $message }}</div>@enderror
 		</div>
 
@@ -46,7 +46,7 @@
 			<select class="form-control" id="categorie" name="nomCategorie" >
  				<option value=""  > Selecione </option>
             @foreach($categories as $categorie)
- 				<option {{ (old('nomCategorie') === $categorie->id_categorie) ? ' selected ': '' }} value="{{ $categorie->id_categorie }}">{{ $categorie->nomCategorie }}</option>
+ 				<option {{ (old('nomCategorie') == $categorie->id_categorie OR $produit->fk_id_categorie==$categorie->id_categorie) ? ' selected ': '' }} value="{{ $categorie->id_categorie }}">{{ $categorie->nomCategorie }}</option>
             @endforeach
 			</select>
 			@error('NomCategorie')<div class="alert alert-danger">{{ $message }}</div>@enderror

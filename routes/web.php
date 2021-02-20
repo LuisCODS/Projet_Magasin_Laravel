@@ -12,7 +12,7 @@ use App\Http\Controllers\UserController;
 
 Route::group([
 
-    'prefix'=>'manager', // na barra de endereços
+    'prefix'=>'admin', // na barra de endereços
     // 'as'    =>'manager.', // na rota das, adicionando 'manager.' na frente do name da rota
     'middleware' => ['auth:sanctum', 'verified']
 
@@ -22,22 +22,20 @@ Route::group([
     Route::get('/categorie/create', [CategorieController::class,'create'])->name('create-categorie');
     Route::post('/categorie/store', [CategorieController::class,'store'])->name('save-categorie');
     Route::get('/categorie/list', [CategorieController::class,'index'])->name('list-categories');
-  
+    Route::get('/categorie/edit/{id}', [CategorieController::class,'edit'])->name('edit-categorie');
+    Route::put('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
+
     //PRODUIT
     Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
     Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
     Route::get('/produit/list', [ProduitController::class,'list'])->name('list-produit');
-   
+    Route::get('/produit/edit/{id}', [ProduitController::class,'edit'])->name('edit-produit');
+    Route::put('/produit/update/{id}', [ProduitController::class,'update'])->name('update-produit');
+    Route::get('/produit/destroy/{id}', [ProduitController::class,'destroy'])->name('destroy-produit');
 
     //USER
     Route::get('/user/list', [UserController::class, 'index'])->name('list-user');
 });
-
-//?
-Route::get('/categorie/edit/{id}', [CategorieController::class,'edit'])->name('edit-categorie');
-Route::put('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
-Route::get('/produit/edit/{id}', [ProduitController::class,'edit'])->name('edit-produit');
-Route::put('/produit/update/{id}', [ProduitController::class,'update'])->name('update-produit');
 
 
 // ================================= USER  ROUTES =================================

@@ -17,7 +17,7 @@
 		<div class="col-md-6">
 				<h1>Titre: {{ $produit->nomProduit }}</h1>
 				<br><br>
-				<span>Prix: $  {{ $produit->prix }} </span>
+				<span>Prix: {{ $produit->getFormatPrice() }} </span>
 				<br><br>
 				<h4>Description</h4>				
 				<p class="produit_description">{{ $produit->description }}</p><br><br>
