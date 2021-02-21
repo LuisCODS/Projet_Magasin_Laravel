@@ -32,7 +32,7 @@
     <!--  CONTAINER CARD  -->
     <div id="cards_container" class="row">
         @foreach($produits as $produit)
-        <div id="divCardBorder" class="col-md-3" >
+        <div id="divCardBorder" class="col-md-3 ">
             <img class="card-img-top" src="{{ $produit->img }}" alt="{{ $produit->nomProduit }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $produit->nomProduit }}</h5>

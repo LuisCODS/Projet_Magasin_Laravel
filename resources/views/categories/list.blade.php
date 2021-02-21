@@ -7,8 +7,8 @@
 <p class="msg">{{ session('msg') }}</p>
 @endif
 
-@section('content')
 
+@section('content')
 <!--  =======================================  CATEGORIE TABLE  ======================================= -->
 <div id="container_table_categorie" class="container">
 	<H2>Liste des Categories</H2><br>
@@ -18,7 +18,7 @@
 				<thead class="thead-light">
 					<tr>
 						<th># ID</th>
-						<th>NOM</th>
+						<th>TITRE</th>
 						<th>ACTION</th>
 					</tr>
 				</thead>

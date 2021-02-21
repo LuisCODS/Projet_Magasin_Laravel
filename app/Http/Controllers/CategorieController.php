@@ -9,12 +9,11 @@ use Illuminate\Support\Facades\DB;
 class CategorieController extends Controller
 {
 
-
+    //Display all category
     public function index()
     {
         //Query all categories
         $categories = Categorie::all();
-
         //dd($categories);
         return view('categories.list',['categories' => $categories]);
     }
@@ -88,11 +87,11 @@ class CategorieController extends Controller
         }
 
         //Get category to be updated
-      // $cat = Categorie::findOrFail($id)->update($request->nomCategorie);
-       $cat = DB::table('categories')->where('id_categorie', $id)->first();
+        $cat = Categorie::findOrFail($id)->update($request->nomCategorie);
+       //$cat = DB::table('categories')->where('id_categorie', $id)->first();
        //Set update
-       $cat->nomCategorie = $request->nomCategorie;
-       //$cat->update();
+       //$cat->nomCategorie = $request->nomCategorie;
+       //$cat->save();
 
        //dd($cat);
 

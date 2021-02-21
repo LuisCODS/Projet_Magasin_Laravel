@@ -159,6 +159,12 @@ footer {
  font-size: 30px;
 }
 
+#cards_container {
+
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
 /*==================  ALL - ADRESSES PAGES ====================*/
 
 

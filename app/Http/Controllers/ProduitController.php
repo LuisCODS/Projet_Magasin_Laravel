@@ -161,7 +161,7 @@ class ProduitController extends Controller
             $request->validate([
                 'nomProduit' => 'required|unique:Produits|max:45',
                 'img'        => 'required|max:100',
-                "prix"       => 'required|regex:/^\d{2,3}+([.]\d{2})?$/',
+                "prix"       => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
                 "totalStock" => "required|numeric|between:1,999999",
                 "nomCategorie" => 'required|min:1',
                 "description" => 'required',
@@ -192,11 +192,8 @@ class ProduitController extends Controller
         //----------------------- Image Upload -----------------------
 
         if ( $request->hasFile('img') && $request->file('img')->isValid() ) {
-
-
             //Get old picture
             $oldImg = public_path('/').'/'.$produit->img;
-
             //dd($oldImg)
 
             // if( ! $oldImg == 'avatar.png' )
@@ -256,20 +253,21 @@ class ProduitController extends Controller
         //Cherche un produit par son id.
         $produit = Produit::findOrFail($id);
         //$produit->delete();
-
-        //delete old file  // img/produits
+        //Get image name
         $oldImg = public_path('/').'/'.$produit->img;
-
+        //Delete image
         $produit->delete();
+        //Si l'image existe, on delete
         if(file_exists($oldImg))   unlink($oldImg);
-
-                //Query all produits
+        //Query all produits
         $produits = Produit::all();
         //Query all category
         $categories = Categorie::all();
 
         //Send back to view all produits in table
-        return view('produits.list',['produits'=> $produits, 'categories'=>$categories])->with('msg', 'produit supprimée avec succes');
+       // return view('produits.list',['produits'=> $produits, 'categories'=>$categories])->with('msg', 'produit supprimée avec succes');
+        //return response()->redirectToRoute('list-produit')->with('msg', 'Produit supprimée avec succes');
+        return redirect('/produits')->with('msg', 'Produit supprimée avec succes');
 
     }
 }

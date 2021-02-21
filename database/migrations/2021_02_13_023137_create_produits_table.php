@@ -16,7 +16,7 @@ class CreateProduitsTable extends Migration
         Schema::create('produits', function (Blueprint $table) {
             $table->id('id_produit');
             $table->unsignedBigInteger('fk_id_categorie');
-            $table->foreign('fk_id_categorie')->references('id_Categorie')->on('categories');
+            $table->foreign('fk_id_categorie')->references('id_categorie')->on('categories');
             $table->integer('totalStock');
             $table->string('nomProduit', 50);
             $table->string('description', 500);
