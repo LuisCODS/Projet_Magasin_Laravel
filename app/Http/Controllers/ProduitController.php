@@ -31,7 +31,7 @@ class ProduitController extends Controller
             ])->get();
         }
         else{
-            //Query all produits
+            //Facades-Query all produits
             $produits = Produit::all();
         }
         //Send back to view all produits as array
@@ -45,7 +45,7 @@ class ProduitController extends Controller
      */
     public function create()
     {
-        //Query all category
+        //Facades-Query all category
         $categories = Categorie::all();
 
          //Send back to view all category as array
@@ -127,9 +127,8 @@ class ProduitController extends Controller
      */
     public function show($id)
     {
-        //Cherche un produit par son id.
+        //FACADES Query - Cherche un produit par son id.
         $produit = Produit::findOrFail($id);
-
         return view('produits.show',['produit' => $produit]);
     }
 
@@ -141,7 +140,7 @@ class ProduitController extends Controller
      */
     public function edit($id)
     {
-        //Query all category
+        //FACADES- Query all category
         $categories = Categorie::all();
         $produit = Produit::findOrFail($id);
          return view('produits.edit',['produit'=> $produit,'categories' => $categories]);
@@ -180,7 +179,7 @@ class ProduitController extends Controller
         //Get all inputs
         //$data = $request->all();
 
-        //Get product to be updated
+        //FACADES - Query Get product to be updated
         $produit = Produit::findOrFail($id);
         $produit->nomProduit = trim($request->get('nomProduit'));
         $produit->description = trim($request->get('description'));
@@ -270,4 +269,14 @@ class ProduitController extends Controller
         return redirect('/produits')->with('msg', 'Produit supprimée avec succes');
 
     }
-}
+
+
+    public function addcart( $id)
+    {
+         session(['key' => 'value']);
+    }
+
+
+
+
+}//END CLASS

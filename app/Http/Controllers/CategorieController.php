@@ -12,7 +12,7 @@ class CategorieController extends Controller
     //Display all category
     public function index()
     {
-        //Query all categories
+        //Facades-Query all categories
         $categories = Categorie::all();
         //dd($categories);
         return view('categories.list',['categories' => $categories]);
@@ -42,7 +42,6 @@ class CategorieController extends Controller
         }
 
 
-        //Instacie le modele
         $categorie = new Categorie();
         //$categorie->nomCategorie = trim($request->old('nomCategorie') );
         $categorie->nomCategorie = trim($request->nomCategorie);
@@ -64,8 +63,10 @@ class CategorieController extends Controller
     //Show form to modifie input
     public function edit($id)
     {
-          //Retrieving A Single Row / Column From A Table
-          $categorie = DB::table('categories')->where('id_categorie', $id)->first();
+          // HELPERS Query -Retrieving A Single Row  From A Table
+          // $categorie = DB::table('categories')->where('id_categorie', $id)->first();
+          // FACADES Query -Retrieving A Single Row  From A Table
+          $categorie = Categorie::findOrFail($id);
            return view('categories.edit',['categorie'=> $categorie]);
     }
 
@@ -86,15 +87,13 @@ class CategorieController extends Controller
             return back();
         }
 
-        //Get category to be updated
-        $cat = Categorie::findOrFail($id)->update($request->nomCategorie);
-       //$cat = DB::table('categories')->where('id_categorie', $id)->first();
-       //Set update
+        //FACADES - Query: Get category to be updated
+       // $cat = Categorie::findOrFail($id)->update($request->nomCategorie);
+        $cat = DB::table('categories')->where('id_categorie', $id)->first();
+        //Set update
+        $cat->update();
        //$cat->nomCategorie = $request->nomCategorie;
-       //$cat->save();
-
        //dd($cat);
-
 
         //Query all
          $categories = Categorie::all();

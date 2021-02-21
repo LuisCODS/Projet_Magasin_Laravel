@@ -21,7 +21,7 @@
 				<br><br>
 				<h4>Description</h4>
 				<p class="produit_description">{{ $produit->description }}</p><br><br>
-				<button type="button" class="btn btn-lg btn-info btn-block">Acheter</button>
+				<button type="button" class="btn btn-lg btn-info btn-block">Buy now</button>
 				<button type="button" class="btn btn-lg btn-info btn-block"><ion-icon id="incon_btn_acheter" name="cart-outline"></ion-icon></button>
 		</div>
 	</div>

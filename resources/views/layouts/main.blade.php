@@ -33,7 +33,6 @@
 										<a href="{{ route('contact') }}" class="nav-link">Contact</a>
 									</li>
 								</ul>
-
 								<!-- MENUE COTE DROIT -->
 								<ul class="navbar-nav ml-md-auto">
 									<!-- =================  GUEST INTERFACE ====================== -->
@@ -48,11 +47,8 @@
 
 									<!-- ////////////////////////////////// AUTH ZONE - BEGIN //////////////////////////////////////////////// -->
 									@auth
-
 									<!-- ================== ADMIN INTERFACE ================= -->
-
 									@if(Auth::user()->isAdmin())<!-- Admin user -->
-
 									<!-- <li class="nav-item">
 										<a href="/dashboard" class="nav-link">Dashboard</a>
 									</li> -->
@@ -70,14 +66,13 @@
 											<a class="dropdown-item" href="{{ route('create-categorie') }}" >Ajouter </a>
 											<a class="dropdown-item" href="{{ route('list-categories') }}" >Lister </a><hr>
 											<h6 class="dropdown-header">CLIENTS</h6>
-											<a class="dropdown-item" href="{{ route('list-user') }}" >Lister </a>
+											<a class="dropdown-item" href="{{ route('list-user') }}" >Lister </a><hr>
+                                    	<a class="dropdown-item" href="/user/profile"><ion-icon name="person-outline"></ion-icon>  Profil </a>
 										</div>
 									</div>
-
 									@else<!-- normal user -->
-
 									<!-- ================== USER INTERFACE ================= -->
-
+                                    <a class="dropdown-item" href="#"><ion-icon name="cart-outline"></ion-icon>  Panier </a>
 									<!-- DROPDOWN -->
 									<div class="dropdown ">
 										<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
@@ -86,13 +81,10 @@
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 											<a class="dropdown-item" href="/user/profile"><ion-icon name="person-outline"></ion-icon>  Profil </a>
-											<a class="dropdown-item" href="#"><ion-icon name="cart-outline"></ion-icon>  Panier </a>
 											<a class="dropdown-item" href="{{ route('create-adresse') }}"><ion-icon name="home-outline"></ion-icon>  Ajouter Adresse</a>
 										</div>
 									</div>
-
 									@endif
-
 									<!--  LOGOUT  -->
 									<li class="nav-item">
 										<form action="/logout" method="POST">

@@ -17,7 +17,8 @@
 		@method('PUT')
 		<div class="form-group">
 			<label for="nomCategorie">Nom categorie</label>
-			<input type="text" class="form-control" id="nomCategorie" value="{{ $categorie->nomCategorie }}" name="nomCategorie" required>
+			<input type="text" class="form-control" id="nomCategorie"
+            value="{{ $categorie->nomCategorie }}" name="nomCategorie" required>
 		</div>
 		<div class="form-group">
 			<input type="submit"  class="btn btn-primary form-control" value="Enregistrer">

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\AdresseController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 // admin routes ->middleware('auth');
 // ================================= ADMIN ROUTES =================================
@@ -52,6 +53,13 @@ Route::get('/produit/{id}/', [ProduitController::class,'show']);
 Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
+
+// ================================= CART  ROUTES =================================
+
+//CART
+Route::POST('/produit/{id}', [CartController::class,'session'])->name('session-cart');
+
+
 // ==================================================================
 
 //DASHBOARD
@@ -59,6 +67,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+// Route::get('/dashboard', [HomeController::class, 'welcome'])->name('welcome');
 
 
 

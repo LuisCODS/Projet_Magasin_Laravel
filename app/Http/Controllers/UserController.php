@@ -8,6 +8,8 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,14 +19,17 @@ class UserController extends Controller
     {
         //Query all user
         $users = User::all();
-
         //dd($users);
         return view('users.list',['users' => $users]);
     }
-    
+
+
 
     // public function destroy($id)
     // {
     //     Auth::user()->delete($statusId);
     // }
+
+
+
 }
