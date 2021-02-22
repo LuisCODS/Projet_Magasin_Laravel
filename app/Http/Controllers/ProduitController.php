@@ -19,6 +19,10 @@ class ProduitController extends Controller
     public function index()
     {
 
+        //Display cart content
+      //  dd(Cart::content());
+
+
         // Get form input fild
          $search = request('search');
 
@@ -26,9 +30,7 @@ class ProduitController extends Controller
         if ($search) {
 
             /*Cherche un registre avec le nom demandé*/
-            $produits = Produit::where([
-                ['nomProduit','like','%'.$search.'%']
-            ])->get();
+            $produits = Produit::where([['nomProduit','like','%'.$search.'%']])->get();
         }
         else{
             //Facades-Query all produits
@@ -175,10 +177,6 @@ class ProduitController extends Controller
         }
         // _____________________ End validation _____________________
 
-
-        //Get all inputs
-        //$data = $request->all();
-
         //FACADES - Query Get product to be updated
         $produit = Produit::findOrFail($id);
         $produit->nomProduit = trim($request->get('nomProduit'));
@@ -212,16 +210,10 @@ class ProduitController extends Controller
             //Set image name + path
             $produit->img = $imageName;
         }
-        //dd('produt',$produit);
         // ----------------------- end Image Upload -----------------------
-
         $produit->update();
-
-        //Produit::findOrFail($request->id)->update($data);
-
          //redirige vers la page de tous le produits avec une message de feedback
          return response()->redirectToRoute('list-produit')->with('msg', 'Produit edité avec succes');
-
     }
 
 
@@ -262,20 +254,9 @@ class ProduitController extends Controller
         $produits = Produit::all();
         //Query all category
         $categories = Categorie::all();
-
         //Send back to view all produits in table
-       // return view('produits.list',['produits'=> $produits, 'categories'=>$categories])->with('msg', 'produit supprimée avec succes');
-        //return response()->redirectToRoute('list-produit')->with('msg', 'Produit supprimée avec succes');
         return redirect('/produits')->with('msg', 'Produit supprimée avec succes');
-
     }
-
-
-    public function addcart( $id)
-    {
-         session(['key' => 'value']);
-    }
-
 
 
 

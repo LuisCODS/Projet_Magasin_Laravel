@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;//Added
+use App\Models\Produit;
+use Illuminate\Support\Facades\DB;
+
 
 class CartController extends Controller
 {
 
     //has: a sessao existe e tem valor
     //exists: sessao null
-    public function session(Request $request, $id_produit)
+    public function store(Request $request)
     {
+       // dd($request->all());
         try{
             // Validate input filds
-            $validData = $request->validate(["qnt" => "required|regex:/^[0-9]{1,2}+$/"]);
+            $validData = $request->validate(["id_produit" => "required|integer"]);
             //dd($validData);
         }catch(ValidationException $e){
             session()->put('errors', $e->validator->getMessageBag());
@@ -26,22 +30,36 @@ class CartController extends Controller
         //Clean session
        //Session::forget([$id_produit,'qnt']);
 
-
+        $id_produit = $validData['id_produit'];
+        //session()->push('panier',null);
+        //dd('limpar');
         // Produc has been added
-        if (Session::has('cart_porduct', $id_produit)) {
+        $cart = session()->get('panier');// array /vetor
 
-            //Session::put(['cart_porduct' => $id_produit, 'qnt' => Session::get('qnt') + $value  ]);
-            Session::put('qnt',  $request->qnt );
-             echo "cart_porduct ".Session::get('cart_porduct')." has QNT =".Session::get('qnt');
+        if(is_array($cart)){
+            //echo "é vetor";
+            //print_r($cart);
+            if(array_key_exists($id_produit, $cart)){// https://www.php.net/manual/pt_BR/function.array-key-exists.php
 
-        //First time add product
-        }else {
-           // Session::put('cart_porduct' => $id_produit );
-            Session::put(['cart_porduct'=> $id_produit, 'qnt'=>  $request->qnt ]);
-            echo "cart_porduct ".Session::get('cart_porduct')." has QNT =".Session::get('qnt');
+                $cart[$id_produit]['qtde'] = $cart[$id_produit]['qtde']+1;
+            }else{
+                //dd('no',$id_produit,$cart);
+                $cart[$id_produit]=['qtde'=>1];
+            }
+            //$cart[]=['id_produit'=>$id_produit,'qtde'=>1];
+            //dd('meio',$cart);
+            session()->put('panier',$cart);
+
+        }else{
+
+            $cart[$id_produit]=['qtde'=>1];
+
+            session()->put('panier',$cart);
+            //echo "vazio";
         }
-         dd(Session::all());
-        return redirect('/produits')->with('msg', 'Produit ajouté!');
+
+
+        return redirect()->route('list-all')->with('msg', 'Produit ajouté!');
     }
 
 
@@ -50,9 +68,15 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list()
     {
-        //
+        $cart = session()->get('panier');// array /vetor
+        $produits = Produit::all();
+       // $produits = Produit::where([['nomProduit','like','%'.$search.'%']])->get();
+
+        //$list = Produit::all()->where('id_produit','in',[1,5,9,6])
+        //Send back to view all produits in table
+        return view('carts.list',['produits'=> $produits, 'cart'=> $cart]);
     }
 
     public function create()
@@ -60,10 +84,6 @@ class CartController extends Controller
         //
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
 
     public function show( $id_produit)
     {

@@ -7,9 +7,9 @@
 <p class="msg">{{ session('msg') }}</p>
 @endif
 
-
 @section('content')
-<!--  =======================================  CATEGORIE TABLE  ======================================= -->
+<!--  ======================= Liste des Categories ================================ -->
+
 <div id="container_table_categorie" class="container">
 	<H2>Liste des Categories</H2><br>
 	<div class="row">
@@ -27,7 +27,8 @@
 					<tr>
 						<td>{{ $cat->id_categorie }}</td>
 						<td>{{ $cat->nomCategorie }}</td>
-                        <td><a href="{{ route('edit-categorie', [$cat->id_categorie]) }}" class="btn btn-primary">Editer</a></td>
+                        <td><a href="{{ route('edit-categorie', [$cat->id_categorie]) }}"
+                             class="btn btn-primary">Editer</a></td>
 					</tr>
 					@endforeach
 				</tbody>

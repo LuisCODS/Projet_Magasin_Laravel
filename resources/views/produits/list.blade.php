@@ -8,7 +8,10 @@
 @if(session('msg'))
 <p class="msg">{{ session('msg') }}</p>
 @endif
+<?php
+print_r($cart);
 
+?>
 <!--  =======================================  PRODUIT TABLE  ======================================= -->
 
 <div id="container_table_produit" class="container-fluid">

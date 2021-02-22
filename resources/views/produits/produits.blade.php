@@ -20,9 +20,9 @@
     <p>Aucun produit disponible! </p>
 @endif
 
-@error('qnt')
+<!-- @error('qnt')
     <div class="alert alert-danger">{{ $message }}</div>
-@enderror
+@enderror -->
 <!-- ============================== CONTAINER PRODUIT ============================== -->
 <div  class="col-md-12 ">
     <!--  CONTAINER CARD  -->
@@ -35,14 +35,14 @@
                 <p class="card-text">{{ $produit->getFormatPrice() }}</p>
                 @if(Auth::user())
                     <!-- <a href="/cart/add/{{ $produit->id_produit }}"><ion-icon id="panier" name="cart-outline"></ion-icon></a><br> -->
-                    <form action="{{ route('session-cart',[$produit->id_produit]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('store-cart') }}" method="POST">
                     @csrf
-                            Quantité <input type="number" id="qnt" name="qnt" min="1" max="20"  placeholder="0" pattern="[0-9]{1,2}?"
-                            value="{{ old('qnt') }}" class="@error('qnt') is-invalid @enderror" require ><br><br>
+                            <!-- Quantité <input type="number" id="qnt" name="qnt" min="1" max="20"  placeholder="0" pattern="[0-9]{1,2}?"
+                            value="{{ old('qnt') }}" class="@error('qnt') is-invalid @enderror" require ><br><br> -->
                             <!-- @error('qnt')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror -->
-                            <input type="hidden"  name="{{ $produit->id_produit }}" value="{{ $produit->id_produit }}">
+                            <input type="hidden"  name="id_produit"    value="{{ $produit->id_produit }}">
                             <input type="submit"  class="btn btn-primary form-control" value="Add cart"><br><br>
                     </form>
                 @endif

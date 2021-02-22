@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+//A DBfachada fornece métodos para cada tipo de consulta: select, update, insert, delete, e statement.
 use Illuminate\Support\Facades\DB;
 
 class CategorieController extends Controller
@@ -55,27 +56,21 @@ class CategorieController extends Controller
 
     }
 
-    public function show($id)
-    {
-
-    }
 
     //Show form to modifie input
     public function edit($id)
     {
           // HELPERS Query -Retrieving A Single Row  From A Table
-          // $categorie = DB::table('categories')->where('id_categorie', $id)->first();
+           $categorie = DB::table('categories')->where('id_categorie', $id)->first();
           // FACADES Query -Retrieving A Single Row  From A Table
-          $categorie = Categorie::findOrFail($id);
+          //$categorie = Categorie::findOrFail($id); //Ne marche pas! ?????????
            return view('categories.edit',['categorie'=> $categorie]);
     }
 
     //Update in data base
     public function update(Request $request, $id)
     {
-
-       //dd($id);
-        // Validate the category post
+        // --------------------- Validate --------------------
         try{
             $validated = $request->validate([
                 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
@@ -89,28 +84,23 @@ class CategorieController extends Controller
 
         //FACADES - Query: Get category to be updated
        // $cat = Categorie::findOrFail($id)->update($request->nomCategorie);
+       //Retornará um arrayde resultados.
         $cat = DB::table('categories')->where('id_categorie', $id)->first();
-        //Set update
-        $cat->update();
-       //$cat->nomCategorie = $request->nomCategorie;
+        //Set new date
+        $cat->nomCategorie = $request->nomCategorie;
+        // DB::update(
+        //     'update categories set nomCategorie = $request->nomCategorie where nomCategorie = ?', [ $cat->nomCategorie]
+        // );
+
+       // $cat->update();
        //dd($cat);
 
         //Query all
-         $categories = Categorie::all();
+        $categories = Categorie::all();
 
         return view('categories.list',['categories'=>$categories])->with('msg', 'Categorie editée avec succes');
        // return redirect('categories.list')->with('msg', 'Categorie editée avec succes');
 
     }
-
-
-    public function destroy($id)
-    {
-
-
-    }
-
-
-
 
 }
