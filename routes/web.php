@@ -52,14 +52,12 @@ Route::get('/produit/{id}/', [ProduitController::class,'show']);
 Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
-// ================================= CART  ROUTES =================================
-
 //CART
 Route::post('/cart/store', [CartController::class,'store'])->name('store-cart');
-// Route::get('/cart/destroy', [CartController::class,'destroy'])->name('destroy-cart');
- Route::get('/cart/list', [CartController::class,'list'])->name('list-cart');
+Route::get('/cart/destroy', [CartController::class,'destroy'])->name('destroy-cart');
+Route::get('/cart/list', [CartController::class,'list'])->name('list-cart');
 
-// ==================================================================
+// =====================================================================================
 
 //DASHBOARD
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

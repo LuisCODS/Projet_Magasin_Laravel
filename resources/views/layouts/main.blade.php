@@ -79,7 +79,7 @@
 									@else<!-- normal user -->
 
 									<!-- ================== USER INTERFACE ================= -->
-                                    <a class="dropdown-item" href="#"><ion-icon name="cart-outline"></ion-icon>  Panier </a>
+                                    <a class="dropdown-item" href="/cart/list"><ion-icon name="cart-outline"></ion-icon>  Panier </a>
 
 									<!-- DROPDOWN -->
 									<div class="dropdown ">
