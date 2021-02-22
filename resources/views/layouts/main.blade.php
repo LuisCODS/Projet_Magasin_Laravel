@@ -71,12 +71,15 @@
 											<a class="dropdown-item" href="{{ route('list-categories') }}" >Lister </a><hr>
 											<h6 class="dropdown-header">CLIENTS</h6>
 											<a class="dropdown-item" href="{{ route('list-user') }}" >Lister </a>
+                                           	<a class="dropdown-item" href="/user/profile"><ion-icon name="person-outline"></ion-icon>  Profil </a>
+
 										</div>
 									</div>
 
 									@else<!-- normal user -->
 
 									<!-- ================== USER INTERFACE ================= -->
+                                    <a class="dropdown-item" href="#"><ion-icon name="cart-outline"></ion-icon>  Panier </a>
 
 									<!-- DROPDOWN -->
 									<div class="dropdown ">
@@ -86,7 +89,6 @@
 										</a>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 											<a class="dropdown-item" href="/user/profile"><ion-icon name="person-outline"></ion-icon>  Profil </a>
-											<a class="dropdown-item" href="#"><ion-icon name="cart-outline"></ion-icon>  Panier </a>
 											<a class="dropdown-item" href="{{ route('create-adresse') }}"><ion-icon name="home-outline"></ion-icon>  Ajouter Adresse</a>
 										</div>
 									</div>

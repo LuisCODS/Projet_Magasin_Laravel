@@ -10,7 +10,7 @@ class Produit extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_produit';
-//
+
     // atributos podem ser atribuídos em massa,
     protected $guarded = [];
 
@@ -18,7 +18,7 @@ class Produit extends Model
     public function getFormatPrice()
     {
     	$prix = $this->prix;
-    	return number_format($prix,2, ',', ' ')." $";
+    	return number_format($prix,2, '.', ' ')." $";
     }
 
     public function getCategories()

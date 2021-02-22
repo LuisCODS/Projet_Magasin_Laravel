@@ -9,30 +9,20 @@ use Illuminate\Support\Str;
 
 class AdresseFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
+
     protected $model = Adresse::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         return [
             'fk_id_user' => User::factory(),
-            'nbCivic' => 'nbCivic'. rand(1,2),
-            'rue' => $this->faker->rue,
-            'quartie' => '',
-            'pays' => '',
-            'codePostal' => '',
-            'ville' => '',
-            'defaulAdresse' => '',
-
+            'nbCivic' => $this->faker->buildingNumber ,
+            'rue' => $this->faker->streetSuffix ,
+            'quartie' => 'quartie',
+            'pays' => $this->faker->country ,
+            'codePostal' => 'H2E1X2',
+            'ville' => $this->faker->city,
+            'defaulAdresse' => $this->faker->numberBetween($min = 1, $max = 3),
         ];
     }
 }

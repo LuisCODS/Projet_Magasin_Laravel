@@ -28,6 +28,16 @@ footer {
 	text-align: center;
 }
 
+.msg {
+
+	 background-color: #D4EDDA;
+	 color: #155724;
+	 border: 1px solid #C3E6CB;
+	 width: 100%;
+	 margin-bottom: 10px;
+	 text-align: center;
+	 padding: 10px;
+}
 
 
 
@@ -124,30 +134,16 @@ footer {
     text-align: center;
 }
 
-
-/*produits.blade.php*/
-.msg {
-
-	 background-color: #D4EDDA;
-	 color: #155724;
-	 border: 1px solid #C3E6CB;
-	 width: 100%;
-	 margin-bottom: 10px;
-	 text-align: center;
-	 padding: 10px;
-}
-
 /*list.blade.php*/
  #container_table_produit  {
 	text-align: center;
 	margin-bottom: 50px;
-	width: 900px;
-} 
+}
 
 /*list.blade.php*/
  #container_table_produit td {
     vertical-align: middle;
-} 
+}
 
 /*edit.blade.php*/
 .img-preview{
@@ -155,13 +151,18 @@ footer {
 	margin-bottom: 20px;
 }
 
-#produit_container {
+/* #produit_container {
 	margin-bottom: 50px;
-}
+} */
 
 #incon_btn_acheter {
-
  font-size: 30px;
+}
+
+#cards_container {
+
+    justify-content: center;
+    margin-bottom: 100px;
 }
 
 /*==================  ALL - ADRESSES PAGES ====================*/
@@ -178,13 +179,12 @@ footer {
  #container_table_categorie  {
 	text-align: center;
 	margin-bottom: 50px;
-	width: 800px;
-} 
+}
 
 /*list.blade.php*/
  #container_table_categorie td {
     vertical-align: middle;
-} 
+}
 
 
 
@@ -194,12 +194,10 @@ footer {
  #container_table_user  {
 	text-align: center;
 	margin-bottom: 50px;
-	width: 800px;
-
-} 
+}
 
 /*list.blade.php*/
  #container_table_user td {
     vertical-align: middle;
-} 
+}
 

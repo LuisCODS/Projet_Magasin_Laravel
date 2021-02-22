@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\AdresseController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 // admin routes ->middleware('auth');
 // ================================= ADMIN ROUTES =================================
@@ -27,7 +28,7 @@ Route::group([
 
     //PRODUIT
     Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
-    Route::post('/produit/store', [ProduitController::class,'store'])->name('save-produit');
+    Route::post('/produit/store', [ProduitController::class,'store'])->name('store-produit');
     Route::get('/produit/list', [ProduitController::class,'list'])->name('list-produit');
     Route::get('/produit/edit/{id}', [ProduitController::class,'edit'])->name('edit-produit');
     Route::put('/produit/update/{id}', [ProduitController::class,'update'])->name('update-produit');
@@ -36,7 +37,6 @@ Route::group([
     //USER
     Route::get('/user/list', [UserController::class, 'index'])->name('list-user');
 });
-
 
 // ================================= USER  ROUTES =================================
 
@@ -52,6 +52,13 @@ Route::get('/produit/{id}/', [ProduitController::class,'show']);
 Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
+// ================================= CART  ROUTES =================================
+
+//CART
+Route::post('/cart/store', [CartController::class,'store'])->name('store-cart');
+// Route::get('/cart/destroy', [CartController::class,'destroy'])->name('destroy-cart');
+ Route::get('/cart/list', [CartController::class,'list'])->name('list-cart');
+
 // ==================================================================
 
 //DASHBOARD
@@ -59,6 +66,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+// Route::get('/dashboard', [HomeController::class, 'welcome'])->name('welcome');
 
 
 

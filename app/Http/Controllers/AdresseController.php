@@ -44,13 +44,13 @@ class AdresseController extends Controller
         try{
             // Validate input filds
             $validData = $request->validate([
-                'nbCivic'       => "required|regex:/^[0-9]+$/",//Only numbers
-                'rue'           => "required|max:70', regex:/^ [a-zA-Z] + $/",//Only strings
-                'quartie'       => 'required|max:50',
-                'pays'          => 'required|max:20',
+               'nbCivic'        => "required|regex:/^[0-9]{5,10}+$",//Only numbers 5 à 10 caractères
+                'rue'           => "required|max:70',regex:/^[-'A-zÀ-ÿ ]+$",//Only strings & accents & space
+                'quartie'       => "required|max:50',regex:/^[-'A-zÀ-ÿ ]+$",
+                'pays'          => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$",
                 "codePostal"    => 'required|regex:/[A-Za-z]\d[A-Za-z]?\d[A-Za-z]\d/', //H2E1X2
-                "ville"         => 'required|max:20',
-                //"defaulAdresse" => 'required',//|max:20',
+                "ville"         => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$",
+                "defaulAdresse" => "required|regex:/^[0-9]{1}+$",//Only 1 numbers
             ]);
             //dd($validData);
         }catch(ValidationException $e){

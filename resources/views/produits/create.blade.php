@@ -10,10 +10,9 @@
 	<h2>Nouveau Produit</h2>
     <br>
     <br>
-	<form action="{{ route('save-produit') }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('store-produit') }}" method="POST" enctype="multipart/form-data">
 		<!-- Prevencao contra os ataques -->
 		@csrf
-
 		<div class="form-group">
 			<label for="img">Image</label>
 			<input type="file"  id="img" name="img" value="{{ old('img') }}"
@@ -25,7 +24,7 @@
 
 		<div class="form-group">
 			<label for="prix">Prix</label>
-			<input type="text" id="prix" name="prix"
+			<input type="text" id="prix" name="prix" placeholder="00.00" pattern="[0-9]{2,3}[.][0-9][0-9]?"
 		 value="{{ old('prix') }}" class="form-control @error('prix') is-invalid @enderror">
  			@error('prix')
 			    <div class="alert alert-danger">{{ $message }}</div>

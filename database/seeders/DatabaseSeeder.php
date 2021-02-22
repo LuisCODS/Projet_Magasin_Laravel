@@ -10,9 +10,13 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        //Call all seeder classes  here...
+        //USER HAS MANY ADRESSES
+        $this->call(AdresseTableSeeder::class);
 
-        $this->call(UsersTableSeeder::class);
-        $this->call(ProduitsTableSeeder::class);
+        // $this->call(UsersTableSeeder::class);
+        // $this->call(CategoriesTableSeeder::class);
+
+        //PRODUCT BELONG TO CATEGORYS
+         $this->call(ProduitsTableSeeder::class);
     }
 }

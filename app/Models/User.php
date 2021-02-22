@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -28,8 +29,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
-
 
     /**
      * The attributes that should be hidden for arrays.
@@ -66,20 +65,20 @@ class User extends Authenticatable
     // ================= METHODES =================
 
     /**
-     * Un utilisateur posseder un ou plusieurs adresses(1 to N).
+     *defina o relacionamento 1 to many
      */
     public function adresses()
     {
-        //1 to N
         return $this->hasMany(Adresse::class);
+        //return $this->belongsTo(Adresse::class);
     }
 
     //Validation pour identifier le status de l'utilisateur
-    public function isAdmin() 
+    public function isAdmin()
     {
-        if($this->isAdmin === 1) 
+        if($this->isAdmin === 1)
              return true;
-        else 
+        else
             return false;
     }
 

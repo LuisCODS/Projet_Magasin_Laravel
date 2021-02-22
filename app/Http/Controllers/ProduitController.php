@@ -19,6 +19,10 @@ class ProduitController extends Controller
     public function index()
     {
 
+        //Display cart content
+      //  dd(Cart::content());
+
+
         // Get form input fild
          $search = request('search');
 
@@ -26,12 +30,10 @@ class ProduitController extends Controller
         if ($search) {
 
             /*Cherche un registre avec le nom demandé*/
-            $produits = Produit::where([
-                ['nomProduit','like','%'.$search.'%']
-            ])->get();
+            $produits = Produit::where([['nomProduit','like','%'.$search.'%']])->get();
         }
         else{
-            //Query all produits
+            //Facades-Query all produits
             $produits = Produit::all();
         }
         //Send back to view all produits as array
@@ -45,7 +47,7 @@ class ProduitController extends Controller
      */
     public function create()
     {
-        //Query all category
+        //Facades-Query all category
         $categories = Categorie::all();
 
          //Send back to view all category as array
@@ -60,10 +62,10 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-
-           //dd($request->all());
+        //dd($request->all());
+        //----------------------- VALIDATION -----------------------
         try{
-            // Validate and store the product post
+            // Validate and store the product
             $validated = $request->validate([
                 'nomProduit' => ['bail','required','unique:Produits','max:45','regex:/[a-zA-Z]+/'],
                 'img'        => ['required','max:100'],
@@ -92,6 +94,7 @@ class ProduitController extends Controller
         $produit->totalStock = $validated['totalStock'];
         //Attache the relation (Set the FK).
         $produit->fk_id_categorie = $validated['nomCategorie'];
+       // dd($produit->fk_id_categorie )
 
         //----------------------- Image Upload -----------------------
 
@@ -104,8 +107,8 @@ class ProduitController extends Controller
             //Create a hash
             $imageName = 'img/produits/'.sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
             //Image path
-            $requestImage->move(public_path('/'),$imageName);
-
+            $requestImage->move(public_path('img/produits/'),$imageName);
+           // $requestImage->move(public_path('/'),$imageName);
             $produit->img = $imageName;
         }
 
@@ -126,9 +129,8 @@ class ProduitController extends Controller
      */
     public function show($id)
     {
-        //Cherche un produit par son id.
+        //FACADES Query - Cherche un produit par son id.
         $produit = Produit::findOrFail($id);
-
         return view('produits.show',['produit' => $produit]);
     }
 
@@ -140,7 +142,7 @@ class ProduitController extends Controller
      */
     public function edit($id)
     {
-        //Query all category
+        //FACADES- Query all category
         $categories = Categorie::all();
         $produit = Produit::findOrFail($id);
          return view('produits.edit',['produit'=> $produit,'categories' => $categories]);
@@ -150,13 +152,11 @@ class ProduitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int    'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/'
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-
-
         // _____________________ Begin validation _____________________
        try{
             $request->validate([
@@ -177,11 +177,7 @@ class ProduitController extends Controller
         }
         // _____________________ End validation _____________________
 
-
-        //Get all inputs
-        //$data = $request->all();
-
-        //Get product to be updated
+        //FACADES - Query Get product to be updated
         $produit = Produit::findOrFail($id);
         $produit->nomProduit = trim($request->get('nomProduit'));
         $produit->description = trim($request->get('description'));
@@ -192,13 +188,17 @@ class ProduitController extends Controller
 
         //----------------------- Image Upload -----------------------
 
-        if ( $request->hasFile('img') && $request->file('img')->isValid() )
-         {
-            //delete old file
+        if ( $request->hasFile('img') && $request->file('img')->isValid() ) {
+            //Get old picture
             $oldImg = public_path('/').'/'.$produit->img;
+            //dd($oldImg)
+
+            // if( ! $oldImg == 'avatar.png' )
+            // {
+            //        unlink($oldImg);
+            // }
+            //Delete image
             unlink($oldImg);
-
-
             //The image
             $requestImage = $request->img;
             //The extention
@@ -206,21 +206,14 @@ class ProduitController extends Controller
             //Create a hash
             $imageName = 'img/produits/'.sha1($requestImage->getClientOriginalName() . strtotime('now')). "." . $extension;
             //Image path
-            $requestImage->move(public_path('/'),$imageName);
-            //Change image path
+            $requestImage->move(public_path('img/produits/'),$imageName);
+            //Set image name + path
             $produit->img = $imageName;
         }
-
-        //dd('produt',$produit);
         // ----------------------- end Image Upload -----------------------
-
         $produit->update();
-
-        //Produit::findOrFail($request->id)->update($data);
-
          //redirige vers la page de tous le produits avec une message de feedback
          return response()->redirectToRoute('list-produit')->with('msg', 'Produit edité avec succes');
-
     }
 
 
@@ -233,10 +226,8 @@ class ProduitController extends Controller
     {
         //Query all produits
         $produits = Produit::all();
-//Query all category
+        //Query all category
         $categories = Categorie::all();
-
-
 
         //Send back to view all produits in table
         return view('produits.list',['produits'=> $produits, 'categories'=>$categories]);
@@ -253,20 +244,20 @@ class ProduitController extends Controller
         //Cherche un produit par son id.
         $produit = Produit::findOrFail($id);
         //$produit->delete();
-
-        //delete old file  // img/produits
+        //Get image name
         $oldImg = public_path('/').'/'.$produit->img;
-
+        //Delete image
         $produit->delete();
+        //Si l'image existe, on delete
         if(file_exists($oldImg))   unlink($oldImg);
-
-                //Query all produits
+        //Query all produits
         $produits = Produit::all();
         //Query all category
         $categories = Categorie::all();
-
         //Send back to view all produits in table
-        return view('produits.list',['produits'=> $produits, 'categories'=>$categories])->with('msg', 'produit supprimée avec succes');
-
+        return redirect('/produits')->with('msg', 'Produit supprimée avec succes');
     }
-}
+
+
+
+}//END CLASS
