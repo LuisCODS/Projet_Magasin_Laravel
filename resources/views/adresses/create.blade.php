@@ -17,14 +17,19 @@
 	<form action="{{ route('save-adresse') }}" method="POST" enctype="multipart/form-data">
 		<!-- Prevencao contra os ataques -->
 		@csrf
-
+        <div class="form-check">
+            <input  type="checkbox"
+             name="defaulAdresse"
+              value="default" >
+            <label class="form-check-label" for="defaulAdresse"> Default <br><br></label>
+        </div>
 		<div class="form-group">
 			<label for="nbCivic">Numero Civic</label>
 			<input type="text" class="form-control" id="nbCivic" name="nbCivic" placeholder="Entre 3 et 8 chiffres"
             pattern="^[0-9]{3,8}?"
 			value="{{ old('nbCivic') }}" class="@error('nbCivic') is-invalid @enderror">
 			@error('nbCivic')
-			<div class="alert alert-danger">{{ $message }}</div>
+			    <div class="alert alert-danger">{{ $message }}</div>
 			@enderror
 		</div>
 

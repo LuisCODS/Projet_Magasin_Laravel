@@ -10,7 +10,7 @@ use App\Http\Controllers\CartController;
 
 // admin routes ->middleware('auth');
 // ================================= ADMIN ROUTES =================================
-
+// Donne acces seulement à ceux qui sont connectés
 Route::group([
 
     'prefix'=>'admin', // na barra de endereços
