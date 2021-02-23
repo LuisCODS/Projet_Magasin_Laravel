@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+
+
     //Create a session cart
     public function store(Request $request)
     {

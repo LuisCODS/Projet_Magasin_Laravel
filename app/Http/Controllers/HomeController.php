@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;//Added
+use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
@@ -15,7 +17,6 @@ class HomeController extends Controller
      */
     public function welcome()
     {
-
         return view('welcome');
     }
 
