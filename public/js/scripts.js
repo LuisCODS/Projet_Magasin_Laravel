@@ -1,4 +1,3 @@
-
 // Things that should be done every time a page loads
 // $(()=>{
 //         console.log("Testing call JS");
@@ -12,7 +11,7 @@
 // ============================ GESTION PANIER ========================
 
 //Saisie l'ID du film au moment du click du bouton "ajouter au panier"
-// function ajouterAuPanier(id)
+// function addMoreItem(id)
 // {
 // 	//var formImputs = new FormData(document.getElementById('formBtnPanier'));
 // 	//var action = "action=ajouterAuPanier";

@@ -20,9 +20,13 @@ class CartController extends Controller
        // dd($request->all());
         try{
             // Validate input filds
-            $validData = $request->validate(["id_produit" => "required|integer"]);
-            //dd($validData);
+            $validData = $request->validate(
+
+                [ "id_produit" => "required|integer"]
+            );
+
         }catch(ValidationException $e){
+
             session()->put('errors', $e->validator->getMessageBag());
             session()->put('old', $request->input());
             session()->save();
@@ -31,161 +35,108 @@ class CartController extends Controller
 
         // ================================= SESSION CART ============================
 
+        $msnFeedBack = "";
+        //Get id from input
         $id_produit = $validData['id_produit'];
         //FACADES Query - Cherche un produit par son id.
         $produit = Produit::findOrFail($id_produit);
-
-        //First time session is null: not exist yet
+        //First time session is null: vector not exist yet
         $cart = session()->get('panier');
-
         //dd($cart);
-        // if session aready exist
-        if(is_array($cart))
-        {
+        // if true, an vector aready exist
+        if(is_array($cart)){
             //Checks if product has been aready added
             if(array_key_exists($id_produit, $cart)){
 
-                //For the same product: increases quantity
-                $cart[$id_produit]=['qtde'=> $cart[$id_produit]['qtde'] + 1,
-                                    'nomProduit'=>$produit->nomProduit,
-                                    'description'=>$produit->description,
-                                    'prix'=>($produit->prix * $cart[$id_produit]['qtde']),
-                                    'img'=>$produit->img];
+                // the same product: increases quantity
+                $cart[$id_produit]=[
+                                    'qtde'        => $cart[$id_produit]['qtde'] + 1,
+                                    'nomProduit'  => $produit->nomProduit,
+                                    'description' => $produit->description,
+                                    'prix'        => $cart[$id_produit]['prix'],
+                                    'img'         => $produit->img
+                                   ];
+                $msnFeedBack = "Ce produit a été déjà ajouté ".$cart[$id_produit]['qtde']." fois";
+
+        //dd($cart);//STEP 2
+
             }else{
-                //For the new product: set default quantity
-                $cart[$id_produit]=['qtde'=> 1,
-                                    'nomProduit'=>$produit->nomProduit,
-                                    'description'=>$produit->description,
-                                    'prix'=>$produit->prix,
-                                    'img'=>$produit->img];
+                // a new product: set default quantity
+                $cart[$id_produit]=[
+                                    'qtde'          => 1,
+                                    'nomProduit'    => $produit->nomProduit,
+                                    'description'   => $produit->description,
+                                    'prix'          => $produit->prix,
+                                    'img'           => $produit->img
+                                  ];
+                                    $msnFeedBack = "Le produit a été bien ajouté !";
             }
             // Store vector in the session...
             session()->put('panier',$cart);
 
         }else{
             //Set data into vector
-            $cart[$id_produit]=['qtde'=> 1,
-                                'nomProduit'=>$produit->nomProduit,
-                                'description'=>$produit->description,
-                                'prix'=>$produit->prix,
-                                'img'=>$produit->img];
+            $cart[$id_produit]=[
+                                'qtde'          => 1,
+                                'nomProduit'    => $produit->nomProduit,
+                                'description'   => $produit->description,
+                                'prix'          => $produit->prix,
+                                'img'           => $produit->img
+                              ];
+            $msnFeedBack = "Le produit a été bien ajouté!";
 
             //Create a session and put the vector inside
             session()->put('panier',$cart);
             //dd($cart);//STEP 1
         }
-         //dd($cart);
+       //  dd($cart);
         //dd(session()->all());
-        return redirect()->route('list-all',['cart'=>session()->get('panier')])->with('msg', 'Produit ajouté!');
+        return redirect()->route('list-all',['cart'=>session()->get('panier')])->with('msg',  $msnFeedBack);
+      //return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg',  $msnFeedBack);
     }
 
     //Add more item into cart
-    public function addItemQuantity(Request $request)
+    public function addQuantity($id_produit)
     {
-
-       // ================================= VALIDATION ============================
-       // dd($request->all());
-        try{
-            // Validate input filds
-            $validData = $request->validate(["id_produit" => "required|integer"]);
-            //dd($validData);
-        }catch(ValidationException $e){
-            session()->put('errors', $e->validator->getMessageBag());
-            session()->put('old', $request->input());
-            session()->save();
-            return back();
-        }
-
-        // ================================= SESSION CART ============================
-
-        $id_produit = $validData['id_produit'];
-        //FACADES Query - Cherche un produit par son id.
-        $produit = Produit::findOrFail($id_produit);
-
-        //First time session is null: not exist yet
         $cart = session()->get('panier');
 
+        $cart[$id_produit]=[
+                            'qtde'         => $cart[$id_produit]['qtde'] + 1,
+                            'nomProduit'   => $cart[$id_produit]['nomProduit'],
+                            'description'  => $cart[$id_produit]['description'],
+                            'prix'         => $cart[$id_produit]['prix'],
+                            'img'          => $cart[$id_produit]['img']
+                           ];
+        session()->put('panier',$cart);
         //dd($cart);
-        // if session aready exist
-        if(is_array($cart))
-        {
-            //Checks if product has been aready added
-            if(array_key_exists($id_produit, $cart)){
-
-                //For the same product: increases quantity
-                $cart[$id_produit]=['qtde'=> $cart[$id_produit]['qtde'] + 1,
-                                    'nomProduit'=>$produit->nomProduit,
-                                    'description'=>$produit->description,
-                                    'prix'=>($produit->prix * $cart[$id_produit]['qtde']),
-                                    'img'=>$produit->img];
-            }else{
-
-
-            }
-            // Store vector in the session...
-            session()->put('panier',$cart);
-
-        }else{
-
-        }
-         //dd($cart);
-        //dd(session()->all());
-        // direcionar de volta para a página do cart listagem
-        return redirect()->route('list-all',['cart'=>session()->get('panier')])->with('msg', 'Produit ajouté!');
+        return redirect()->route('list-cart',['cart'=>session()->get('panier')]);
     }
 
     //Remove items from cart
-    public function removeItemQuantity(Request $request)
+    public function removeQuantity($id_produit)
     {
 
-       // ================================= VALIDATION ============================
-        try{
-            // Validate input filds
-            $validData = $request->validate(["id_produit" => "required|integer"]);
-            //dd($validData);
-        }catch(ValidationException $e){
-            session()->put('errors', $e->validator->getMessageBag());
-            session()->put('old', $request->input());
-            session()->save();
-            return back();
-        }
-
-        // ================================= SESSION CART ============================
-
-        $id_produit = $validData['id_produit'];
-        //FACADES Query - Cherche un produit par son id.
-        $produit = Produit::findOrFail($id_produit);
-
-        //First time session is null: not exist yet
         $cart = session()->get('panier');
 
-        //dd($cart);
-        // if session aready exist
-        if(is_array($cart))
-        {
-            //Checks if product has been aready added
-            if(array_key_exists($id_produit, $cart)){
-
-                //For the same product: increases quantity
-                $cart[$id_produit]=['qtde'=> $cart[$id_produit]['qtde'] - 1,
-                                    'nomProduit'=>$produit->nomProduit,
-                                    'description'=>$produit->description,
-                                    'prix'=>($produit->prix * $cart[$id_produit]['qtde']),
-                                    'img'=>$produit->img];
-            }else{
-
-            }
-            // Store vector in the session...
+        if ($cart[$id_produit]['qtde'] == 1) {
+            return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg', 'Limite max de redution!');
+        }else {
+            $cart[$id_produit]=[
+                    'qtde'         => $cart[$id_produit]['qtde'] - 1,
+                    'nomProduit'   => $cart[$id_produit]['nomProduit'],
+                    'description'  => $cart[$id_produit]['description'],
+                    'prix'         => $cart[$id_produit]['prix'],
+                    'img'          => $cart[$id_produit]['img']
+                    ];
             session()->put('panier',$cart);
-
-        }else{
-
+            return redirect()->route('list-cart',['cart'=>session()->get('panier')]);
         }
-        return redirect()->route('list-all',['cart'=>session()->get('panier')])->with('msg', 'Produit ajouté!');
+        //dd($cart);
+       // return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg', 'Limite max de redution!');
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a cart table
      *
      * @return \Illuminate\Http\Response
      */

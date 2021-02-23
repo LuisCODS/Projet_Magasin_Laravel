@@ -20,7 +20,8 @@
 
 		<div class="form-group">
 			<label for="nbCivic">Numero Civic</label>
-			<input type="text" class="form-control" id="nbCivic" name="nbCivic" placeholder="Minimun 5 chiffres" 
+			<input type="text" class="form-control" id="nbCivic" name="nbCivic" placeholder="Entre 3 et 8 chiffres"
+            pattern="^[0-9]{3,8}?"
 			value="{{ old('nbCivic') }}" class="@error('nbCivic') is-invalid @enderror">
 			@error('nbCivic')
 			<div class="alert alert-danger">{{ $message }}</div>
@@ -56,7 +57,7 @@
 
 		<div class="form-group">
 			<label for="codePostal">Code Postal</label>
-			<input type="text" class="form-control" id="codePostal" name="codePostal" placeholder="H2E1X2 " 
+			<input type="text" class="form-control" id="codePostal" name="codePostal" placeholder="H2E1X2 "
 			value="{{ old('codePostal') }}" class="@error('nbCivic') is-invalid @enderror">
 			@error('codePostal')
 			<div class="alert alert-danger">{{ $message }}</div>
