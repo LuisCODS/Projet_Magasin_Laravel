@@ -33,7 +33,7 @@
 						<td>{{ $produit->id_produit }}</td>
 						<td><img style="width: 100px; height:100px;"  class="image-preview" src="/{{ $produit->img }}" ></td>
 						<td>{{ $produit->nomProduit }}</td>
-						<td>{{ $produit->getFormatPrice() }}</td>
+						<td>{{ $produit->getFormatPrice() }} $</td>
 						<td>{{ $produit->totalStock }}</td>
 						<td>{{ $categories[$produit->fk_id_categorie-1]->nomCategorie }}</td>
 						<td><a href="{{ route('edit-produit', [$produit->id_produit]) }}" class="btn btn-primary">Editer</a></td>

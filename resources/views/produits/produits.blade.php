@@ -32,13 +32,15 @@
             <img class="card-img-top" src="{{ $produit->img }}" alt="{{ $produit->nomProduit }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $produit->nomProduit }}</h5>
-                <p class="card-text">{{ $produit->getFormatPrice() }}</p>
-                @if(Auth::user())
+                <p class="card-text">{{ $produit->getFormatPrice() }} $</p>
+
+                @if (!Auth::user()->isAdmin())
                     <!-- <a href="/cart/add/{{ $produit->id_produit }}"><ion-icon id="panier" name="cart-outline"></ion-icon></a><br> -->
                     <form action="{{ route('store-cart') }}" method="POST">
                     @csrf
-                        <input type="hidden"  name="id_produit"    value="{{ $produit->id_produit }}">
+                        {{-- BOUTTON ADD CART --}}
                         <input type="submit"  class="btn btn-primary form-control" value="Add cart"><br><br>
+                        <input type="hidden"  name="id_produit"    value="{{ $produit->id_produit }}">
                     </form>
                 @endif
                 <a href="/produit/{{ $produit->id_produit }}" class="btn btn-primary form-control">Details</a><br>

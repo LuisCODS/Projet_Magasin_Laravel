@@ -23,7 +23,7 @@
 
 		<div class="form-group">
 			<label for="prix">Prix</label>
-			<input type="text" id="prix" name="prix" value="{{  $produit->prix }}" placeholder="00.00" pattern="[0-9]{2,3}[.][0-9][0-9]?"
+			<input type="text" id="prix" name="prix" value="{{  $produit->getFormatPrice() }}" placeholder="00.00" pattern="[0-9]{2,3}[.][0-9][0-9]?"
             class="form-control @error('prix') is-invalid @enderror">
  			@error('prix')<div class="alert alert-danger">{{ $message }}</div>@enderror
 		</div>

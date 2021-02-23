@@ -18,7 +18,7 @@ class Produit extends Model
     public function getFormatPrice()
     {
     	$prix = $this->prix;
-    	return number_format($prix,2, '.', ' ')." $";
+    	return number_format($prix,2,'.',' ');
     }
 
     public function getCategories()

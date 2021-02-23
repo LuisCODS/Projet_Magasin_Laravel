@@ -90,7 +90,7 @@
                                         <!-- normal user -->
 
                                         <!-- ================== USER INTERFACE ================= -->
-                                        <a class="dropdown-item" href="/cart/list">
+                                        <a class="dropdown-item" href="{{ route('list-cart') }}">
                                             <ion-icon name="cart-outline"></ion-icon> Panier
                                                     @if (session()->get('panier'))
                                                         {{ count( $cart['panier'] = session()->get('panier')) }}

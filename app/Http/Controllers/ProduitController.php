@@ -49,7 +49,6 @@ class ProduitController extends Controller
     {
         //Facades-Query all category
         $categories = Categorie::all();
-
          //Send back to view all category as array
         return view('produits.create', ['categories' => $categories]);
     }
@@ -62,14 +61,14 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        //dd($request->all());  'regex:/^[0-9]+(\.[0-9][0-9]?)?$/'
         //----------------------- VALIDATION -----------------------
         try{
             // Validate and store the product
             $validated = $request->validate([
                 'nomProduit' => ['bail','required','unique:Produits','max:45','regex:/[a-zA-Z]+/'],
                 'img'        => ['required','max:100'],
-                "prix"       => ['bail','required','regex:/^[0-9]+(\.[0-9][0-9]?)?$/'],
+                "prix"       => ['bail','required','regex:/^[0-9]+(\.[0-9]{2}?)?$/'],
                 "totalStock" => ['bail','required','numeric', 'between:1,999999'],
                 "nomCategorie" => ['bail','required','min:1'],
                 "description" => ['bail','required'],
@@ -160,15 +159,17 @@ class ProduitController extends Controller
         // _____________________ Begin validation _____________________
        try{
             $request->validate([
+
                 'nomProduit' => 'required|unique:Produits|max:45',
                 'img'        => 'required|max:100',
-                "prix"       => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+                "prix"       => ['bail','required','regex:/^[0-9]+(\.[0-9]{2}?)?$/'],
                 "totalStock" => "required|numeric|between:1,999999",
                 "nomCategorie" => 'required|min:1',
                 "description" => 'required',
             ]);
 
         }catch(ValidationException $e){
+
             session()->put('errors', $e->validator->getMessageBag());
             session()->put('old', $request->input());
             session()->save();

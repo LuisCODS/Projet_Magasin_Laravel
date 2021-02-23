@@ -44,7 +44,7 @@ class AdresseController extends Controller
         try{
             // Validate input filds
             $validData = $request->validate([
-               'nbCivic'        => "required|regex:/^[0-9]{5,10}+$",//Only numbers 5 à 10 caractères
+               'nbCivic'        => "required|regex:/^[0-9]{3,8}$/",//Only numbers 5 à 10 caractères
                 'rue'           => "required|max:70',regex:/^[-'A-zÀ-ÿ ]+$",//Only strings & accents & space
                 'quartie'       => "required|max:50',regex:/^[-'A-zÀ-ÿ ]+$",
                 'pays'          => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$",
