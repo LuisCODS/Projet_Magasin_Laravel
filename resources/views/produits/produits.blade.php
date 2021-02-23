@@ -37,13 +37,8 @@
                     <!-- <a href="/cart/add/{{ $produit->id_produit }}"><ion-icon id="panier" name="cart-outline"></ion-icon></a><br> -->
                     <form action="{{ route('store-cart') }}" method="POST">
                     @csrf
-                            <!-- Quantité <input type="number" id="qnt" name="qnt" min="1" max="20"  placeholder="0" pattern="[0-9]{1,2}?"
-                            value="{{ old('qnt') }}" class="@error('qnt') is-invalid @enderror" require ><br><br> -->
-                            <!-- @error('qnt')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror -->
-                            <input type="hidden"  name="id_produit"    value="{{ $produit->id_produit }}">
-                            <input type="submit"  class="btn btn-primary form-control" value="Add cart"><br><br>
+                        <input type="hidden"  name="id_produit"    value="{{ $produit->id_produit }}">
+                        <input type="submit"  class="btn btn-primary form-control" value="Add cart"><br><br>
                     </form>
                 @endif
                 <a href="/produit/{{ $produit->id_produit }}" class="btn btn-primary form-control">Details</a><br>
