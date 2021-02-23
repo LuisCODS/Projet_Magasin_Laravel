@@ -18,6 +18,7 @@
                 <div class="col-md-10">
                 </div>
                 <div class="col-md-2">
+                    {{-- BOUTTON CLEAN ALL  --}}
                     <a href="{{ route('destroy-cart') }}" class="btn btn-info btn-lg active" role="button"
                         aria-pressed="true">
                         <ion-icon name="trash-outline"></ion-icon> Clean All
@@ -61,7 +62,8 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-info btn-lg active"
+                                        {{-- BOUTTON REMOVE ONE --}}
+                                        <a href="/cart/remove-item/{{ $id_produit }}" class="btn btn-info btn-lg active"
                                             role="button" aria-pressed="true">
                                             <ion-icon name="trash-outline"></ion-icon>
                                         </a>

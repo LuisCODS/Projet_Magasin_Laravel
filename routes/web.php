@@ -58,6 +58,7 @@ Route::get('/cart/destroy', [CartController::class,'destroy'])->name('destroy-ca
 Route::get('/cart/list', [CartController::class,'list'])->name('list-cart');
 Route::get('/cart/add/{id}/', [CartController::class,'addQuantity'])->name('add-cart');
 Route::get('/cart/remove/{id}/', [CartController::class,'removeQuantity'])->name('remove-cart');
+Route::get('/cart/remove-item/{id}/', [CartController::class,'removeItem'])->name('remove-item-cart');
 
 // =====================================================================================
 

@@ -142,14 +142,42 @@ class CartController extends Controller
      */
     public function list()
     {
-        $cart = session()->get('panier');// array /vetor
+        $cart = session()->get('panier');
         return view('carts.list',['cart'=> $cart]);
     }
 
-    //Delete a session
+    //Vide le panier
     public function destroy()
     {
-        session()->pull('panier',null);
+        session()->pull('panier',null); //Clean cart
         return view('carts.list',['cart'=> []]);
     }
-}
+
+    //Remove one item from cart
+    public function removeItem($id_produit)
+    {
+        // get cart from session
+         $cart = session()->get('panier');
+
+        // Set indice a null
+       // $cart->deleteAt($id_produit);
+        unset($cart[$id_produit]);
+        // Update session
+        session()->put('panier',$cart);
+
+//dd($cart);
+
+        // Forget a single key...
+        //session()->forget($id_produit);
+        //session()->pull('panier',$id_produit); //Clean cart
+        //
+        // session()->pull('panier',null); //Clean cart
+        // return view('carts.list',['cart'=> []]);
+         return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg', 'Item supprimé avec sucess!');
+
+    }
+
+
+}//end class
+
+
