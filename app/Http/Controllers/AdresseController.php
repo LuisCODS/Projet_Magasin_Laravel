@@ -73,21 +73,25 @@ class AdresseController extends Controller
                                 ->get();
 
            // dd($trouve['rue']);
-            dd($trouve['rue']);
+           // dd($trouve[0]->codePostal);
 
             if ($trouve) {
+
                 // switch adress...
                 $trouveUpDate = new Adresse();
-                $trouveUpDate->nbCivic          = trim($request->get('nbCivic'));
-                $trouveUpDate->rue              = trim($request->get('rue'));
-                $trouveUpDate->quartie          = trim($request->get('quartie'));
-                $trouveUpDate->pays             = trim($request->get('pays'));
-                $trouveUpDate->codePostal       = trim($request->get('codePostal'));
-                $trouveUpDate->ville            = trim($request->get('ville'));
+                // $trouveUpDate->id               = $trouve[0]->id;
+                $trouveUpDate->fk_id_user       = $trouve[0]->fk_id_user;
+                $trouveUpDate->nbCivic          = $trouve[0]->nbCivic;
+                $trouveUpDate->rue              = $trouve[0]->rue;
+                $trouveUpDate->quartie          = $trouve[0]->quartie;
+                $trouveUpDate->pays             = $trouve[0]->pays;
+                $trouveUpDate->codePostal       = $trouve[0]->codePostal;
+                $trouveUpDate->ville            = $trouve[0]->ville;
+                $trouveUpDate->defaulAdresse    = "0";
 
-                $trouveUpDate->defaulAdresse   = "0";
+                $trouveUpDate->save();
+                unset();
 
-                //$trouve->save();
                 $adresse->defaulAdresse  = "1";
             }else {
               $adresse->defaulAdresse  = "1";
@@ -103,7 +107,7 @@ class AdresseController extends Controller
         // save new adress
         $adresse->save();
 
-         dd($adresse);
+        // dd($adresse);
         return response()->redirectToRoute('save-adresse',['adresse' => $adresse])->with('msg', 'Adresse a été bien ajouté!');
 
     }// fin methode
