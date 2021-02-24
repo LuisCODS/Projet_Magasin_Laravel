@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Adresse;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 
 class AdresseController extends Controller
 {
@@ -34,6 +35,7 @@ class AdresseController extends Controller
      */
     public function store(Request $request)
     {
+        // __________________ VALIDATION  __________________
         //dd($request->all());
         try{
             // Validate input filds
@@ -56,10 +58,9 @@ class AdresseController extends Controller
             // return response()->redirectToRoute('admin.brokers.index');
         }
 
-        // __________________ CREATE ADRESSE __________________
+        // __________________ CREATE INSTANCE __________________
 
         $adresse = new Adresse();
-        // Set objet with inputs  values from form request
         $adresse->nbCivic          = trim($request->get('nbCivic'));
         $adresse->rue              = trim($request->get('rue'));
         $adresse->quartie          = trim($request->get('quartie'));
@@ -67,28 +68,43 @@ class AdresseController extends Controller
         $adresse->codePostal       = trim($request->get('codePostal'));
         $adresse->ville            = trim($request->get('ville'));
 
-        if ($request->get('defaulAdresse') == "checked") {
-            $adresse->defaulAdresse  = "1";
+        // get courent user
+        $user = auth()->user();
+
+        // user wants set a main adress
+        if ($request->get('defaulAdresse') == "checked" ) {
+
+            //Chek if aready exist a default adress
+            //query type Eloquent: https://laravel.com/docs/8.x/eloquent#inserting-and-updating-models
+            $trouve = DB::table('adresses')
+                                ->where('fk_id_user','=', $user->id)
+                                ->where('defaulAdresse','=', 1)
+                                ->get();
+            //dd($trouve);
+
+            if ($trouve) {
+                // switch adress...
+                $trouve->defaulAdresse   = "0";
+                //$trouve->save();
+                $adresse->defaulAdresse  = "1";
+
+            }else {
+              $adresse->defaulAdresse  = "1";
+            }
+
         } else{
+            // user dont wants put a main adress
              $adresse->defaulAdresse  = "0";
         }
-        // Get auth user
-        $user = auth()->user();
+
         // attache relation between user and adress: set FK
         $adresse->fk_id_user = $user->id;
-        // save
+        // save new adress
         $adresse->save();
-
         return response()->redirectToRoute('save-adresse',['adresse' => $adresse])->with('msg', 'Adresse a été bien ajouté!');
-    }
 
+    }// fin methode
 
-    // public function show($id)
-    // {
-    //     $adresse = Adresse::findOrFail($id);
-    //     //dd($adresse);
-    //     return view('adresses.show',['adresse' => $adresse]);
-    // }
 
     // Retourne une vue avec tous les informations courrantes de l'Adresse à editer
      public function edit($id)
@@ -113,7 +129,7 @@ class AdresseController extends Controller
         // user wants change main adress
         if ($request->get('defaulAdresse') == "checked" ) {
 
-            //Chek if aready exist one default
+            //Chek if aready exist one default by getting all user adresse's tables
             $user = auth()->user();
             $trouve = DB::table('adresses')
                             ->where('fk_id_user', '=', $user->id)
@@ -122,7 +138,7 @@ class AdresseController extends Controller
              // dd($trouve);
             // switch adress
             $trouve->defaulAdresse  = "0";
-            $trouve->save();
+            $trouve->update();
 
             $adresse->defaulAdresse  = "1";
             $adresse->save();
