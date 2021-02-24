@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Edit Adresse ')
+@section('title', 'Edit Adress ')
 @section('content')
 
     <!-- ================== Flash message sucess ================== -->
@@ -11,7 +11,7 @@
     <!-- ==================  EDIT ADRESSE  ================== -->
 
     <div id="createAdresseContainer" class="col-md-6 offset md-3">
-        <h2>Edit Adresse</h2>
+        <h2>Edition Adresse</h2>
         <br>
         <br>
         <form action="{{ route('update-adresse', [$adresse->id]) }}" method="POST" enctype="multipart/form-data">
@@ -19,7 +19,7 @@
             @csrf
             @method('PUT')
 
-            <input type="hidden" name="id" value="{{ $adresse->id }}">
+            {{-- <input type="hidden" name="id" value="{{ $adresse->id }}"> --}}
 
             <div class="form-group">
                 <input type="checkbox" name="defaulAdresse" value="checked">
