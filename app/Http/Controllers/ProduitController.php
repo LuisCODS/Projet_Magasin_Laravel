@@ -18,11 +18,6 @@ class ProduitController extends Controller
      */
     public function index()
     {
-
-        //Display cart content
-      //  dd(Cart::content());
-
-
         // Get form input fild
          $search = request('search');
 

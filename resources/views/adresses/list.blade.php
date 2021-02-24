@@ -33,7 +33,7 @@
 					<tr>
 						<td>{{ $adresse->nbCivic }}</td>
 						<td>{{ $adresse->rue }}</td>
-						<td>{{ $adresse->quartie }} $</td>
+						<td>{{ $adresse->quartie }} </td>
 						<td>{{ $adresse->pays }}</td>
 						<td>{{ $adresse->codePostal }}</td>
 						<td>{{ $adresse->ville }}</td>

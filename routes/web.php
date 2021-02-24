@@ -42,9 +42,10 @@ Route::group([
 
 //ADRESSE
 Route::get('/adresse/create', [AdresseController::class,'create'])->name('create-adresse');
-Route::post('/adresse/store', [AdresseController::class,'store'])->name('save-adresse');
+Route::post('/adresse/show', [AdresseController::class,'store'])->name('save-adresse');
 Route::get('/adresse/show/{id}/', [AdresseController::class,'show'])->name('show-adresse');
 Route::get('/adresse/list/', [AdresseController::class,'list'])->name('list-adresse');
+Route::put('/adresse/update/{id}', [AdresseController::class,'update'])->name('update-adresse');
 Route::get('/adresse/edit/{id}', [AdresseController::class,'edit'])->name('edit-adresse');
 Route::get('/adresse/destroy/{id}', [AdresseController::class,'destroy'])->name('destroy-adresse');
 
