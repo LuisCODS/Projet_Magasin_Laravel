@@ -70,8 +70,10 @@ class AdresseController extends Controller
                                 ->where('fk_id_user','=', $user->id)
                                 ->where('defaulAdresse','=', 1)
                                 ->get();
+            //dd(count($trouve));
+
             // switch adress...
-            if ($trouve) {
+            if (count($trouve) != 0) {
                 // get the old
                 $adressOld = Adresse::findOrFail($trouve[0]->id);
                 $adressOld->defaulAdresse  = "0";

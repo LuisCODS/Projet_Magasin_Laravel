@@ -72,8 +72,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Route::get('/dashboard', [HomeController::class, 'welcome'])->name('welcome');
+//Route::get('/dashboard', [HomeController::class, 'index'])->name('list-all');
 
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
+Route::get('/dashboard', function () {
+    return view('welcome');
+});

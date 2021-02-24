@@ -224,7 +224,6 @@ class ProduitController extends Controller
         $produits = Produit::all();
         //Query all category
         $categories = Categorie::all();
-
         //Send back to view all produits in table
         return view('produits.list',['produits'=> $produits, 'categories'=>$categories]);
     }
@@ -251,7 +250,9 @@ class ProduitController extends Controller
         //Query all category
         $categories = Categorie::all();
         //Send back to view all produits in table
-        return redirect('/produits')->with('msg', 'Produit supprimée avec succes');
+        //return redirect('/produits')->with('msg', 'Produit supprimée avec succes');
+        return response()->redirectToRoute('list-produit')->with('msg', 'Produit supprimée avec succes');
+
     }
 
 
