@@ -58,7 +58,7 @@ Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 //CART
-Route::post('/cart/store', [CartController::class,'store'])->name('store-cart');
+Route::post('/cart/store', [CartController::class,'store'])->name('store-cart')->middleware('auth');
 Route::get('/cart/destroy', [CartController::class,'destroy'])->name('destroy-cart');
 Route::get('/cart/list', [CartController::class,'list'])->name('list-cart');
 Route::get('/cart/add/{id}/', [CartController::class,'addQuantity'])->name('add-cart');
@@ -74,47 +74,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 // Route::get('/dashboard', [HomeController::class, 'welcome'])->name('welcome');
 
-
-
-
-
-
-
-
-
-
 // Route::get('/contact', function () {
 //     return view('contact');
-// });
-
-// Detran Routes
-// Route::group([
-//     'prefix' => 'detran',
-// ], function () {
-//     // GET: /detran
-//     Route::get('/', [
-//         'as'   => 'detrans',
-//         'uses' => 'DetranController@index',
-//     ]);
-
-//     // GET: /detran/{detran}
-//     Route::get('/{detran}', [
-//         'as'   => 'detran',
-//         'uses' => 'DetranController@show',
-//     ]);
-// });
-
-/**
- * Authenticated Routes.
- */
-// Route::group([
-//     'as'         => 'auth.',
-//     'middleware' => ['auth'],
-// ], function () {
-//     // GET: /escolher-perfil
-//     Route::get('/escolher-perfil', [
-//         'as'         => 'chooseProfileForm',
-//         'uses'       => 'UsersController@chooseProfileForm',
-//         'middleware' => 'doNotCacheResponse',
-//     ]);
 // });

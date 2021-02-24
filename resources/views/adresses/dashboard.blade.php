@@ -6,9 +6,9 @@
         <p class="msg">{{ session('msg') }}</p>
     @endif
     <!--  =======================================  ADRESSE TABLE  ======================== -->
-    <div  class="container-fluid">
+    <div class="container-fluid">
 
-        {{-- IF NO  ARRAY  --}}
+        {{-- IF NO  ARRAY --}}
         @if (count($adresses) <= 0)
             <H2>Vous n'avez pas d'adresse au systeme!</H2>
         @else
@@ -18,7 +18,7 @@
                 <div class="col-md-10">
                 </div>
                 <div class="col-md-2">
-                    {{-- BOUTTON   --}}
+                    {{-- BOUTTON --}}
                     <a href="" class="btn btn-info btn-lg active" role="button" aria-pressed="true">
                         <ion-icon name="trash-outline"></ion-icon> Clean All
                     </a><br><br>
@@ -40,13 +40,13 @@
                                     <td>{{ $adresse->quartie }} $</td>
                                     <td>
                                         {{-- BOUTTON ADD + --}}
-                                        <a href="" class="btn btn-secondary btn-lg active"
-                                            role="button" aria-pressed="true">
+                                        <a href="" class="btn btn-secondary btn-lg active" role="button"
+                                            aria-pressed="true">
                                             <ion-icon name="add-outline"></ion-icon>
                                         </a>
-                                         {{-- BOUTTON REMOVE  --}}
-                                        <a href="" class="btn btn-secondary btn-lg active"
-                                            role="button" aria-pressed="true">
+                                        {{-- BOUTTON REMOVE --}}
+                                        <a href="" class="btn btn-secondary btn-lg active" role="button"
+                                            aria-pressed="true">
                                             <ion-icon name="remove-outline"></ion-icon>
                                         </a>
                                     </td>
