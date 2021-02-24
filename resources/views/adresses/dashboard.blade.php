@@ -37,7 +37,7 @@
                         <tbody>
                             @foreach ($adresses as $adresse)
                                 <tr>
-                                    <td>{{ $adresse }} $</td>
+                                    <td>{{ $adresse->quartie }} $</td>
                                     <td>
                                         {{-- BOUTTON ADD + --}}
                                         <a href="" class="btn btn-secondary btn-lg active"

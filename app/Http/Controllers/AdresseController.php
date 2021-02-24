@@ -20,11 +20,7 @@ class AdresseController extends Controller
     //     return view('adresses.dashboard', ['adresses' => $adresses]);
     }
 
-    /**
-     * Show the form for creating a new adresse.
-     *
-     * @return fomr create
-     */
+
     public function create()
     {
         return view('adresses.create');
@@ -48,7 +44,7 @@ class AdresseController extends Controller
                 'pays'          => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$",
                 "codePostal"    => 'required|regex:/[A-Za-z]\d[A-Za-z]?\d[A-Za-z]\d/', //H2E1X2
                 "ville"         => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$",
-                // "defaulAdresse" => "",
+                "defaulAdresse" => "",
             ]);
             //dd($validData);
         }catch(ValidationException $e){
@@ -62,18 +58,6 @@ class AdresseController extends Controller
 
         // __________________ CREATE ADRESSE __________________
 
-        // $my_checkbox_value = $request['defaulAdresse'];
-
-        // if ($my_checkbox_value === "1") {
-        //     echo "checked";
-        //     dd($my_checkbox_value);
-        // }else{
-        //     echo "not checked";
-        //       dd($my_checkbox_value);
-        // }
-            //unchecked
-dd($request['defaulAdresse']);
-
         $adresse = new Adresse();
         // Set objet with inputs  values from form request
         $adresse->nbCivic          = trim($request->get('nbCivic'));
@@ -82,17 +66,13 @@ dd($request['defaulAdresse']);
         $adresse->pays             = trim($request->get('pays'));
         $adresse->codePostal       = trim($request->get('codePostal'));
         $adresse->ville            = trim($request->get('ville'));
-        $adresse->defaulAdresse    = trim($request->get('defaulAdresse'));
 
-        if($request->get('defaulAdresse') &&  $request->get('defaulAdresse') === '1')
-        {
-            echo "1";
+        if (trim($request->get('defaulAdresse')) == "checked") {
+            $adresse->defaulAdresse  = "Oui";
+        } else{
+             $adresse->defaulAdresse  = "Non";
         }
-        else
-        {
-            echo "Do not get";
-        }
-
+       // dd($adresse);
         // __________________ ATTACHE REALTION BETWEEN USER __________________
 
         // Get auth user
@@ -103,24 +83,16 @@ dd($request['defaulAdresse']);
         $adresse->save();
 
         // pass the addres to view
-        return view('adresses.dashboard', ['adresses' => $adresses]);
-
-        // $userAdresses = DB::table('adresses')
-        //         ->where('fk_id_user', '=', $user->id)
-        //         ->get();
-         //Redirect to the same page with feedback messege
-         return redirect('/adresse/create')->with('msg', 'Adresse ajouté avec succes!');
+        return view('adresses.show', ['adresse' => $adresse])->with('msg','Adresse ajouté avec sucess! ');
+         //return redirect('adresse/show')->with('msg', 'Produit crée avec succes');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $adresse = Adresse::findOrFail($id);
+        dd($adresse);
+        return view('adresses.show',['adresse' => $adresse]);
     }
 
     /**
@@ -134,24 +106,31 @@ dd($request['defaulAdresse']);
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function list()
+    {
+        // $adresses = Adresse::all();
+        // return view('adresses.list',['adresses'=> $adresses]);
+        // Get auth user
+        $user = auth()->user();
+        $adresses = DB::table('adresses')
+                            ->where('fk_id_user', '=', $user->id)
+                            ->get();
+
+
+        // get all user adresses
+        //$adresses = $user->adresses;
+
+        //dd($adresses);
+        // pass the addres to view
+        return view('adresses.list', ['adresses' => $adresses]);
+    }
+
     public function destroy($id)
     {
         //

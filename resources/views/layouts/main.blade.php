@@ -111,6 +111,9 @@
                                                 <a class="dropdown-item" href="{{ route('create-adresse') }}">
                                                     <ion-icon name="home-outline"></ion-icon> Ajouter Adresse
                                                 </a>
+                                                <a class="dropdown-item" href="{{ route('list-adresse') }}">
+                                                    <ion-icon name="home-outline"></ion-icon> Mes Adresses
+                                                </a>
                                             </div>
                                         </div>
 
