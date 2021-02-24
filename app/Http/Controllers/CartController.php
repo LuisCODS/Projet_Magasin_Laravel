@@ -34,16 +34,16 @@ class CartController extends Controller
         }
 
         // ================================= SESSION CART ============================
-
+        // feedback message to user
         $msnFeedBack = "";
         //Get id from input
         $id_produit = $validData['id_produit'];
         //FACADES Query - Cherche un produit par son id.
         $produit = Produit::findOrFail($id_produit);
-        //First time session is null: vector not exist yet
+        //First time session is null: vector not exists yet
         $cart = session()->get('panier');
         //dd($cart);
-        // if true, an vector aready exist
+        // if true, a vector aready exist
         if(is_array($cart)){
             //Checks if product has been aready added
             if(array_key_exists($id_produit, $cart)){
@@ -115,7 +115,6 @@ class CartController extends Controller
     //Remove items from cart
     public function removeQuantity($id_produit)
     {
-
         $cart = session()->get('panier');
 
         if ($cart[$id_produit]['qtde'] == 1) {
@@ -131,14 +130,12 @@ class CartController extends Controller
             session()->put('panier',$cart);
             return redirect()->route('list-cart',['cart'=>session()->get('panier')]);
         }
-        //dd($cart);
-       // return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg', 'Limite max de redution!');
     }
 
     /**
      * Display a cart table
      *
-     * @return \Illuminate\Http\Response
+     * @return a view passing the cart
      */
     public function list()
     {
@@ -146,7 +143,10 @@ class CartController extends Controller
         return view('carts.list',['cart'=> $cart]);
     }
 
-    //Vide le panier
+    /**
+     * Clean all cart
+     * @return a view passing the null cart
+     */
     public function destroy()
     {
         session()->pull('panier',null); //Clean cart
@@ -165,7 +165,7 @@ class CartController extends Controller
         // Update session
         session()->put('panier',$cart);
 
-//dd($cart);
+        //dd($cart);
 
         // Forget a single key...
         //session()->forget($id_produit);
@@ -173,7 +173,9 @@ class CartController extends Controller
         //
         // session()->pull('panier',null); //Clean cart
         // return view('carts.list',['cart'=> []]);
-         return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg', 'Item supprimé avec sucess!');
+         return redirect()
+                ->route('list-cart',['cart'=>session()->get('panier')])
+                ->with('msg', 'Item supprimé avec sucess!');
 
     }
 

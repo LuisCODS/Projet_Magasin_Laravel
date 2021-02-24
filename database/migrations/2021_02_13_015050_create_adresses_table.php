@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAdressesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('adresses', function (Blueprint $table) {

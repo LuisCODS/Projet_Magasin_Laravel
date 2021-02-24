@@ -85,15 +85,20 @@ class CategorieController extends Controller
         //FACADES - Query: Get category to be updated
        // $cat = Categorie::findOrFail($id)->update($request->nomCategorie);
        //Retornará um arrayde resultados.
-        $cat = DB::table('categories')->where('id_categorie', $id)->first();
+       // $cat = DB::table('categories')->where('id_categorie', $id)->first();
+        //$catTrouve = Categorie::findOrFail($cat->id_categorie);
+       // $catTrouve =  Categorie::where('id_categorie', '=', $cat->id_categorie);
+
+        // dd($catTrouve);
+
         //Set new date
-        $cat->nomCategorie = $request->nomCategorie;
+        //$cat->nomCategorie = $request->nomCategorie;
         // DB::update(
         //     'update categories set nomCategorie = $request->nomCategorie where nomCategorie = ?', [ $cat->nomCategorie]
         // );
 
        // $cat->update();
-       //dd($cat);
+
 
         //Query all
         $categories = Categorie::all();

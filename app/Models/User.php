@@ -60,17 +60,12 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-
-
     // ================= METHODES =================
 
-    /**
-     *defina o relacionamento 1 to many
-     */
     public function adresses()
     {
-        return $this->hasMany(Adresse::class);
-        //return $this->belongsTo(Adresse::class);
+        return $this->hasMany('App\Models\Adresse');
+       // return $this->hasMany(Adresse::class);
     }
 
     //Validation pour identifier le status de l'utilisateur

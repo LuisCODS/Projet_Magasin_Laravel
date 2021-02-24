@@ -10,7 +10,7 @@ use App\Http\Controllers\CartController;
 
 // admin routes ->middleware('auth');
 // ================================= ADMIN ROUTES =================================
-
+// Donne acces seulement à ceux qui sont connectés
 Route::group([
 
     'prefix'=>'admin', // na barra de endereços
@@ -42,7 +42,12 @@ Route::group([
 
 //ADRESSE
 Route::get('/adresse/create', [AdresseController::class,'create'])->name('create-adresse');
-Route::post('/adresse/store', [AdresseController::class,'store'])->name('save-adresse');
+Route::post('/adresse/list', [AdresseController::class,'store'])->name('save-adresse');
+Route::post('/adresse/show/{id}/', [AdresseController::class,'show'])->name('show-adresse');
+Route::get('/adresse/list/', [AdresseController::class,'list'])->name('list-adresse');
+Route::put('/adresse/update/{id}', [AdresseController::class,'update'])->name('update-adresse');
+Route::get('/adresse/edit/{id}', [AdresseController::class,'edit'])->name('edit-adresse');
+Route::get('/adresse/destroy/{id}', [AdresseController::class,'destroy'])->name('destroy-adresse');
 
 //PRODUIT
 Route::get('/produits', [ProduitController::class, 'index'])->name('list-all');
@@ -53,7 +58,7 @@ Route::get('/', [HomeController::class, 'welcome']);
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 //CART
-Route::post('/cart/store', [CartController::class,'store'])->name('store-cart');
+Route::post('/cart/store', [CartController::class,'store'])->name('store-cart')->middleware('auth');
 Route::get('/cart/destroy', [CartController::class,'destroy'])->name('destroy-cart');
 Route::get('/cart/list', [CartController::class,'list'])->name('list-cart');
 Route::get('/cart/add/{id}/', [CartController::class,'addQuantity'])->name('add-cart');
@@ -67,49 +72,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Route::get('/dashboard', [HomeController::class, 'welcome'])->name('welcome');
+//Route::get('/dashboard', [HomeController::class, 'index'])->name('list-all');
 
-
-
-
-
-
-
-
-
-
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
-
-// Detran Routes
-// Route::group([
-//     'prefix' => 'detran',
-// ], function () {
-//     // GET: /detran
-//     Route::get('/', [
-//         'as'   => 'detrans',
-//         'uses' => 'DetranController@index',
-//     ]);
-
-//     // GET: /detran/{detran}
-//     Route::get('/{detran}', [
-//         'as'   => 'detran',
-//         'uses' => 'DetranController@show',
-//     ]);
-// });
-
-/**
- * Authenticated Routes.
- */
-// Route::group([
-//     'as'         => 'auth.',
-//     'middleware' => ['auth'],
-// ], function () {
-//     // GET: /escolher-perfil
-//     Route::get('/escolher-perfil', [
-//         'as'         => 'chooseProfileForm',
-//         'uses'       => 'UsersController@chooseProfileForm',
-//         'middleware' => 'doNotCacheResponse',
-//     ]);
-// });
+Route::get('/dashboard', function () {
+    return view('welcome');
+});
