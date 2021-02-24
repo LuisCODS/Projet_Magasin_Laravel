@@ -11,15 +11,6 @@ use Illuminate\Support\Facades\DB;
 class AdresseController extends Controller
 {
 
-    public function index()
-    {
-    //   // Get auth user
-    //     $user = auth()->user();
-    //     // get all user adresses from model
-    //     $adresses = $user->adresses;
-    //     // pass the addres to view
-    //     return view('adresses.list', ['adresses' => $adresses]);
-    }
 
     // Send form to create adress
     public function create()
@@ -80,27 +71,39 @@ class AdresseController extends Controller
                                 ->where('fk_id_user','=', $user->id)
                                 ->where('defaulAdresse','=', 1)
                                 ->get();
-            //dd($trouve);
+
+           // dd($trouve['rue']);
+            dd($trouve['rue']);
 
             if ($trouve) {
                 // switch adress...
-                $trouve->defaulAdresse   = "0";
+                $trouveUpDate = new Adresse();
+                $trouveUpDate->nbCivic          = trim($request->get('nbCivic'));
+                $trouveUpDate->rue              = trim($request->get('rue'));
+                $trouveUpDate->quartie          = trim($request->get('quartie'));
+                $trouveUpDate->pays             = trim($request->get('pays'));
+                $trouveUpDate->codePostal       = trim($request->get('codePostal'));
+                $trouveUpDate->ville            = trim($request->get('ville'));
+
+                $trouveUpDate->defaulAdresse   = "0";
+
                 //$trouve->save();
                 $adresse->defaulAdresse  = "1";
-
             }else {
               $adresse->defaulAdresse  = "1";
             }
 
         } else{
             // user dont wants put a main adress
-             $adresse->defaulAdresse  = "0";
+             $adresse->defaulAdresse  = "0"; //not main
         }
 
         // attache relation between user and adress: set FK
         $adresse->fk_id_user = $user->id;
         // save new adress
         $adresse->save();
+
+         dd($adresse);
         return response()->redirectToRoute('save-adresse',['adresse' => $adresse])->with('msg', 'Adresse a été bien ajouté!');
 
     }// fin methode

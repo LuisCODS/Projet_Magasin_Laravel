@@ -17,10 +17,13 @@
         <form action="{{ route('save-adresse') }}" method="POST" enctype="multipart/form-data">
             <!-- Prevencao contra os ataques -->
             @csrf
-            <div class="form-group">
-                <input type="checkbox" name="defaulAdresse" value="checked">
-                Cocher si adresse principale
-            </div>
+             @if( "showCheckBox"  )
+                <div class="form-group">
+                    <input type="checkbox" name="defaulAdresse" value="checked">
+                    Cocher si adresse principale
+                </div>
+            @endif
+
             <div class="form-group">
                 <label for="nbCivic">Numero Civic</label>
                 <input type="text" class="form-control" id="nbCivic" name="nbCivic" placeholder="Entre 3 et 8 chiffres"
