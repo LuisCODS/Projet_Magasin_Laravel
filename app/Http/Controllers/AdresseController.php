@@ -60,7 +60,6 @@ class AdresseController extends Controller
 
         // get courent user
         $user = auth()->user();
-
         // user wants set a main adress
         if ($request->get('defaulAdresse') == "checked" ) {
 
@@ -107,6 +106,28 @@ class AdresseController extends Controller
     // Recoit les nouveaux donnés à mettre à jous
     public function update(Request $request, $id)
     {
+        // __________________ VALIDATION  __________________
+        //dd($request->all());
+        try{
+            // Validate input filds
+            $validData = $request->validate([
+               'nbCivic'        => "required|regex:/^[0-9]{1,8}$/",//Only numbers 1 à 5 caractères ^[-'A-zÀ-ÿ ]+$
+                'rue'           => "required|max:70',regex:/^[-'A-zÀ-ÿ ]+$/",//Only strings & accents & space
+                'quartie'       => "required|max:50',regex:/^[-'A-zÀ-ÿ ]+$/",
+                'pays'          => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$/",
+                "codePostal"    => 'required|regex:/[A-Za-z]\d[A-Za-z]?\d[A-Za-z]\d/', //H2E1X2
+                "ville"         => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$/",
+            ]);
+            //dd($validData);
+        }catch(ValidationException $e){
+
+            session()->put('errors', $e->validator->getMessageBag());
+            session()->put('old', $request->input());
+            session()->save();
+            return back();
+            // return response()->redirectToRoute('admin.brokers.index');
+        }
+
         // get adress by ID
         $adresse = Adresse::findOrFail($id);
         // update dates...
@@ -117,32 +138,41 @@ class AdresseController extends Controller
         $adresse->codePostal  = trim($request->get('codePostal'));
         $adresse->ville       = trim($request->get('ville'));
 
-        // user wants change main adress
+
+        // user wants set a main adress
         if ($request->get('defaulAdresse') == "checked" ) {
 
-            //Chek if aready exist one default by getting all user adresse's tables
+            // get courent user
             $user = auth()->user();
+
+            //Chek if aready exist a default adress
+            //query type Eloquent: https://laravel.com/docs/8.x/eloquent#inserting-and-updating-models
             $trouve = DB::table('adresses')
-                            ->where('fk_id_user', '=', $user->id)
-                            ->where('defaulAdresse', '=', 1)
-                            ->get();
-             // dd($trouve);
-            // switch adress
-            $trouve->defaulAdresse  = "0";
-            $trouve->update();
+                                ->where('fk_id_user','=', $user->id)
+                                ->where('defaulAdresse','=', 1)
+                                ->get();
+            //dd(count($trouve));
 
-            $adresse->defaulAdresse  = "1";
-            $adresse->save();
-
+            // switch adress...
+            if (count($trouve) != 0) {
+                // get the old
+                $oldAdress = Adresse::findOrFail($trouve[0]->id);
+                $oldAdress->defaulAdresse  = "0";
+                $oldAdress->save();
+                // put the new
+                $adresse->defaulAdresse  = "1";
+            }else {
+                // set as default adress
+              $adresse->defaulAdresse  = "1";
+            }
         } else{
-            // user dont wants put as main adress
-             $adresse->defaulAdresse  = "0";
-             $adresse->save();
+            // user dont wants set a main adress
+             $adresse->defaulAdresse  = "0"; //not main
         }
-         //return view('adresses.list', ['adresses' => $adresses])->with('msg','Adresse a été bien edité!');
-        return response()->redirectToRoute('list-adresse')->with('msg', 'Adresse edité!');
 
-        //dd($adresse);
+        $adresse->save();
+         //return view('adresses.list', ['adresses' => $adresses])->with('msg','Adresse a été bien edité!');
+        return response()->redirectToRoute('list-adresse')->with('msg', 'Adresse edité avec sucess!');
     }
 
     public function list()

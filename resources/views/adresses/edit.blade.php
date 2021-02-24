@@ -28,8 +28,8 @@
 
             <div class="form-group">
                 <label for="nbCivic">Numero Civic</label>
-                <input type="text" class="form-control" id="nbCivic" name="nbCivic" placeholder="Entre 3 et 8 chiffres"
-                    pattern="^[0-9]{3,8}?" value="{{ $adresse->nbCivic }}" class="@error('nbCivic') is-invalid @enderror">
+                <input type="text" class="form-control"  name="nbCivic" placeholder="Entre 1 et 8 chiffres"
+                    pattern="^[0-9]{1,8}?" value="{{ $adresse->nbCivic }}" class="@error('nbCivic') is-invalid @enderror">
                 @error('nbCivic')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
