@@ -50,7 +50,6 @@ class AdresseController extends Controller
         }
 
         // __________________ CREATE INSTANCE __________________
-
         $adresse = new Adresse();
         $adresse->nbCivic          = trim($request->get('nbCivic'));
         $adresse->rue              = trim($request->get('rue'));
@@ -71,42 +70,25 @@ class AdresseController extends Controller
                                 ->where('fk_id_user','=', $user->id)
                                 ->where('defaulAdresse','=', 1)
                                 ->get();
-
-           // dd($trouve['rue']);
-           // dd($trouve[0]->codePostal);
-
+            // switch adress...
             if ($trouve) {
-
-                // switch adress...
-                $trouveUpDate = new Adresse();
-                // $trouveUpDate->id               = $trouve[0]->id;
-                $trouveUpDate->fk_id_user       = $trouve[0]->fk_id_user;
-                $trouveUpDate->nbCivic          = $trouve[0]->nbCivic;
-                $trouveUpDate->rue              = $trouve[0]->rue;
-                $trouveUpDate->quartie          = $trouve[0]->quartie;
-                $trouveUpDate->pays             = $trouve[0]->pays;
-                $trouveUpDate->codePostal       = $trouve[0]->codePostal;
-                $trouveUpDate->ville            = $trouve[0]->ville;
-                $trouveUpDate->defaulAdresse    = "0";
-
-                $trouveUpDate->save();
-                unset();
-
+                // get the old
+                $adressOld = Adresse::findOrFail($trouve[0]->id);
+                $adressOld->defaulAdresse  = "0";
+                $adressOld->save();
+                // put the new
                 $adresse->defaulAdresse  = "1";
             }else {
               $adresse->defaulAdresse  = "1";
             }
-
         } else{
             // user dont wants put a main adress
              $adresse->defaulAdresse  = "0"; //not main
         }
-
         // attache relation between user and adress: set FK
         $adresse->fk_id_user = $user->id;
         // save new adress
         $adresse->save();
-
         // dd($adresse);
         return response()->redirectToRoute('save-adresse',['adresse' => $adresse])->with('msg', 'Adresse a été bien ajouté!');
 
