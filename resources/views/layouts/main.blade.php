@@ -18,14 +18,18 @@
 <body>
     <!-- =======================================  HEADER ======================================= -->
     <header>
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <nav id="navbar_menu" class="navbar navbar-expand-lg navbar-light bg-light">
+
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1">
                             <span class="navbar-toggler-icon"></span>
-                        </button> <a class="navbar-brand" href="/">C&A Mode</a>
+                        </button>
+                        <a class="navbar-brand" href="/">C&A Mode</a>
+
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <!-- MENUE COTE GAUCHE -->
                             <ul class="navbar-nav">
@@ -36,6 +40,8 @@
                                     <a href="{{ route('contact') }}" class="nav-link">Contact</a>
                                 </li>
                             </ul>
+
+
 
                             <!-- MENUE COTE DROIT -->
                             <ul class="navbar-nav ml-md-auto">
@@ -49,17 +55,12 @@
                                     </li>
                                 @endguest
 
-                                <!-- ////////////////////////////////// AUTH ZONE - BEGIN //////////////////////////////////////////////// -->
+                                <!-- ////////////////////////////////// AUTH ZONE - BEGIN ////////////////////////// -->
                                 @auth
 
                                     <!-- ================== ADMIN INTERFACE ================= -->
-
                                     @if (Auth::user()->isAdmin())
-                                        <!-- Admin user -->
 
-                                        <!-- <li class="nav-item">
-                                           <a href="/dashboard" class="nav-link">Dashboard</a>
-                                        </li> -->
                                         <!-- DROPDOWN -->
                                         <div class="dropdown dropleft">
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
@@ -87,14 +88,13 @@
                                         </div>
 
                                     @else
-                                        <!-- normal user -->
 
                                         <!-- ================== USER INTERFACE ================= -->
                                         <a class="dropdown-item" href="{{ route('list-cart') }}">
                                             <ion-icon name="cart-outline"></ion-icon> Panier
-                                                    @if (session()->get('panier'))
-                                                        {{ count( $cart['panier'] = session()->get('panier')) }}
-                                                    @endif
+                                            @if (session()->get('panier'))
+                                                {{ count($cart['panier'] = session()->get('panier')) }}
+                                            @endif
                                         </a>
 
                                         <!-- DROPDOWN -->
@@ -130,14 +130,27 @@
                                         </form>
                                     </li>
                                 @endauth
-                                <!-- ////////////////////////////////// AUTH ZONE - END //////////////////////////////////////////////// -->
+                                <!-- ////////////////////////////////// AUTH ZONE - END //////////////////////// -->
                             </ul>
                         </div>
+
                     </nav>
                 </div>
             </div>
         </div>
+
     </header>
+
+    {{-- <main class="container">
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-between">
+                <a class="p-2 text-muted" href="{{ route('create-categorie') }}"><b>Home</b></a>
+                <a class="p-2 text-muted" href="#"><b>Femme</b></a>
+                <a class="p-2 text-muted" href="#"><b>Garçon</b></a>
+                <a class="p-2 text-muted" href="#"><b>Fille</b></a>
+            </nav>
+        </div>
+    </main> --}}
 
     <!-- ======================================= MAIN ======================================= -->
     <main>
@@ -157,7 +170,7 @@
 </body>
 <!-- ======================================= FOOTER ======================================= -->
 <footer>
-    <p>LuisCODS- &copy; 2021</p>
+    <p>LuisCODS &copy; {{ date('Y')}}</p>
     <!-- 		<address>
   <strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890
   </address> -->

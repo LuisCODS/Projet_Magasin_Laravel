@@ -10,11 +10,11 @@
 
     <!--  =======================================  ADRESSE TABLE  ======================================= -->
 
-    <div id="container_table_adresse" class="container-fluid">
+    <div id="container_table_adresse" class="container">
         <H2>Mes adresses</H2><br>
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hove center">
                     <thead class="thead-light">
                         <tr>
                             <th>Numero Civic</th>

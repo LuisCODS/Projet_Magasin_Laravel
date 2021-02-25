@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Categorie;
-//A DBfachada fornece métodos para cada tipo de consulta: select, update, insert, delete, e statement.
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;// Base de donnes
+use Illuminate\Http\Request;//Éloquent
+
 
 class CategorieController extends Controller
 {
@@ -27,7 +27,6 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        // Validate and store the category post
         try{
             $validated = $request->validate([
                 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
@@ -38,10 +37,8 @@ class CategorieController extends Controller
             session()->put('errors', $e->validator->getMessageBag());
             session()->put('old', $request->input());
             session()->save();
-
             return back();
         }
-
 
         $categorie = new Categorie();
         //$categorie->nomCategorie = trim($request->old('nomCategorie') );
@@ -50,9 +47,9 @@ class CategorieController extends Controller
         //Save it into BD
         $categorie->save();
 
-        //redirige vers la meme page avec une message de feedback
-      //  return redirect('/categorie/create')->with('msg', 'Categorie crée avec succes');
-        return response()->redirectToRoute('create-categorie')->with('msg', 'Categorie crée avec succes');
+        //return response()->redirectToRoute('create-categorie')->with('msg', 'Categorie crée avec succes');
+       // return response()->redirectToRoute('list-categorie',['adresses' => $adresses])->with('msg', 'Categorie crée avec succes');
+        return response()->redirectToRoute('list-categories')->with('msg', 'Categorie crée avec succes');
 
     }
 
@@ -70,6 +67,7 @@ class CategorieController extends Controller
     //Update in data base
     public function update(Request $request, $id)
     {
+        //dd($id);
         // --------------------- Validate --------------------
         try{
             $validated = $request->validate([
@@ -87,25 +85,26 @@ class CategorieController extends Controller
        //Retornará um arrayde resultados.
        // $cat = DB::table('categories')->where('id_categorie', $id)->first();
         //$catTrouve = Categorie::findOrFail($cat->id_categorie);
-       // $catTrouve =  Categorie::where('id_categorie', '=', $cat->id_categorie);
+        //$catTrouve =  Categorie::where('id_categorie',$id)->get();// Illuminate\Database\Eloquent\Collection
+       // $catTrouve =  Categorie::where('id_categorie',$id)->firstOrFail();//App\Models\Categorie
+       //dd($catTrouve->nomCategorie); // get attributs
 
-        // dd($catTrouve);
+        $catTrouve = DB::table('categories')->where('id_categorie', $id)->first();
+        $catTrouve->nomCategorie = $validated['nomCategorie'];
 
-        //Set new date
-        //$cat->nomCategorie = $request->nomCategorie;
-        // DB::update(
-        //     'update categories set nomCategorie = $request->nomCategorie where nomCategorie = ?', [ $cat->nomCategorie]
-        // );
-
-       // $cat->update();
-
+        //$ff = Categorie::findOrFail($catTrouve->id_categorie);
+        //$catTrouve->save();
+        //dd($ff);
 
         //Query all
         $categories = Categorie::all();
 
         return view('categories.list',['categories'=>$categories])->with('msg', 'Categorie editée avec succes');
        // return redirect('categories.list')->with('msg', 'Categorie editée avec succes');
+        //return response()->redirectToRoute('list-adresse',['adresses' => $adresses])->with('msg', 'Adresse supprimée avec succes');
+
 
     }
 
-}
+
+}//end class

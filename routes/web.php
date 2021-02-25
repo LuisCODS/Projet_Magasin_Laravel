@@ -25,6 +25,7 @@ Route::group([
     Route::get('/categorie/list', [CategorieController::class,'index'])->name('list-categories');
     Route::get('/categorie/edit/{id}', [CategorieController::class,'edit'])->name('edit-categorie');
     Route::put('/categorie/update/{id}', [CategorieController::class,'update'])->name('update-categorie');
+    Route::get('/categorie/destroy/{id}', [CategorieController::class,'destroy'])->name('destroy-categorie');
 
     //PRODUIT
     Route::get('/produits/create', [ProduitController::class,'create'])->name('create-produit');
