@@ -21,7 +21,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <nav id="navbar_menu" class="navbar navbar-expand-lg navbar-light bg-light">
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -155,7 +155,8 @@
     <!-- ======================================= MAIN ======================================= -->
     <main>
         <div id="mainContentLayout" class="container h-100">
-            <div class="row h-100 justify-content-center align-items-center">
+            {{-- <div class="row h-100 justify-content-center align-items-center"> --}}
+            <div class="col-xs-12 col-sm-12 col-md-12 justify-content-center ">
                 <!-- ================= RENDER PAGES HERE ================= -->
                 @yield('content')
                 <!-- ==================================================== -->

@@ -1,192 +1,240 @@
-    /*================== GLOBAL ====================*/
+/*================== GLOBAL ====================*/
 
-    * {
-        font-family: 'Roboto';
-    }
+* {
+    font-family: 'Roboto';
+}
 
-    body {
-        min-height: 100vh;
-        /*100% user screen*/
-        padding-bottom: 100px;
-        position: relative;
-    }
+body {
+    min-height: 100vh;
+    /*100% user screen*/
+    padding-bottom: 100px;
+    position: relative;
+}
 
-    header {
-        background-color: #FFF;
-        border-bottom: 1px solid #CCC;
-    }
+header {
+    background-color: #FFF;
+    border-bottom: 1px solid #CCC;
+}
 
-    .container-fluid {
-        padding: 0;
-    }
+.container-fluid {
+    padding: 0;
+}
 
-    footer {
-        background-color: #353e48;
-        color: #FFF;
-        padding: 40px;
-        position: absolute;
-        /*cola no fundo da tela*/
-        bottom: 0px;
-        width: 100%;
-        text-align: center;
-    }
+footer {
+    background-color: #353e48;
+    color: #FFF;
+    padding: 40px;
+    position: absolute;
+    /*cola no fundo da tela*/
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+}
 
-    .msg {
-        background-color: #D4EDDA;
-        color: #155724;
-        border: 1px solid #C3E6CB;
-        width: 100%;
-        margin-bottom: 10px;
-        text-align: center;
-        padding: 10px;
-    }
-    /*================== ALL - WELCOME PAGE ====================*/
+.msg {
+    background-color: #D4EDDA;
+    color: #155724;
+    border: 1px solid #C3E6CB;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 10px;
+}
 
-    #carouselExampleControls img {
-        height: 500px;
-        margin-top: 10px;
-    }
 
-    #genre_container {
-        padding-top: 80px;
-        padding-bottom: 100px;
-        padding-left: 70px;
-        padding-right: 70px;
-    }
+/*================== ALL - WELCOME PAGE ====================*/
 
-    #genre_container h2 {
-        text-align: center;
-    }
+#carouselExampleControls img {
+    height: 500px;
+    margin-top: 10px;
+}
 
-    #genre_container p {
-        text-align: justify;
-    }
+#genre_container {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
 
-    #genre_container img {
-        height: 150px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    /*================== ALL - MAIN PAGE ====================*/
-    /*main.blade.php*/
+#genre_container h2 {
+    text-align: center;
+}
 
-    #mainContentLayout {
-        padding-top: 30px;
-    }
-    /*main.blade.php*/
+#genre_container p {
+    text-align: justify;
+}
 
-    #icon_outils {
-        font-size: 30px;
-    }
+#genre_container img {
+    height: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-    #navbar_menu {
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-    /*==================   - PANIER PAGE  ====================*/
 
-    #container_commade_panier {
-        margin: auto;
-        margin-top: 100px;
-        margin-bottom: 100px;
-    }
-    /*==================  ALL - PRODUITS PAGE ====================*/
-    /*produits.blade.php*/
+/*================== ALL - MAIN PAGE ====================*/
 
-    .card {
-        margin: 5px;
-    }
-    /*produits.blade.php*/
 
-    #panier {
-        font-size: 50px;
-    }
-    /*produits.blade.php*/
+/*main.blade.php*/
 
-    #divCardBorder {
-        border: 1px solid #CCC;
-        padding: 5px;
-        margin: 5px;
-    }
-    /*produits.blade.php*/
+#mainContentLayout {
+    padding-top: 30px;
+}
 
-    .card-body {
-        text-align: center;
-    }
-    /*produits.blade.php*/
 
-    #search_container {
-        padding: 10px;
-        text-align: center;
-    }
-    /*produits.blade.php*/
+/*main.blade.php*/
 
-    #search_container form {
-        width: 50%;
-        margin: auto;
-        margin-bottom: 20px;
-    }
-    /* create.blade.php */
+#icon_outils {
+    font-size: 30px;
+}
 
-    #createProduitContainer h2 {
-        text-align: center;
-    }
-    /*list.blade.php*/
+#navbar_menu {
+    padding-left: 30px;
+    padding-right: 30px;
+}
 
-    #container_table_produit {
-        text-align: center;
-        margin-bottom: 50px;
-    }
-    /*list.blade.php*/
 
-    #container_table_produit td {
-        vertical-align: middle;
-    }
-    /*edit.blade.php*/
+/*==================   - PANIER PAGE  ====================*/
 
-    .img-preview {
-        width: 100px;
-        margin-bottom: 20px;
-    }
-    /* #produit_container {
-	margin-bottom: 50px;
+#container_commade_panier {
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+
+/*==================  ALL - PRODUITS PAGE ====================*/
+
+
+/*produits.blade.php*/
+
+.card {
+    margin: 5px;
+}
+
+
+/*produits.blade.php*/
+
+#panier {
+    font-size: 50px;
+}
+
+
+/*produits.blade.php*/
+
+#divCardBorder {
+    border: 1px solid #CCC;
+    padding: 5px;
+    margin: 5px;
+}
+
+
+/*produits.blade.php*/
+
+.card-body {
+    text-align: center;
+}
+
+
+/*produits.blade.php*/
+
+#search_container {
+    padding: 10px;
+    text-align: center;
+}
+
+
+/*produits.blade.php*/
+
+#search_container form {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+
+/* create.blade.php */
+
+#createProduitContainer h2 {
+    text-align: center;
+}
+
+
+/*list.blade.php*/
+
+#container_table_produit {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+/*list.blade.php*/
+
+#container_table_produit td {
+    vertical-align: middle;
+}
+
+
+/*edit.blade.php*/
+
+.img-preview {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+
+/* #produit_container {
+margin-bottom: 50px;
 } */
 
-    #incon_btn_acheter {
-        font-size: 30px;
-    }
+#incon_btn_acheter {
+    font-size: 30px;
+}
 
-    #cards_container {
-        justify-content: center;
-        margin-bottom: 120px;
-    }
-    /*==================  ALL - ADRESSES PAGES ====================*/
+#cards_container {
+    margin-left: 18%;
+    margin-bottom: 100px;
+}
 
-    #createAdresseContainer form {
-        width: 400px;
-    }
-    /*==================  ALL - CATEGORIES PAGES ====================*/
-    /*list.blade.php*/
 
-    #container_table_categorie {
-        text-align: center;
-        margin-bottom: 50px;
-    }
-    /*list.blade.php*/
+/*==================  ALL - ADRESSES PAGES ====================*/
 
-    #container_table_categorie td {
-        vertical-align: middle;
-    }
-    /*==================  ALL - USERS PAGES ====================*/
-    /*list.blade.php*/
+#createAdresseContainer form {
+    width: 400px;
+}
 
-    #container_table_user {
-        text-align: center;
-        margin-bottom: 50px;
-    }
-    /*list.blade.php*/
 
-    #container_table_user td {
-        vertical-align: middle;
-    }
+/*==================  ALL - CATEGORIES PAGES ====================*/
+
+
+/*list.blade.php*/
+
+#container_table_categorie {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+/*list.blade.php*/
+
+#container_table_categorie td {
+    vertical-align: middle;
+}
+
+
+/*==================  ALL - USERS PAGES ====================*/
+
+
+/*list.blade.php*/
+
+#container_table_user {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+/*list.blade.php*/
+
+#container_table_user td {
+    vertical-align: middle;
+}

@@ -24,9 +24,7 @@ class ProduitController extends Controller
 
             /*Cherche un registre avec le nom demandé*/
             $produits = Produit::where([
-
                                          ['nomProduit','like','%'.$search.'%']
-
                                      ])->get();
         }
         else{
@@ -63,7 +61,7 @@ class ProduitController extends Controller
         try{
             // Validate and store the product
             $validated = $request->validate([
-                'nomProduit' => ['bail','required','unique:Produits','max:45','regex:/[a-zA-Z]+/'],
+                'nomProduit' => ['bail','required','unique:Produits','max:45'],
                 'img'        => ['required','max:100'],
                 "prix"       => ['bail','required','regex:/^[0-9]+(\.[0-9]{2}?)?$/'],
                 "totalStock" => ['bail','required','numeric', 'between:1,999999'],
@@ -77,13 +75,10 @@ class ProduitController extends Controller
             session()->put('errors', $e->validator->getMessageBag());
             session()->put('old', $request->input());
             session()->save();
-
             return back();
-            // return response()->redirectToRoute('admin.brokers.index');
         }
 
         $produit = new Produit();
-
         $produit->nomProduit = trim($validated['nomProduit']);
         $produit->description = trim($validated['description']);
         $produit->prix = $validated['prix'];

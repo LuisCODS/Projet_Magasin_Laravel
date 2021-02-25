@@ -9,9 +9,15 @@ use App\Models\Categorie;
 class Produit extends Model
 {
     use HasFactory;
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id_produit';
 
-    // atributos podem ser atribuídos em massa,
+    // allow mass assignment
     protected $guarded = [];
 
 

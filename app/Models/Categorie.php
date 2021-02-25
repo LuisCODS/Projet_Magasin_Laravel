@@ -9,6 +9,21 @@ class Categorie extends Model
 {
     use HasFactory;
 
-    //protected $guarded = [];
+    // allow mass assignment
+    protected $guarded = [];
 
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id_categorie';
+
+
+    // public $timestamps = false; //allow to be update
+
+
+    //    protected $fillable = [
+    //     'nomCategorie'
+    // ];
 }

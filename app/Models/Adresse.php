@@ -9,6 +9,10 @@ class Adresse extends Model
 {
     use HasFactory;
 
+    // allow mass assignment
+    protected $guarded = [];
+
+
 	/**
 	* Return à qui appartient l'adresse.
 	*/

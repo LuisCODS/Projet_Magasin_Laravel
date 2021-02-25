@@ -29,6 +29,7 @@
 </div>
 </main> 
 
+<div class="col-md-6 offset md-3"> 
 
 <!-- <?php
 $tvq = ($total * 9.975) / 100;

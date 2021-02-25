@@ -25,11 +25,11 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror -->
     <!-- ============================== CONTAINER PRODUIT ============================== -->
-    <div class="col-md-12 ">
+    <div class="col-xs-12 col-sm-12 col-md-12 ">
         <!--  CONTAINER CARD  -->
         <div id="cards_container" class="row">
             @foreach ($produits as $produit)
-                <div id="divCardBorder" class="col-md-3 ">
+                <div id="divCardBorder" class="col-xs-12 col-sm-12 col-md-3">
                     <img class="card-img-top" src="{{ $produit->img }}" alt="{{ $produit->nomProduit }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $produit->nomProduit }}</h5>

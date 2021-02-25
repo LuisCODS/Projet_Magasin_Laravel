@@ -13,7 +13,7 @@
     <div id="container_table_produit" class="container-fluid">
         <H2>Liste des Produits</H2><br>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <table class="table table-bordered table-hover">
                     <thead class="thead-light">
                         <tr>
