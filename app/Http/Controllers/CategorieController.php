@@ -104,16 +104,13 @@ class CategorieController extends Controller
         // get category
        $trouve = Categorie::findOrFail($id);
 
-        //Chek if category already has a relation
+        //Chek produit table if category already has a relation
         $hasRelation = DB::table('produits')
                     ->where('fk_id_categorie','=', $id)
                     ->get();
 
-        // dd($hasRelation);
-
         if (count($hasRelation) != 0) {
             return response()->redirectToRoute('list-categories')->with('msg', 'Cette Categorie est déjà associée à un produit!');
-
         }else {
             //We can delete
            $trouve->delete();
@@ -121,5 +118,7 @@ class CategorieController extends Controller
         return response()->redirectToRoute('list-categories')->with('msg', 'Categorie supprimée avec succes');
 
     }//end method
+
+
 
 }//end class
