@@ -6,7 +6,6 @@ use App\Models\Categorie;
 use Illuminate\Support\Facades\DB;// Base de donnes
 use Illuminate\Http\Request;//Éloquent
 
-
 class CategorieController extends Controller
 {
 
@@ -26,33 +25,24 @@ class CategorieController extends Controller
 
     public function store(Request $request)
     {
+        //_______________________ VALIDATION __________________________
         //dd($request->all());
         try{
             $validated = $request->validate([
-                'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
+                // 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
+                'nomCategorie'   => "required|max:200|required|regex:/^[-'A-zÀ-ÿ ]+$/",//Only strings & accents & space
+
             ]);
         } catch (ValidationException $e) {
-            //dd($e);
-
             session()->put('errors', $e->validator->getMessageBag());
             session()->put('old', $request->input());
             session()->save();
             return back();
         }
-
-        $categorie = new Categorie();
-        //$categorie->nomCategorie = trim($request->old('nomCategorie') );
-        $categorie->nomCategorie = trim($request->nomCategorie);
-
-        //Save it into BD
-        $categorie->save();
-
-        //return response()->redirectToRoute('create-categorie')->with('msg', 'Categorie crée avec succes');
-       // return response()->redirectToRoute('list-categorie',['adresses' => $adresses])->with('msg', 'Categorie crée avec succes');
+        // Add [_token] to fillable property to allow mass assignment on [App\Models\Categorie].
+        Categorie::create($request->all());
         return response()->redirectToRoute('list-categories')->with('msg', 'Categorie crée avec succes');
-
     }
-
 
     //Show form to modifie input
     public function edit($id)
@@ -64,14 +54,15 @@ class CategorieController extends Controller
            return view('categories.edit',['categorie'=> $categorie]);
     }
 
+
+
     //Update in data base
     public function update(Request $request, $id)
     {
-        //dd($id);
-        // --------------------- Validate --------------------
+        //_______________________ VALIDATION __________________________
         try{
             $validated = $request->validate([
-                'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
+                'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:100','regex:/[a-zA-Z]+/'],
             ]);
         } catch (ValidationException $e) {
             session()->put('errors', $e->validator->getMessageBag());
@@ -86,13 +77,14 @@ class CategorieController extends Controller
        // $cat = DB::table('categories')->where('id_categorie', $id)->first();
         //$catTrouve = Categorie::findOrFail($cat->id_categorie);
         //$catTrouve =  Categorie::where('id_categorie',$id)->get();// Illuminate\Database\Eloquent\Collection
-       // $catTrouve =  Categorie::where('id_categorie',$id)->firstOrFail();//App\Models\Categorie
+       //$catTrouve =  Categorie::where('id_categorie',$id)->firstOrFail();//App\Models\Categorie
        //dd($catTrouve->nomCategorie); // get attributs
 
-        $catTrouve = DB::table('categories')->where('id_categorie', $id)->first();
-        $catTrouve->nomCategorie = $validated['nomCategorie'];
+       // $catTrouve = DB::table('categories')->where('id_categorie', $id)->first();
+        //$catTrouve->nomCategorie = $validated['nomCategorie'];
 
-        //$ff = Categorie::findOrFail($catTrouve->id_categorie);
+        //$cat->update($request->all());
+
         //$catTrouve->save();
         //dd($ff);
 
@@ -104,7 +96,29 @@ class CategorieController extends Controller
         //return response()->redirectToRoute('list-adresse',['adresses' => $adresses])->with('msg', 'Adresse supprimée avec succes');
 
 
-    }
+    }//end method
+
+
+    public function destroy($id)
+    {
+        // get category
+       $trouve = Categorie::findOrFail($id);
+
+        //Chek produit table if category already has a relation
+        $hasRelation = DB::table('produits')
+                    ->where('fk_id_categorie','=', $id)
+                    ->get();
+
+        if (count($hasRelation) != 0) {
+            return response()->redirectToRoute('list-categories')->with('msg', 'Cette Categorie est déjà associée à un produit!');
+        }else {
+            //We can delete
+           $trouve->delete();
+        }
+        return response()->redirectToRoute('list-categories')->with('msg', 'Categorie supprimée avec succes');
+
+    }//end method
+
 
 
 }//end class

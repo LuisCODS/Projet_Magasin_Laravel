@@ -17,8 +17,8 @@ class ProduitFactory extends Factory
         return [
             'fk_id_categorie' => Categorie::factory(),
             'totalStock' => $this->faker->numberBetween($min = 100, $max = 300),
-            'nomProduit' => 'Produit sans nom',
-            'description' => 'Chemise à carreaux en douce flanelle de coton. Modèle avec col rabattu, deux poches de poitrine et boutonnage classique. Manches longues terminées par fente',
+            'nomProduit' => 'Pantalon Coupe régulière',
+            'description' => 'Pantalon en molleton. Modèle avec élastique et lien de serrage à la taille. Poches couture. Coupe décontractée et fond plutôt descendu. Ourlet côtelé en bas des jambes effilées.',
             'img' => 'img/produits/avatar.png',
             'prix' => $this->faker->numberBetween($min = 10, $max = 50),
         ];

@@ -12,13 +12,14 @@
     <div id="container_table_categorie" class="container">
         <H2>Liste des Categories</H2><br>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <table class="table table-bordered table-hover center">
                     <thead class="thead-light">
                         <tr>
                             <th># ID</th>
                             <th>TITRE</th>
-                            <th>ACTION</th>
+                            <th>EDITER</th>
+                            <th>SUPPRIMER</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,11 +32,11 @@
                                         class="btn btn-primary">Editer
                                      </a>
                                 </td>
-                                {{-- <td>
+                                <td>
                                     <a href="{{ route('destroy-categorie', [$cat->id_categorie]) }}"
                                         class="btn btn-danger">Supprimer
                                     </a>
-                                </td> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

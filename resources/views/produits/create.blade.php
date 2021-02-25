@@ -6,7 +6,7 @@
     ?>
     <!-- =============== CONTAINER PRODUIT CREATE  =============== -->
 
-    <div id="createProduitContainer" class="col-md-6 offset md-3">
+    <div id="createProduitContainer" class="col-xs-12 col-sm-12 col-md-12" >
         <h2>Nouveau Produit</h2>
         <br>
         <br>

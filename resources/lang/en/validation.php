@@ -92,12 +92,20 @@ return [
     ],
     'multiple_of' => 'The :attribute must be a multiple of :value.',
     'not_in' => 'The selected :attribute is invalid.',
-    'not_regex' => 'The :attribute format is invalid.',
+
+    // 'not_regex' => 'The :attribute format is invalid.',
+    'not_regex' => 'Format invalide!',
+
     'numeric' => 'The :attribute must be a number.',
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
-    'regex' => 'The :attribute format is invalid.',
-    'required' => 'The :attribute field is required.',
+
+    // 'regex' => 'The :attribute format is invalid.',
+    'regex' => 'Format invalide!',
+
+    // 'required' => 'The :attribute field is required.',
+    'required' => 'Ce champs est requis!',
+
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
