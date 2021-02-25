@@ -86,7 +86,7 @@ class CategorieController extends Controller
         // get category
        $trouve = Categorie::findOrFail($id);
 
-        //Chek produit table if category already has a relation
+        //Chek product table if category already has a relation
         $hasRelation = DB::table('produits')
                     ->where('fk_id_categorie','=', $id)
                     ->get();

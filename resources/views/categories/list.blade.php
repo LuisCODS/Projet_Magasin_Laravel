@@ -7,7 +7,7 @@
         <p class="msg">{{ session('msg') }}</p>
     @endif
 
-    {{-- FLASH CUSTOMAISE --}}
+    {{-- FLASH CUSTOMAISE  views/flash-message.blade.php--}}
     @include('flash-message')
     @yield('content')
 
