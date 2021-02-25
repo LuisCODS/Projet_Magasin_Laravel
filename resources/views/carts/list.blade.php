@@ -15,8 +15,8 @@
             <div class="row">
                 <div class="col-md-10">
                 </div>
+                {{-- BOUTTON CLEAN ALL --}}
                 <div class="col-md-2">
-                    {{-- BOUTTON CLEAN ALL --}}
                     <a href="{{ route('destroy-cart') }}" class="btn btn-info btn-lg active" role="button"
                         aria-pressed="true">
                         <ion-icon name="trash-outline"></ion-icon> Clean All
@@ -42,7 +42,7 @@
                             @php
                                 $sous_total = 0;
                                 $grand_total = 0;
-                                $total  = 0;
+                                $total = 0;
                                 $tvq = 0;
                                 $tps = 0;
                             @endphp
@@ -56,7 +56,7 @@
                                     <td>{{ $value['qtde'] }}</td>
                                     <td>{{ $value['qtde'] * $value['prix'] }} $</td>
 
-                                     @php $sous_total =  $sous_total + $value['qtde'] * $value['prix']  ; @endphp
+                                    @php $sous_total =  $sous_total + $value['qtde'] * $value['prix']  ; @endphp
 
                                     <td>
                                         {{-- BOUTTON ADD + --}}
@@ -89,29 +89,46 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
+                            {{-- PAY PAY IMAGE --}}
                             <div class="col-md-6">
-                             <img src="{{ '/img/paypal-paiement-en-ligne.jpg' }}" alt="Paypal Image" height="250" />
+                                <img src="{{ '/img/paypal-paiement-en-ligne.jpg' }}" alt="Paypal Image" height="250" />
                             </div>
+                            {{-- DETAILS COMMANDE --}}
                             <div class="col-md-6">
                                 <h3> Details de la commande</h3><br>
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Sous-total </th>
-                                            <th></th><th></th>
-                                            <th>{{ $sous_total }} $</th>
+                                            <th></th>
+                                            <th></th>
+                                            <td>{{ $sous_total }} $</td>
                                         </tr>
                                     </thead>
-                                          <?php
-                                                $tvq = ($sous_total * 9.975) / 100;
-                                                $tps = ($sous_total * 5) / 100;
-                                                $grandTotal = $sous_total + $tvq + $tps;
-                                            ?>
-
+                                    <?php
+                                    $tvq = ($sous_total * 9.975) / 100;
+                                    $tps = ($sous_total * 5) / 100;
+                                    $grandTotal = $sous_total + $tvq + $tps;
+                                    ?>
                                     <tbody>
-                                        <tr><th>tvq</th><td></td><td></td><td>    @php echo round($tvq,2)       @endphp</td></tr>
-                                        <tr><th>tps</th><td></td><td></td><td>    @php echo round($tps,2)       @endphp </td></tr>
-                                        <tr><th>Total</th><td></td><td></td><td>  @php echo round($grandTotal,2)@endphp</td></tr>
+                                        <tr>
+                                            <th>tvq</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td> {{ round($tvq, 2) }} $ </td>
+                                        </tr>
+                                        <tr>
+                                            <th>tps</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td> {{ round($tps, 2) }} $</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Total</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td> {{ round($grandTotal, 2) }} $ </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <button type="button" class="btn btn-info btn-lg btn-block">Passer la commande</button>
@@ -123,8 +140,3 @@
         @endif
     </div>
 @endsection
-                              {{--
-                                $sous_total = 0;
-                                $grand_total = 0;
-                                $total  = 0;
-                         --}}

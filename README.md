@@ -30,7 +30,7 @@
 </main> 
 
 
-<?php
+<!-- <?php
 $tvq = ($total * 9.975) / 100;
 $tps = ($total * 5) / 100;
 $grandTotal = $total + $tvq + $tps;
@@ -39,5 +39,6 @@ $grandTotal = $total + $tvq + $tps;
     $sous_total = 0;
     $grand_total = 0;
     $total  = 0;
-@endphp
+@endphp -->
+
 <!-- <img src="{{ '/img/paypal-paiement-en-ligne.jpg' }}" alt="Paypal Image" height="250" /> -->
