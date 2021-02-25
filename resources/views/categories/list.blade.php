@@ -3,10 +3,12 @@
 @section('content')
     <!-- ================================= Flash message =================================-->
 
-    @if (session('msg'))
-        <p class="msg">{{ session('msg') }}</p>
-    @endif
-
+    {{-- @if (session('msg'))
+        <p class="msg">{{ session('error') }}</p>
+    @endif --}}
+    @include('flash-message')
+    @yield('content')
+    
     <!--  ======================= Liste des Categories ================================ -->
 
     <div id="container_table_categorie" class="container">

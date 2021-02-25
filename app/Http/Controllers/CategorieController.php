@@ -71,30 +71,14 @@ class CategorieController extends Controller
             return back();
         }
 
-        //FACADES - Query: Get category to be updated
-       // $cat = Categorie::findOrFail($id)->update($request->nomCategorie);
-       //Retornará um arrayde resultados.
-       // $cat = DB::table('categories')->where('id_categorie', $id)->first();
-        //$catTrouve = Categorie::findOrFail($cat->id_categorie);
-        //$catTrouve =  Categorie::where('id_categorie',$id)->get();// Illuminate\Database\Eloquent\Collection
-       //$catTrouve =  Categorie::where('id_categorie',$id)->firstOrFail();//App\Models\Categorie
-       //dd($catTrouve->nomCategorie); // get attributs
-
-       // $catTrouve = DB::table('categories')->where('id_categorie', $id)->first();
-        //$catTrouve->nomCategorie = $validated['nomCategorie'];
-
-        //$cat->update($request->all());
-
-        //$catTrouve->save();
-        //dd($ff);
+        $catTrouve = Categorie::findOrFail($id);
+        $catTrouve->nomCategorie = $validated['nomCategorie'];
+        $catTrouve->update();
 
         //Query all
         $categories = Categorie::all();
 
         return view('categories.list',['categories'=>$categories])->with('msg', 'Categorie editée avec succes');
-       // return redirect('categories.list')->with('msg', 'Categorie editée avec succes');
-        //return response()->redirectToRoute('list-adresse',['adresses' => $adresses])->with('msg', 'Adresse supprimée avec succes');
-
 
     }//end method
 
@@ -110,7 +94,8 @@ class CategorieController extends Controller
                     ->get();
 
         if (count($hasRelation) != 0) {
-            return response()->redirectToRoute('list-categories')->with('msg', 'Cette Categorie est déjà associée à un produit!');
+            return response()->redirectToRoute('list-categories')->with('error', 'Cette categorie est déjà associée à un produit!');
+
         }else {
             //We can delete
            $trouve->delete();
