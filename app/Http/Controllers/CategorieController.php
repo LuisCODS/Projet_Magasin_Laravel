@@ -49,8 +49,6 @@ class CategorieController extends Controller
     {
           // HELPERS Query -Retrieving A Single Row  From A Table
            $categorie = DB::table('categories')->where('id_categorie', $id)->first();
-          // FACADES Query -Retrieving A Single Row  From A Table
-          //$categorie = Categorie::findOrFail($id); //Ne marche pas! ?????????
            return view('categories.edit',['categorie'=> $categorie]);
     }
 
@@ -94,7 +92,7 @@ class CategorieController extends Controller
                     ->get();
 
         if (count($hasRelation) != 0) {
-            return response()->redirectToRoute('list-categories')->with('error', 'Cette categorie est déjà associée à un produit!');
+            return redirect()->route('list-categories')->with('info', 'Veuillez supprimer une categorie qui nest pas associée à un produit !');
 
         }else {
             //We can delete
