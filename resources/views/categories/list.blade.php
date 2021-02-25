@@ -1,13 +1,12 @@
 @extends('layouts.main')
 @section('title', 'Liste categorie')
-
+@section('content')
     <!-- ================================= Flash message =================================-->
 
     @if (session('msg'))
         <p class="msg">{{ session('msg') }}</p>
     @endif
 
-@section('content')
     <!--  ======================= Liste des Categories ================================ -->
 
     <div id="container_table_categorie" class="container">
@@ -27,8 +26,16 @@
                             <tr>
                                 <td>{{ $cat->id_categorie }}</td>
                                 <td>{{ $cat->nomCategorie }}</td>
-                                <td><a href="{{ route('edit-categorie', [$cat->id_categorie]) }}"
-                                        class="btn btn-primary">Editer</a></td>
+                                <td>
+                                    <a href="{{ route('edit-categorie', [$cat->id_categorie]) }}"
+                                        class="btn btn-primary">Editer
+                                     </a>
+                                </td>
+                                {{-- <td>
+                                    <a href="{{ route('destroy-categorie', [$cat->id_categorie]) }}"
+                                        class="btn btn-danger">Supprimer
+                                    </a>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>

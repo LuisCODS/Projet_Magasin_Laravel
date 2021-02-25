@@ -7,15 +7,11 @@ use Illuminate\Support\Facades\Session;//Added
 use App\Models\Produit;
 use Illuminate\Support\Facades\DB;
 
-
 class CartController extends Controller
 {
-
-
     //Create a session cart
     public function store(Request $request)
     {
-
        // ================================= VALIDATION ============================
        // dd($request->all());
         try{
@@ -24,7 +20,6 @@ class CartController extends Controller
 
                 [ "id_produit" => "required|integer"]
             );
-
         }catch(ValidationException $e){
 
             session()->put('errors', $e->validator->getMessageBag());
@@ -57,7 +52,6 @@ class CartController extends Controller
                                     'img'         => $produit->img
                                    ];
                 $msnFeedBack = "Ce produit a été déjà ajouté ".$cart[$id_produit]['qtde']." fois";
-
         //dd($cart);//STEP 2
 
             }else{
@@ -95,7 +89,7 @@ class CartController extends Controller
       //return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg',  $msnFeedBack);
     }
 
-    //Add more item into cart
+    //Add more item to cart
     public function addQuantity($id_produit)
     {
         $cart = session()->get('panier');
@@ -160,23 +154,13 @@ class CartController extends Controller
          $cart = session()->get('panier');
 
         // Set indice a null
-       // $cart->deleteAt($id_produit);
         unset($cart[$id_produit]);
         // Update session
         session()->put('panier',$cart);
 
-        //dd($cart);
-
-        // Forget a single key...
-        //session()->forget($id_produit);
-        //session()->pull('panier',$id_produit); //Clean cart
-        //
-        // session()->pull('panier',null); //Clean cart
-        // return view('carts.list',['cart'=> []]);
          return redirect()
                 ->route('list-cart',['cart'=>session()->get('panier')])
                 ->with('msg', 'Item supprimé avec sucess!');
-
     }
 
 

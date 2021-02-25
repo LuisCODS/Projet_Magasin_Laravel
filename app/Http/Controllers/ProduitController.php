@@ -12,9 +12,7 @@ class ProduitController extends Controller
 
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Display all prdouits
      */
     public function index()
     {
@@ -25,7 +23,11 @@ class ProduitController extends Controller
         if ($search) {
 
             /*Cherche un registre avec le nom demandé*/
-            $produits = Produit::where([['nomProduit','like','%'.$search.'%']])->get();
+            $produits = Produit::where([
+
+                                         ['nomProduit','like','%'.$search.'%']
+
+                                     ])->get();
         }
         else{
             //Facades-Query all produits
@@ -237,7 +239,7 @@ class ProduitController extends Controller
     public function destroy($id)
     {
         //Cherche un produit par son id.
-        $produit = Produit::findOrFail($id);
+        $produit = Produit::findOrFail($id); // dd($produit);
         //$produit->delete();
         //Get image name
         $oldImg = public_path('/').'/'.$produit->img;

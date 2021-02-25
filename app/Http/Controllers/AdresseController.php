@@ -31,7 +31,7 @@ class AdresseController extends Controller
         try{
             // Validate input filds
             $validData = $request->validate([
-               'nbCivic'        => "required|regex:/^[0-9]{3,8}$/",//Only numbers 5 à 10 caractères ^[-'A-zÀ-ÿ ]+$
+               'nbCivic'        => "required|regex:/^[0-9]{1,8}$/",//Only numbers 5 à 10 caractères ^[-'A-zÀ-ÿ ]+$
                 'rue'           => "required|max:70',regex:/^[-'A-zÀ-ÿ ]+$/",//Only strings & accents & space
                 'quartie'       => "required|max:50',regex:/^[-'A-zÀ-ÿ ]+$/",
                 'pays'          => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$/",
@@ -177,19 +177,11 @@ class AdresseController extends Controller
 
     public function list()
     {
-        // $adresses = Adresse::all();
-        // return view('adresses.list',['adresses'=> $adresses]);
         // Get auth user
         $user = auth()->user();
         $adresses = DB::table('adresses')
                             ->where('fk_id_user', '=', $user->id)
                             ->get();
-
-
-        // get all user adresses
-        //$adresses = $user->adresses;
-
-        //dd($adresses);
         // pass the addres to view
         return view('adresses.list', ['adresses' => $adresses]);
     }
@@ -204,6 +196,8 @@ class AdresseController extends Controller
         $adresses = DB::table('adresses')
                             ->where('fk_id_user', '=', $user->id)
                             ->get();
-        return view('adresses.list', ['adresses' => $adresses])->with('msg', 'Adresse supprimée avec succes');
+      //  return view('adresses.list', ['adresses' => $adresses])->with('msg', 'Adresse supprimée avec succes');
+        return response()->redirectToRoute('list-adresse',['adresses' => $adresses])->with('msg', 'Adresse supprimée avec succes');
+
     }
 }

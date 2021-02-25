@@ -13,7 +13,7 @@
             <input type="text" name="search" id="search" class="form-control" placeholder="Cherche...">
         </form>
     </div>
-    <!-- ============================== MSN  SEARCHE PRODUIT  ============================== -->
+    <!-- ==============================   SEARCHE PRODUIT  ============================== -->
     @if (count($produits) == 0 && $search)
         <p>Aucune produit trouvé avec le mot: <b>{{ $search }}</b> <br><a href="{{ route('list-all') }}">Voir nos
                 produits! </a></p>
@@ -22,8 +22,8 @@
     @endif
 
     <!-- @error('qnt')
-            <div class="alert alert-danger">{{ $message }}</div>
-    @enderror -->
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror -->
     <!-- ============================== CONTAINER PRODUIT ============================== -->
     <div class="col-md-12 ">
         <!--  CONTAINER CARD  -->
@@ -36,7 +36,7 @@
                         <p class="card-text">{{ $produit->getFormatPrice() }} $</p>
 
                         {{-- ONLY MEMBRE CAN SEE --}}
-                        @if (Auth::user() && Auth::user()->isAdmin()!= 1)
+                        @if (Auth::user() && Auth::user()->isAdmin() != 1)
 
                             <form action="{{ route('store-cart') }}" method="POST">
                                 @csrf

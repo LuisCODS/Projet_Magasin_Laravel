@@ -8,5 +8,8 @@
         <hr class="my-4">
         <p>Ele usa classes utilitárias para tipografia e espaçamento de conteúdo, dentro do maior container.</p>
         <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
-    </div>
+    </div> -
 @endsection
+
+
+ 

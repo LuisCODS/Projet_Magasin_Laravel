@@ -8,7 +8,7 @@
     <!--  =======================================  PANIER TABLE  ======================== -->
     <div id="container_table_produit" class="container-fluid">
 
-        {{-- IF NO  ARRAY  --}}
+        {{-- IF NO  CART  --}}
         @if (!is_array($cart))
             <H2>Votre panier est vide!</H2>
         @else
@@ -25,6 +25,7 @@
                     </a><br><br>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered table-hover">
@@ -74,6 +75,7 @@
                     </table>
                 </div>
             </div>
+
         @endif
     </div>
 @endsection
