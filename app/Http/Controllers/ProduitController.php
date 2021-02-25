@@ -47,7 +47,7 @@ class ProduitController extends Controller
         //Facades-Query all category
         $categories = Categorie::all();
          //Send back to view all category as array
-        return view('produits.create', ['categories' => $categories]);
+        return view('produits.create', compact('categories'));
     }
 
     /**
