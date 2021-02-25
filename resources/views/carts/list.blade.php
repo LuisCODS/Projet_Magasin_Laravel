@@ -25,6 +25,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
+                    {{-- TABLE PANIER --}}
                     <table class="table table-bordered table-hover">
                         <thead class="thead-light">
                             <tr>
@@ -89,13 +90,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            {{-- PAY PAY IMAGE --}}
+                            {{-- PAYPAL IMAGE --}}
                             <div class="col-md-6">
                                 <img src="{{ '/img/paypal-paiement-en-ligne.jpg' }}" alt="Paypal Image" height="250" />
                             </div>
                             {{-- DETAILS COMMANDE --}}
                             <div class="col-md-6">
                                 <h3> Details de la commande</h3><br>
+                                {{-- TABLE COMMANDE --}}
                                 <table class="table">
                                     <thead>
                                         <tr>
