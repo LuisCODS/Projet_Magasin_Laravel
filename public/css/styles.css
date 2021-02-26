@@ -200,7 +200,8 @@ margin-bottom: 50px;
 /*==================  ALL - ADRESSES PAGES ====================*/
 
 #createAdresseContainer form {
-    width: 400px;
+    width: 600px;
+    margin-bottom: 100px;
 }
 
 

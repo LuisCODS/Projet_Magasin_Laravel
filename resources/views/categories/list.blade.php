@@ -7,6 +7,10 @@
         <p class="msg">{{ session('msg') }}</p>
     @endif
 
+    {{-- FLASH CUSTOMAISE  views/flash-message.blade.php--}}
+    @include('flash-message')
+    @yield('content')
+
     <!--  ======================= Liste des Categories ================================ -->
 
     <div id="container_table_categorie" class="container">

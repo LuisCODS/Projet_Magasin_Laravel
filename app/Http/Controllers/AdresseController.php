@@ -31,13 +31,15 @@ class AdresseController extends Controller
         try{
             // Validate input filds
             $validData = $request->validate([
-               'nbCivic'        => "required|regex:/^[0-9]{1,8}$/",//Only numbers 5 à 10 caractères ^[-'A-zÀ-ÿ ]+$
-                'rue'           => "required|max:70',regex:/^[-'A-zÀ-ÿ ]+$/",//Only strings & accents & space
-                'quartie'       => "required|max:50',regex:/^[-'A-zÀ-ÿ ]+$/",
-                'pays'          => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$/",
-                "codePostal"    => 'required|regex:/[A-Za-z]\d[A-Za-z]?\d[A-Za-z]\d/', //H2E1X2
-                "ville"         => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$/",
-                // "defaulAdresse" => "",
+               'nbCivic'        => "required|regex:/^[0-9]{1,8}$/",//Only numbers 1 à 8 caractères
+                'rue'           => "bail|required|max:100| regex:/^[A-Za-z\s]+$/",  //Only strings + space
+                'quartie'       => "bail|required|max:100| regex:/^[A-Za-z\s]+$/",  //Only strings + space
+                'pays'          => "bail|required|max:50|  regex:/^[A-Za-z\s]+$/",  //Only strings + space
+                "codePostal"    => 'bail|required|max:7|   regex:/^[A-Za-z]\d[A-Za-z][-]\d[A-Za-z]\d/', //H2E-1X2
+                "ville"         => "bail|required|max:50|  regex:/^[A-Za-z\s]+$/",  //Only strings + space
+                // "defaulAdresse" => "",/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+                // var reg = /[a-zA-Z\u00C0-\u00FF ]+/i
+
             ]);
             //dd($validData);
         }catch(ValidationException $e){
@@ -111,12 +113,12 @@ class AdresseController extends Controller
         try{
             // Validate input filds
             $validData = $request->validate([
-               'nbCivic'        => "required|regex:/^[0-9]{1,8}$/",//Only numbers 1 à 5 caractères ^[-'A-zÀ-ÿ ]+$
-                'rue'           => "required|max:70',regex:/^[-'A-zÀ-ÿ ]+$/",//Only strings & accents & space
-                'quartie'       => "required|max:50',regex:/^[-'A-zÀ-ÿ ]+$/",
-                'pays'          => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$/",
-                "codePostal"    => 'required|regex:/[A-Za-z]\d[A-Za-z]?\d[A-Za-z]\d/', //H2E1X2
-                "ville"         => "required|max:30',regex:/^[-'A-zÀ-ÿ ]+$/",
+               'nbCivic'        => "required|regex:/^[0-9]{1,8}$/",//Only numbers 1 à 8 caractères
+                'rue'           => "bail|required|max:100| regex:/^[A-Za-z\s]+$/",  //Only strings + space
+                'quartie'       => "bail|required|max:100| regex:/^[A-Za-z\s]+$/",  //Only strings + space
+                'pays'          => "bail|required|max:50|  regex:/^[A-Za-z\s]+$/",  //Only strings + space
+                "codePostal"    => 'bail|required|max:7|   regex:/^[A-Za-z]\d[A-Za-z][-]\d[A-Za-z]\d/', //H2E-1X2
+                "ville"         => "bail|required|max:50|  regex:/^[A-Za-z\s]+$/",  //Only strings + space
             ]);
             //dd($validData);
         }catch(ValidationException $e){

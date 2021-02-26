@@ -77,10 +77,15 @@ return [
         'array' => 'The :attribute must not have more than :value items.',
     ],
     'max' => [
-        'numeric' => 'The :attribute may not be greater than :max.',
+        // 'numeric' => 'The :attribute may not be greater than :max.',
+        'numeric' => 'Le :attribute est superieur au limite :max.',
+
         'file' => 'The :attribute may not be greater than :max kilobytes.',
-        'string' => 'The :attribute may not be greater than :max characters.',
-        'array' => 'The :attribute may not have more than :max items.',
+        // 'string' => 'The :attribute may not be greater than :max characters.',
+        'string' => 'Le :attribute est superieur a :max characters.',
+
+        // 'array' => 'The :attribute may not have more than :max items.',
+        'array' => 'Le :attribute est superieur au :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
@@ -101,10 +106,10 @@ return [
     'present' => 'The :attribute field must be present.',
 
     // 'regex' => 'The :attribute format is invalid.',
-    'regex' => 'Format invalide!',
+    'regex' => 'Format :attribute invalide!',
 
     // 'required' => 'The :attribute field is required.',
-    'required' => 'Ce champs est requis!',
+    'required' => 'Le :attribute est requis!',
 
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
@@ -122,7 +127,10 @@ return [
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid zone.',
-    'unique' => 'The :attribute has already been taken.',
+
+    // 'unique' => 'The :attribute has already been taken.',
+    'unique' => 'Le :attribute a déjà été pris.',
+
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',

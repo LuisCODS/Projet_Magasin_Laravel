@@ -5,7 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;//Added
 use App\Models\Produit;
+use App\Models\Achat;
+use App\Models\Achat_Produit;
+use App\Models\Facture;
+use App\Models\Paiement;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+
 
 class CartController extends Controller
 {
@@ -85,8 +91,11 @@ class CartController extends Controller
         }
        //  dd($cart);
         //dd(session()->all());
-        return redirect()->route('list-all',['cart'=>session()->get('panier')])->with('msg',  $msnFeedBack);
-      //return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg',  $msnFeedBack);
+
+        return redirect()->route('list-all')->with(['cart'=>$cart, 'msg'=> $msnFeedBack]);
+        //return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg',  $msnFeedBack);
+
+        //https://laravel.com/docs/8.x/session#flash-data
     }
 
     //Add more item to cart
@@ -103,7 +112,7 @@ class CartController extends Controller
                            ];
         session()->put('panier',$cart);
         //dd($cart);
-        return redirect()->route('list-cart',['cart'=>session()->get('panier')]);
+        return redirect()->route('list-cart')->with(['cart'=>session()->get('panier')]);
     }
 
     //Remove items from cart
@@ -161,6 +170,95 @@ class CartController extends Controller
          return redirect()
                 ->route('list-cart',['cart'=>session()->get('panier')])
                 ->with('msg', 'Item supprimé avec sucess!');
+    }
+
+    public function checkout()
+    {
+        $cart = session()->get('panier');
+
+        $user = auth()->user();
+
+        $sous_total = 0;
+        $grand_total = 0;
+        $total = 0;
+        $tvq = 0;
+        $tps = 0;
+        foreach ($cart as $id_produit => $value){
+            $sous_total =  $sous_total + $value['qtde'] * $value['prix']  ;
+        }
+        $tvq = ($sous_total * 9.975) / 100;
+        $tps = ($sous_total * 5) / 100;
+        $grandTotal = $sous_total + $tvq + $tps;
+        //echo $grandTotal."<br>";
+        /* TODO:
+        1 - Save Achat
+        2 - save Achat_produit
+        3 - save Facture
+        4 - Save Paiement.
+        */
+        //1
+
+        $achat = New Achat();
+        $achat->tps=$tps;
+        $achat->tvq=$tvq;
+        $achat->fk_id_user = $user->id;
+        $achat->sousTotal=$sous_total;
+        $achat->save();
+
+        //$achatId = DB::getPdo()->lastInsertId();
+        $achatId = $achat->id_achat;
+
+        //2
+        foreach ($cart as $id_produit => $value) {
+            $achat_produit = new Achat_Produit();
+            $achat_produit->fk_id_achat = $achatId;
+            $achat_produit->fk_id_produit = $id_produit;
+            $achat_produit->quantite = $value['qtde'];
+            $achat_produit->prixProduit = $value['prix'];
+            $achat_produit->save();
+        }
+
+        //3
+        $facture = new Facture();
+        $facture->fk_id_achat = $achatId;
+        $facture->totalFinal = $grandTotal;
+        $facture->save();
+        $factureId = $facture->id_facture;
+        //4
+
+
+/**
+ * https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/
+ */
+
+        //dd($achatId);
+
+        //dd("Test");
+        return view('paypal', ['grandTotal'=> $grandTotal, 'factureId'=>$factureId]);
+
+
+
+    }
+
+    public function paiementCompleted(Request $request){
+
+        $factureId=$request->get('factureId');
+
+        $facture = Facture::findOrFail($factureId);
+
+        //4
+
+        $paiement = new Paiement();
+        $paiement->fk_id_facture = $factureId;
+        $paiement->montant = $facture->totalFinal;
+        $paiement->modePaiement = 'PayPal';
+        $paiement->status = 'COMPLETED';
+        $paiement->save();
+        //dd($facture);
+        session()->pull('panier', null); //Clean cart
+        return view('completed');
+
+
     }
 
 
