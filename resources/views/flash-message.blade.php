@@ -1,3 +1,10 @@
+
+{{--
+    POUR FAIRE APPEL À CES MESSAGES DANS LA VUE, AJOUTE LE CODE:
+    @include('flash-message')
+    @yield('content')
+--}}
+
 @if ($message = Session::get('success'))
 <div class="alert alert-success alert-block">
 	<button type="button" class="close" data-dismiss="alert">×</button>

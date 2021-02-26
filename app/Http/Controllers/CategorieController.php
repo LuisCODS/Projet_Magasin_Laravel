@@ -30,7 +30,7 @@ class CategorieController extends Controller
         try{
             $validated = $request->validate([
                 // 'nomCategorie' =>  ['bail', 'required', 'unique:categories', 'max:25'],
-                'nomCategorie'   => "required|max:200|required|regex:/^[-'A-zÀ-ÿ ]+$/",//Only strings & accents & space
+                'nomCategorie'   => "required|unique:categories|max:200|required|regex:/^[-'A-zÀ-ÿ ]+$/",//Only strings & accents & space
 
             ]);
         } catch (ValidationException $e) {
@@ -69,6 +69,7 @@ class CategorieController extends Controller
             return back();
         }
 
+        // get category
         $catTrouve = Categorie::findOrFail($id);
         $catTrouve->nomCategorie = $validated['nomCategorie'];
         $catTrouve->update();

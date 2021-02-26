@@ -61,7 +61,7 @@ class ProduitController extends Controller
         try{
             // Validate and store the product
             $validated = $request->validate([
-                'nomProduit' => ['bail','required','unique:Produits','max:45'],
+                'nomProduit' => ['bail','required','unique:produits','max:45'],
                 'img'        => ['required','max:100'],
                 "prix"       => ['bail','required','regex:/^[0-9]+(\.[0-9]{2}?)?$/'],
                 "totalStock" => ['bail','required','numeric', 'between:1,999999'],
