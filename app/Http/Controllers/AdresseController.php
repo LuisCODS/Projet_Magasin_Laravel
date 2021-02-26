@@ -37,7 +37,9 @@ class AdresseController extends Controller
                 'pays'          => "bail|required|max:50|  regex:/^[A-Za-z\s]+$/",  //Only strings + space
                 "codePostal"    => 'bail|required|max:7|   regex:/^[A-Za-z]\d[A-Za-z][-]\d[A-Za-z]\d/', //H2E-1X2
                 "ville"         => "bail|required|max:50|  regex:/^[A-Za-z\s]+$/",  //Only strings + space
-                // "defaulAdresse" => "",
+                // "defaulAdresse" => "",/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+                // var reg = /[a-zA-Z\u00C0-\u00FF ]+/i
+
             ]);
             //dd($validData);
         }catch(ValidationException $e){

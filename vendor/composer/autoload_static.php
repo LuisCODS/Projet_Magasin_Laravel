@@ -90,6 +90,7 @@ class ComposerStaticInit2d7d26dfff10e70cfee6e14940cc354e
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Sample\\' => 7,
         ),
         'R' => 
         array (
@@ -109,6 +110,8 @@ class ComposerStaticInit2d7d26dfff10e70cfee6e14940cc354e
             'PragmaRX\\Google2FA\\' => 19,
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
+            'PayPalHttp\\' => 11,
+            'PayPalCheckoutSdk\\' => 18,
             'ParagonIE\\ConstantTime\\' => 23,
         ),
         'O' => 
@@ -328,6 +331,10 @@ class ComposerStaticInit2d7d26dfff10e70cfee6e14940cc354e
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Sample\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -379,6 +386,14 @@ class ComposerStaticInit2d7d26dfff10e70cfee6e14940cc354e
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'PayPalHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp',
+        ),
+        'PayPalCheckoutSdk\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk',
         ),
         'ParagonIE\\ConstantTime\\' => 
         array (
@@ -3810,6 +3825,46 @@ class ComposerStaticInit2d7d26dfff10e70cfee6e14940cc354e
         'ParagonIE\\ConstantTime\\Encoding' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Encoding.php',
         'ParagonIE\\ConstantTime\\Hex' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Hex.php',
         'ParagonIE\\ConstantTime\\RFC4648' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/RFC4648.php',
+        'PayPalCheckoutSdk\\Core\\AccessToken' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/AccessToken.php',
+        'PayPalCheckoutSdk\\Core\\AccessTokenRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/AccessTokenRequest.php',
+        'PayPalCheckoutSdk\\Core\\AuthorizationInjector' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/AuthorizationInjector.php',
+        'PayPalCheckoutSdk\\Core\\FPTIInstrumentationInjector' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/FPTIInstrumentationInjector.php',
+        'PayPalCheckoutSdk\\Core\\GzipInjector' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/GzipInjector.php',
+        'PayPalCheckoutSdk\\Core\\PayPalEnvironment' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/PayPalEnvironment.php',
+        'PayPalCheckoutSdk\\Core\\PayPalHttpClient' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/PayPalHttpClient.php',
+        'PayPalCheckoutSdk\\Core\\ProductionEnvironment' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/ProductionEnvironment.php',
+        'PayPalCheckoutSdk\\Core\\RefreshTokenRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/RefreshTokenRequest.php',
+        'PayPalCheckoutSdk\\Core\\SandboxEnvironment' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/SandboxEnvironment.php',
+        'PayPalCheckoutSdk\\Core\\UserAgent' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/UserAgent.php',
+        'PayPalCheckoutSdk\\Core\\Version' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Core/Version.php',
+        'PayPalCheckoutSdk\\Orders\\OrdersAuthorizeRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Orders/OrdersAuthorizeRequest.php',
+        'PayPalCheckoutSdk\\Orders\\OrdersCaptureRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Orders/OrdersCaptureRequest.php',
+        'PayPalCheckoutSdk\\Orders\\OrdersCreateRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Orders/OrdersCreateRequest.php',
+        'PayPalCheckoutSdk\\Orders\\OrdersGetRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Orders/OrdersGetRequest.php',
+        'PayPalCheckoutSdk\\Orders\\OrdersPatchRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Orders/OrdersPatchRequest.php',
+        'PayPalCheckoutSdk\\Orders\\OrdersValidateRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Orders/OrdersValidateRequest.php',
+        'PayPalCheckoutSdk\\Payments\\AuthorizationsCaptureRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Payments/AuthorizationsCaptureRequest.php',
+        'PayPalCheckoutSdk\\Payments\\AuthorizationsGetRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Payments/AuthorizationsGetRequest.php',
+        'PayPalCheckoutSdk\\Payments\\AuthorizationsReauthorizeRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Payments/AuthorizationsReauthorizeRequest.php',
+        'PayPalCheckoutSdk\\Payments\\AuthorizationsVoidRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Payments/AuthorizationsVoidRequest.php',
+        'PayPalCheckoutSdk\\Payments\\CapturesGetRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Payments/CapturesGetRequest.php',
+        'PayPalCheckoutSdk\\Payments\\CapturesRefundRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Payments/CapturesRefundRequest.php',
+        'PayPalCheckoutSdk\\Payments\\RefundsGetRequest' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk/Payments/RefundsGetRequest.php',
+        'PayPalHttp\\Curl' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Curl.php',
+        'PayPalHttp\\Encoder' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Encoder.php',
+        'PayPalHttp\\Environment' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Environment.php',
+        'PayPalHttp\\HttpClient' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/HttpClient.php',
+        'PayPalHttp\\HttpException' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/HttpException.php',
+        'PayPalHttp\\HttpRequest' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/HttpRequest.php',
+        'PayPalHttp\\HttpResponse' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/HttpResponse.php',
+        'PayPalHttp\\IOException' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/IOException.php',
+        'PayPalHttp\\Injector' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Injector.php',
+        'PayPalHttp\\Serializer' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Serializer.php',
+        'PayPalHttp\\Serializer\\Form' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Serializer/Form.php',
+        'PayPalHttp\\Serializer\\FormPart' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Serializer/FormPart.php',
+        'PayPalHttp\\Serializer\\Json' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Serializer/Json.php',
+        'PayPalHttp\\Serializer\\Multipart' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Serializer/Multipart.php',
+        'PayPalHttp\\Serializer\\Text' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Serializer/Text.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',
         'PharIo\\Manifest\\ApplicationName' => __DIR__ . '/..' . '/phar-io/manifest/src/values/ApplicationName.php',
         'PharIo\\Manifest\\Author' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Author.php',
@@ -4532,6 +4587,15 @@ class ComposerStaticInit2d7d26dfff10e70cfee6e14940cc354e
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'Sample\\AuthorizeIntentExamples\\AuthorizeOrder' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples/AuthorizeIntentExamples/AuthorizeOrder.php',
+        'Sample\\AuthorizeIntentExamples\\CaptureOrder' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples/AuthorizeIntentExamples/CaptureOrder.php',
+        'Sample\\AuthorizeIntentExamples\\CreateOrder' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples/AuthorizeIntentExamples/CreateOrder.php',
+        'Sample\\CaptureIntentExamples\\CaptureOrder' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples/CaptureIntentExamples/CaptureOrder.php',
+        'Sample\\CaptureIntentExamples\\CreateOrder' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples/CaptureIntentExamples/CreateOrder.php',
+        'Sample\\GetOrder' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples/GetOrder.php',
+        'Sample\\PatchOrder' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples/PatchOrder.php',
+        'Sample\\PayPalClient' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples/PayPalClient.php',
+        'Sample\\RefundOrder' => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples/RefundOrder.php',
         'SebastianBergmann\\CliParser\\AmbiguousOptionException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
         'SebastianBergmann\\CliParser\\Exception' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/Exception.php',
         'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',

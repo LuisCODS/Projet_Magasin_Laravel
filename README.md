@@ -31,15 +31,12 @@
 
 <div class="col-md-6 offset md-3"> 
 
-<!-- <?php
-$tvq = ($total * 9.975) / 100;
-$tps = ($total * 5) / 100;
-$grandTotal = $total + $tvq + $tps;
-?>
-@php
-    $sous_total = 0;
-    $grand_total = 0;
-    $total  = 0;
-@endphp -->
+
 
 <!-- <img src="{{ '/img/paypal-paiement-en-ligne.jpg' }}" alt="Paypal Image" height="250" /> -->
+
+
+<!-- PAYPAL API credentials :
+ sb-cbhcx5229250@personal.example.com
+  Password:zTG5Y>2%
+ -->

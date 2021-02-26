@@ -133,7 +133,8 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button type="button" class="btn btn-info btn-lg btn-block">Passer la commande</button>
+                                <a type="button" href="{{ route('checkout-cart') }}" class="btn btn-info btn-lg btn-block">Passer la commande</a>
+
                             </div>
                         </div>
                     </div>

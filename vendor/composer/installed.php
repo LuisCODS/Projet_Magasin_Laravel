@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'c54758df8728861812c82652c64d5711d7b10641',
+    'reference' => 'feb0366bc6f481b29d147e98fdfa578e60437e9d',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -499,7 +499,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'c54758df8728861812c82652c64d5711d7b10641',
+      'reference' => 'feb0366bc6f481b29d147e98fdfa578e60437e9d',
     ),
     'laravel/sail' => 
     array (
@@ -655,6 +655,24 @@
       array (
       ),
       'reference' => 'f34c2b11eb9d2c9318e13540a1dbc2a3afbd939c',
+    ),
+    'paypal/paypal-checkout-sdk' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ed6a55075448308b87a8b59dcb7fedf04a048cb1',
+    ),
+    'paypal/paypalhttp' => 
+    array (
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1ad9b846a046f09d6135cbf2cbaa7701bbc630a3',
     ),
     'phar-io/manifest' => 
     array (
