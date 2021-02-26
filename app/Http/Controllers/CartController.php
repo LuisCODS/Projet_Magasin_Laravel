@@ -91,8 +91,11 @@ class CartController extends Controller
         }
        //  dd($cart);
         //dd(session()->all());
-        return redirect()->route('list-all',['cart'=>session()->get('panier')])->with('msg',  $msnFeedBack);
-      //return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg',  $msnFeedBack);
+
+        return redirect()->route('list-all')->with(['cart'=>$cart, 'msg'=> $msnFeedBack]);
+        //return redirect()->route('list-cart',['cart'=>session()->get('panier')])->with('msg',  $msnFeedBack);
+
+        //https://laravel.com/docs/8.x/session#flash-data
     }
 
     //Add more item to cart
@@ -109,7 +112,7 @@ class CartController extends Controller
                            ];
         session()->put('panier',$cart);
         //dd($cart);
-        return redirect()->route('list-cart',['cart'=>session()->get('panier')]);
+        return redirect()->route('list-cart')->with(['cart'=>session()->get('panier')]);
     }
 
     //Remove items from cart
