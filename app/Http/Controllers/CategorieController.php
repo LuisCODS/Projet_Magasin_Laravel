@@ -16,6 +16,7 @@ class CategorieController extends Controller
         $categories = Categorie::all();
         //dd($categories);
         return view('categories.list',['categories' => $categories]);
+   
     }
 
     public function create()

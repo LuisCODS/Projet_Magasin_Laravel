@@ -469,7 +469,7 @@ class Jetstream
      */
     public static function ignoreRoutes()
     {
-        static::$registersRoutes = false;
+         static::$registersRoutes = false;
 
         return new static;
     }

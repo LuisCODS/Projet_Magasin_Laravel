@@ -204,7 +204,6 @@ class CartController extends Controller
         $achat->fk_id_user = $user->id;
         $achat->sousTotal=$sous_total;
         $achat->save();
-
         //$achatId = DB::getPdo()->lastInsertId();
         $achatId = $achat->id_achat;
 
@@ -225,18 +224,13 @@ class CartController extends Controller
         $facture->save();
         $factureId = $facture->id_facture;
         //4
-
-
 /**
  * https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/
  */
 
-        //dd($achatId);
-
         //dd("Test");
+        // Fait appel à l'API
         return view('paypal', ['grandTotal'=> $grandTotal, 'factureId'=>$factureId]);
-
-
 
     }
 
@@ -247,7 +241,7 @@ class CartController extends Controller
         $facture = Facture::findOrFail($factureId);
 
         //4
-
+        // CREER LE PAYEMEN EST L'ATACHE À LA FACTURE
         $paiement = new Paiement();
         $paiement->fk_id_facture = $factureId;
         $paiement->montant = $facture->totalFinal;

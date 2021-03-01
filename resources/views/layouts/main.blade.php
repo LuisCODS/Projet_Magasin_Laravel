@@ -97,7 +97,7 @@
                                             @endif
                                         </a>
 
-                                        <!-- DROPDOWN -->
+                                        <!-- DROPDOWN href="/user/profile" -->
                                         <div class="dropdown ">
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
                                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -105,7 +105,8 @@
                                                 Mon Compte
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="/user/profile">
+                                              <a class="dropdown-item" href="/user/profile">
+                                                     {{-- <a class="dropdown-item" href="{{ route('profile.show') }}"> --}}
                                                     <ion-icon name="person-outline"></ion-icon> Profil
                                                 </a>
                                                 <a class="dropdown-item" href="{{ route('create-adresse') }}">
