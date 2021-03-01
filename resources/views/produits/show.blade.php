@@ -2,6 +2,7 @@
 @section('title', $produit->nomProduit)
 @section('content')
     <!-- =============== CONTAINER PRODUIT DETAILS  =============== -->
+   
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -22,7 +23,8 @@
 
                     @if (!Auth::user()->isAdmin())
                         {{-- BOUTTON BUY --}}
-                        <button type="button" class="btn btn-lg btn-info btn-block">Buy now</button>
+                        {{-- <button type="button" class="btn btn-lg btn-info btn-block">Buy now</button> --}}
+
                         <form action="{{ route('store-cart') }}" method="POST">
                             @csrf
                             <input type="hidden" name="id_produit" value="{{ $produit->id_produit }}"><br>

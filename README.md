@@ -37,6 +37,6 @@
 
 
 <!-- PAYPAL API credentials :
- sb-cbhcx5229250@personal.example.com
-  Password:zTG5Y>2%
+ EMAIL: sb-cbhcx5229250@personal.example.com
+Password: zTG5Y>2%
  -->

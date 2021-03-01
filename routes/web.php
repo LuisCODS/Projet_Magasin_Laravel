@@ -6,7 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\AdresseController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\CartController; 
+use Laravel\Jetstream\Http\Controllers\Livewire\UserProfileController;
+
 
 // admin routes ->middleware('auth');
 // ================================= ADMIN ROUTES =================================
@@ -55,7 +57,7 @@ Route::get('/produits', [ProduitController::class, 'index'])->name('list-all');
 Route::get('/produit/{id}/', [ProduitController::class,'show']);
 
 //HOME
-Route::get('/', [HomeController::class, 'welcome']);
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 //CART
@@ -66,7 +68,8 @@ Route::get('/cart/add/{id}/', [CartController::class,'addQuantity'])->name('add-
 Route::get('/cart/remove/{id}/', [CartController::class,'removeQuantity'])->name('remove-cart');
 Route::get('/cart/remove-item/{id}/', [CartController::class,'removeItem'])->name('remove-item-cart');
 
-// =============================== FACTURE ======================================================
+// =============================== PAYMENT  ======================================================
+
 Route::get('/cart/checkout', [CartController::class,'checkout'])->name('checkout-cart');
 Route::get('/cart/paiementCompleted', [CartController::class,'paiementCompleted'])->name('paiement-completed');
 
@@ -77,8 +80,21 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-//Route::get('/dashboard', [HomeController::class, 'index'])->name('list-all');
 
-Route::get('/dashboard', function () {
-    return view('welcome');
-});
+
+
+
+// Route::get('/user/profile', [UserProfileController::class, 'show'])->name('profile.show');
+
+
+// Route::get('/dashboard', function () {
+//     return view('welcome');
+// });
+
+
+//Route::get('/user/profile', [UserProfileController::class, 'show'])->name('show')->name('profile.show');
+
+//require_once __DIR__ .'/jetstream.php';
+
+
+

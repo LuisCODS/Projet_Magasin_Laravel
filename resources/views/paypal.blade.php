@@ -10,8 +10,7 @@
 
   <div id="paypal-button-container"></div>
 
-{{ $grandTotal }}
-  {{ $factureId }}
+
 <script>
   paypal.Buttons({
     createOrder: function(data, actions) {
