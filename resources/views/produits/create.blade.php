@@ -1,11 +1,13 @@
 @extends('layouts.main')
 @section('title', 'Creer produit')
+
+
+
 @section('content')
     <?php
     //dd($__data);
     ?>
     <!-- =============== CONTAINER PRODUIT CREATE  =============== -->
-
     <div id="createProduitContainer" class="col-xs-12 col-sm-12 col-md-12" >
         <h2>Nouveau Produit</h2>
         <br>
