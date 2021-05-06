@@ -68,24 +68,17 @@ Route::get('/cart/add/{id}/', [CartController::class,'addQuantity'])->name('add-
 Route::get('/cart/remove/{id}/', [CartController::class,'removeQuantity'])->name('remove-cart');
 Route::get('/cart/remove-item/{id}/', [CartController::class,'removeItem'])->name('remove-item-cart');
 
-// =============================== PAYMENT  ======================================================
+// =============================== PAYMENT ROUTES ======================================================
 
 Route::get('/cart/checkout', [CartController::class,'checkout'])->name('checkout-cart');
 Route::get('/cart/paiementCompleted', [CartController::class,'paiementCompleted'])->name('paiement-completed');
-
-
 
 //DASHBOARD
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-
-
-
-
 // Route::get('/user/profile', [UserProfileController::class, 'show'])->name('profile.show');
-
 
 // Route::get('/dashboard', function () {
 //     return view('welcome');

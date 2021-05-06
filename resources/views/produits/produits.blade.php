@@ -1,5 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Create produit')
+
+
 @section('content')
     <!-- Flash message -->
     @if (session('msg'))

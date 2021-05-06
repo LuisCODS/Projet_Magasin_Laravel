@@ -12,7 +12,8 @@ class ProduitController extends Controller
 
 
     /**
-     * Display all prdouits
+     * Display all prdouits.
+     * La methode trait les requetes provenant de produit.blade.php et 
      */
     public function index()
     {
@@ -23,9 +24,7 @@ class ProduitController extends Controller
         if ($search) {
 
             /*Cherche un registre avec le nom demandé*/
-            $produits = Produit::where([
-                                         ['nomProduit','like','%'.$search.'%']
-                                     ])->get();
+            $produits = Produit::where([['nomProduit','like','%'.$search.'%']])->get();
         }
         else{
             //Facades-Query all produits
@@ -42,7 +41,7 @@ class ProduitController extends Controller
      */
     public function create()
     {
-        //Facades-Query all category
+        //Facades - Query all category to display in to select
         $categories = Categorie::all();
          //Send back to view all category as array
         return view('produits.create', compact('categories'));
