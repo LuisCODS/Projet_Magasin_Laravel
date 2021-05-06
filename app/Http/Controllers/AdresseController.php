@@ -21,7 +21,7 @@ class AdresseController extends Controller
     /**
      * Store adresse in to BD
      *
-     * @param  all inputs from form
+     * @param  request all inputs from form
      * @return view
      */
     public function store(Request $request)
@@ -36,7 +36,7 @@ class AdresseController extends Controller
                 'quartie'       => "bail|required|max:100| regex:/^[A-Za-z\s]+$/",  //Only strings + space
                 'pays'          => "bail|required|max:50|  regex:/^[A-Za-z\s]+$/",  //Only strings + space
                 "codePostal"    => 'bail|required|max:7|   regex:/^[A-Za-z]\d[A-Za-z][-]\d[A-Za-z]\d/', //H2E-1X2
-                "ville"         => "bail|required|max:50|  regex:/^[A-Za-z\s]+$/",  //Only strings + space
+                "ville"         => "bail|required|max:50|  regex:/^[A-Za-z\s]+$/",  //Only strings + space et no acces
                 // "defaulAdresse" => "",/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
                 // var reg = /[a-zA-Z\u00C0-\u00FF ]+/i
 

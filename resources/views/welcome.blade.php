@@ -1,7 +1,8 @@
-@extends('layouts.main')
+@extends('layouts.main') <!--charge le main.blade.php -->
 @section('title', 'C&A mode')
 
 
+<!--La ligne 6 fait en sorte que tout ce qui est dans section soit renderisé dans le main.blade.php -->
 @section('content')
     <!-- ____________________________ CAROUSEL ____________________________ -->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -24,6 +25,8 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Próximo</span>
       </a>
+
+    </div>
     </div>
     <!-- ____________________________ ZONA GENRE ____________________________ -->
     <div class="row" id="genre_container">

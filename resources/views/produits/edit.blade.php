@@ -1,11 +1,12 @@
 @extends('layouts.main')
 @section('title', 'Edit produit')
+
+
 @section('content')
     <?php
     //dd($__data);
     ?>
     <!-- ===============  PRODUIT  EDIT  =============== -->
-
     <div class="col-xs-12 col-sm-12 col-md-12">
         <h2 style="text-align: center;">Edition Produit</h2>
         <br>

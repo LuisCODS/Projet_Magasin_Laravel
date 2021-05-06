@@ -12,9 +12,8 @@
         <h2>Nouveau Produit</h2>
         <br>
         <br>
-        <form action="{{ route('store-produit') }}" method="POST" enctype="multipart/form-data">
-            <!-- Prevencao contra os ataques -->
-            @csrf
+        <form action="{{ route('store-produit') }}" method="POST" enctype="multipart/form-data">            
+            @csrf <!-- Prevencao contra os ataques -->
             <div class="form-group">
                 <label for="img">Image</label>
                 <input type="file" id="img" name="img" value="{{ old('img') }}" value="{{ old('img') }}"
@@ -23,7 +22,6 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-
             <div class="form-group">
                 <label for="prix">Prix</label>
                 <input type="text" id="prix" name="prix" placeholder="00.00" pattern="[0-9]{2,3}[.][0-9]{2}?"
@@ -32,7 +30,6 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-
             <div class="form-group">
                 <label for="nomProduit">Nom du produit</label>
                 <input type="text" id="nomProduit" name="nomProduit" value="{{ old('nomProduit') }}"
@@ -41,7 +38,6 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-
             <div class="form-group">
                 <label for="totalStock">Total stock</label>
                 <input type="number" id="totalStock" name="totalStock" min="1" max="999999"
@@ -50,7 +46,6 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-
             <div class="form-group">
                 <label for="categorie">Categorie</label>
                 <select class="form-control" id="categorie" name="nomCategorie">
@@ -64,7 +59,6 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description" name="description"
@@ -73,13 +67,11 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-
             <div class="form-group">
                 <input type="submit" class="btn btn-primary form-control" value="Enregistrer">
                 <br>
                 <br>
             </div>
-
         </form>
     </div>
 @endsection

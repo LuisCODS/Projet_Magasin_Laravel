@@ -224,9 +224,9 @@ class CartController extends Controller
         $facture->save();
         $factureId = $facture->id_facture;
         //4
-/**
- * https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/
- */
+        /**
+         * https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/
+         */
 
         //dd("Test");
         // Fait appel à l'API
