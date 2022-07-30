@@ -8,9 +8,9 @@
         <!--CSS BOOTSTRAP  -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <!--CSS APP -->
-        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="css/styles.css">
         <!-- JS APP-->
-        <script type="text/javascript" src="/js/scripts.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
         <title>@yield('title')</title>
     </head>
     <body>
@@ -21,10 +21,10 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <nav id="navbar_menu" class="navbar navbar-expand-lg navbar-light bg-light">
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-1">
+                                    data-target="#bs-example-navbar-collapse-1">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-                            <a class="navbar-brand" href="/">C&A Mode</a>
+                            <a class="navbar-brand" href="">C&A Mode</a>
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <!-- MENUE COTE GAUCHE -->
                                 <ul class="navbar-nav">
@@ -40,10 +40,10 @@
                                     <!-- =================  GUEST INTERFACE ====================== -->
                                     @guest
                                         <li class="nav-item">
-                                            <a href="/login" class="nav-link">Login</a>
+                                            <a href="login" class="nav-link">Login</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="/register" class="nav-link">Enregistrer</a>
+                                            <a href="register" class="nav-link">Enregistrer</a>
                                         </li>
                                     @endguest
                                     <!-- ////////////////////////////////// AUTH ZONE - BEGIN ////////////////////////// -->
@@ -91,7 +91,7 @@
                                                     Mon Compte
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="/user/profile">
+                                                <a class="dropdown-item" href="user/profile">
                                                         {{-- <a class="dropdown-item" href="{{ route('profile.show') }}"> --}}
                                                         <ion-icon name="person-outline"></ion-icon> Profil
                                                     </a>
@@ -106,9 +106,9 @@
                                         @endif
                                         <!--  LOGOUT  -->
                                         <li class="nav-item">
-                                            <form action="/logout" method="POST">
+                                            <form action="logout" method="POST">
                                                 @csrf
-                                                <a href="/logout" class="nav-link"
+                                                <a href="logout" class="nav-link"
                                                     onclick="event.preventDefault(); this.closest('form').submit();">
                                                     Quitter
                                                 </a>
