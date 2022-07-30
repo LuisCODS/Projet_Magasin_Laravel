@@ -124,12 +124,8 @@
                 </div>
             </div>
         </header>
-        <!-- ======================================= END  HEADER ================================ 
-        //
-        //
-        //
-        //
-         ======================================= MAIN ======================================= -->
+        
+        <!-- ======================================= MAIN ======================================= -->
         <main>
             <div id="mainContentLayout" class="container h-100">
                 {{-- <div class="row h-100 justify-content-center align-items-center"> --}}
@@ -140,12 +136,14 @@
                 </div>
             </div>
         </main>
+        
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <!--ICONS : https://ionicons.com/ -->
         <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     </body>
+
     <!-- ======================================= FOOTER ======================================= -->
     <footer>
         <p>LuisCODS &copy; {{ date('Y')}}</p>
